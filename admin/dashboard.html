@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yours & Ours - Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="sidebar">
+                <div class="sidebar-logo">
+                    <div class="brand">Yours<span>&</span>Ours</div>
+                    <span class="badge">Admin Panel</span>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+
+                <div class="sidebar-nav">
+                    <a href="#" class="nav-item">
+                        <span class="material-icons-sharp">grid_view</span>
+                        <h3>Dashboard</h3>
+                    </a>
+                </div>
+
+                 <div class="sidebar-nav">
+                    <a href="#" class="nav-item">
+                        <span class="material-icons-sharp">person_outline</span>
+                        <h3>Users</h3>
+                    </a>
+                </div>
+
+                <div class="sidebar-nav">
+                    <a href="#" class="nav-item">
+                        <span class="material-icons-sharp">domain_verification</span>
+                        <h3>Verifications</h3>
+                        <span class="message-count">10</span>
+                    </a>
+                </div>
+
+                <div class="sidebar-nav">
+                    <a href="#" class="nav-item">
+                        <span class="material-icons-sharp">handyman</span>
+                        <h3>All Professionals</h3>
+                    </a>
+                </div>
+
+                <div class="sidebar-nav">
+                    <a href="#" class="nav-item">
+                        <span class="material-icons-sharp">message</span>
+                        <h3>Messages</h3>
+                        <span class="message-count">17</span>
+                    </a>
+                </div>
+
+                <div class="sidebar-nav">
+                    <a href="#" class="nav-item active">
+                        <span class="material-icons-sharp">calendar_month</span>
+                        <h3>Bookings</h3>
+                        <span class="message-count">253</span>
+                    </a>
+                </div>
+
+                <div class="sidebar-nav">
+                    <a href="#" class="nav-item">
+                        <span class="material-icons-sharp">reviews</span>
+                        <h3>Reviews</h3>
+                        <span class="message-count">38</span>
+                    </a>
+                </div>
+
+                <div class="sidebar-nav">
+                    <a href="#" class="nav-item">
+                        <span class="material-icons-sharp">report</span>
+                        <h3>Reports</h3>
+                    </a>
+                </div>
+
+                <div class="sidebar-nav">
+                    <a href="#" class="nav-item">
+                        <span class="material-icons-sharp">settings</span>
+                        <h3>Settings</h3>
+                    </a>
+                </div>
+
+                <div class="sidebar-nav">
+                    <a href="#" class="nav-item">
+                        <span class="material-icons-sharp">logout</span>
+                        <h3>Logout</h3>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <main>
+            <div class="top-bar">
+                <h1>Dashboard</h1>
+                <p></p>
+                <div class="search-bar">
+                    <span class="material-icons-sharp">search</span>
+                    <input type="text" placeholder="Search by name, booking ID, or phone..." size="50">
+                    <button>Search</button>
+                </div>
+                <div class="date">
+                    <input type="date">
+                </div>
+            </div>
+            <br>
+            
+            <div class="insights">
+                <div class="totalusers">
+                    <span class="material-icons-sharp">groups</span>
+                    <div class="middle">
+                        <div class="leftside">
+                            <h1>9,239</h1>
+                            <h3>Total Users</h3>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>63%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">This Month</small>
+                </div>
+
+                 <div class="pendingver">
+                    <span class="material-icons-sharp">pending_actions</span>
+                    <div class="middle">
+                        <div class="leftside">
+                            <h1>319</h1>
+                            <h3>Pending Verifications</h3>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>23%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">This Month</small>
+                </div>
+
+                 <div class="bookings">
+                    <span class="material-icons-sharp">event_available</span>
+                    <div class="middle">
+                        <div class="leftside">
+                            <h1>12,854</h1>
+                            <h3>Bookings</h3>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>89%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">This Month</small>
+                </div>
+
+                 <div class="activeprof">
+                    <span class="material-icons-sharp">engineering</span>
+                    <div class="middle">
+                        <div class="leftside">
+                            <h1>3,114</h1>
+                            <h3>Active Professionals</h3>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>26%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">This Month</small>
+                </div>
+            </div>
+
+            <br><hr><br>
+
+            <div class="booking-chart">
+                <h2>Booking Popularity by Category</h2>
+                <p>Which services are clients requesting the most?</p>
+                <br>
+                
+                <b>Electrician (90%)</b><br>
+                <hr size="10" width="90%" color="#4285F4" align="left">
+                <br>
+                
+                <b>Plumber (85%)</b><br>
+                <hr size="10" width="85%" color="#34a853" align="left">
+                <br>
+
+                <b>AC Tech (75%)</b><br>
+                <hr size="10" width="75%" color="#00acc1" align="left">
+                <br>
+
+                <b>Carpenter (60%)</b><br>
+                <hr size="10" width="60%" color="#fbbc04" align="left">
+                <br>
+
+                <b>Painter (40%)</b><br>
+                <hr size="10" width="40%" color="#ea4335" align="left">
+            </div>
+
+            <br><hr><br>
+
+            <div class="urgent-issues">
+                <h2><font color="red">URGENT: Flagged Issues & Disputes</font></h2>
+                <table border="1" cellpadding="8" width="100%">
+                    <tr bgcolor="#ffe6e6">
+                        <th>Booking ID</th>
+                        <th>Problem Reported</th>
+                        <th>Action Needed</th>
+                    </tr>
+                    <tr>
+                        <td><b>#4092</b></td>
+                        <td>Client says plumber didn't arrive</td>
+                        <td><button>Call Client</button></td>
+                    </tr>
+                    <tr>
+                        <td><b>#3811</b></td>
+                        <td>Electrician says client refused to pay</td>
+                        <td><button>Suspend User</button></td>
+                    </tr>
+                </table>
+            </div>
+
+            <br><br>
+
+            <div class="right-col">
+                
+                <div class="top-professionals">
+                    <h3>Top Workers of the Month</h3>
+                    <p>These professionals have the highest 5-star ratings:</p>
+                    <ol>
+                        <li><b>Mahmoud (Electrician)</b> - <font color="orange">★ 5.0</font> (42 jobs)</li>
+                        <li><b>Hassan (Plumber)</b> - <font color="orange">★ 4.9</font> (38 jobs)</li>
+                        <li><b>Kareem (Carpenter)</b> - <font color="orange">★ 4.8</font> (29 jobs)</li>
+                    </ol>
+                </div>
+
+                <hr><br>
+
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <p>See what is happening on Yours&Ours right now:</p>
+                    
+                    <table border="1" cellpadding="5" width="100%">
+                        <tr bgcolor="#f0f0f0">
+                            <th>User</th>
+                            <th>Action</th>
+                            <th>Time</th>
+                        </tr>
+                        
+                        <tr>
+                            <td><b>Ahmed (Client)</b></td>
+                            <td>Booked Hassan (Plumber)</td>
+                            <td><i>10 mins ago</i></td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Sara (Client)</b></td>
+                            <td>Gave 5 stars to Mahmoud (Electrician)</td>
+                            <td><i>1 hour ago</i></td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Kareem (Carpenter)</b></td>
+                            <td>Registered a new worker account</td>
+                            <td><i>2 hours ago</i></td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Hassan (Plumber)</b></td>
+                            <td>Accepted booking #4092</td>
+                            <td><i>3 hours ago</i></td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Mona (Client)</b></td>
+                            <td>Booked Ali (Electrician)</td>
+                            <td><i>5 hours ago</i></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div> </main>
+    </div>
+</body>
+</html>
