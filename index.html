@@ -5,132 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yours and Ours - Home</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <nav>
-        <a href="index.html">Yours & Ours</a>
 
-        <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#find-professionals">Find Professionals</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+   
+    <nav class="navbar navbar-guest">
+        <a class="nav-logo" href="index.html">Yours<span>&amp;</span><em>Ours</em></a>
+        <ul class="nav-links">
+            <li><a class="nav-link active" href="index.html">Home</a></li>
+            <li><a class="nav-link" href="directory.html">Browse Pros</a></li>
+            <li><a class="nav-link" href="#how-it-works">How It Works</a></li>
+            <li><a class="nav-link" href="about.html">About</a></li>
         </ul>
-
-        <div>
-            <a href="login.html">Login</a>
-            <a href="signup.html">Sign Up</a>
+        <div class="nav-actions">
+            <span class="nav-badge guest">Guest</span>
+            <a class="btn btn-outline" href="login.html">Sign In</a>
+            <a class="btn btn-clay" href="sign-up.html">Get Started</a>
         </div>
     </nav>
+
 
     <section id="hero" class="hero">
         <h1>Find Trusted Professionals Near You</h1>
         <p>Book verified electricians, plumbers, cleaners and more — all in one place.</p>
-
         <div class="search-bar">
-        <input type="text" placeholder="What are you looking for?" />
-        <button>Search</button>
-    </div>
+            <input type="text" placeholder="What are you looking for?" />
+            <button>Search</button>
+        </div>
     </section>
 
     <section id="find-professionals" class="find-professionals">
-    <h2>Find Professionals</h2>
-
-    <div class="professionals-container">
-
-        <div class="professional-card">
-            <h3>Ahmed Ali</h3>
-            <p>Electrician</p>
-            <p>⭐ 4.8 Rating</p>
-            <button>View Profile</button>
+        <h2>Find Professionals</h2>
+        <div class="professionals-container">
+            <div class="professional-card">
+                <h3>Ahmed Ali</h3>
+                <p>Electrician</p>
+                <p>⭐ 4.8 Rating</p>
+                <button>View Profile</button>
+            </div>
+            <div class="professional-card">
+                <h3>Sara Mohamed</h3>
+                <p>Plumber</p>
+                <p>⭐ 4.6 Rating</p>
+                <button>View Profile</button>
+            </div>
+            <div class="professional-card">
+                <h3>Omar Hassan</h3>
+                <p>Cleaner</p>
+                <p>⭐ 4.9 Rating</p>
+                <button>View Profile</button>
+            </div>
         </div>
+    </section>
 
-        <div class="professional-card">
-            <h3>Sara Mohamed</h3>
-            <p>Plumber</p>
-            <p>⭐ 4.6 Rating</p>
-            <button>View Profile</button>
+    <section id="how-it-works" class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps-container">
+            <div class="step">
+                <h3>1. Search</h3>
+                <p>Find professionals by category or location.</p>
+            </div>
+            <div class="step">
+                <h3>2. Book</h3>
+                <p>Choose the right expert and schedule a service.</p>
+            </div>
+            <div class="step">
+                <h3>3. Get It Done</h3>
+                <p>Relax while the professional completes the job.</p>
+            </div>
         </div>
+    </section>
 
-        <div class="professional-card">
-            <h3>Omar Hassan</h3>
-            <p>Cleaner</p>
-            <p>⭐ 4.9 Rating</p>
-            <button>View Profile</button>
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>Yours & Ours connects trusted professionals with customers
+        who need reliable home services. Our mission is to make booking
+        services simple, fast, and secure.</p>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+  <footer>
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <div class="footer-brand-name">Yours<span>&amp;</span><em>Ours</em></div>
+        <p class="footer-tagline">Connecting communities with trusted, vetted professionals for every service need. Quality work, guaranteed.</p>
+      
+
+  
+  <br><a href="https://www.facebook.com" target="_blank" class="social-btn">
+    <i class="fa-brands fa-facebook-f" style="color: #6b8c6a;"></i>
+  </a>
+  </br>
+  <br>
+  <a href="https://www.google.com" target="_blank" class="social-btn">
+    <i class="fa-brands fa-google f" style="color: #6b8c6a;"></i>
+  </a>
+  </br>
+
+  <br>
+  <a href="https://www.twitter.com" target="_blank" class="social-btn">
+    <i class="fa-brands fa-x-twitter f" style="color: #6b8c6a;"></i>
+  </a>
+  </br>
+
+</div>
+        <div class="footer-newsletter">
+          <p><strong>Stay in the loop.</strong><br>Tips, new pros and platform updates.</p>
+          <input type="email" placeholder="your@email.com" />
+          <a class="btn btn-clay" href="#">Subscribe</a>
         </div>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Browse Professionals</a></li>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Gift Cards</a></li>
+          <li><a href="#">For Businesses</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
 
     </div>
-</section>
 
-<section id="how-it-works" class="how-it-works">
-    <h2>How It Works</h2>
-    <div class="steps-container">
-        <div class="step">
-            <h3>1. Search</h3>
-            <p>Find professionals by category or location.</p>
-        </div>
 
-        <div class="step">
-            <h3>2. Book</h3>
-            <p>Choose the right expert and schedule a service.</p>
-        </div>
-
-        <div class="step">
-            <h3>3. Get It Done</h3>
-            <p>Relax while the professional completes the job.</p>
-        </div>
+</div>
     </div>
-</section>
+  </footer>
 
-<section id="about" class="about">
-    <h2>About Us</h2>
-    <p>
-        Yours & Ours connects trusted professionals with customers 
-        who need reliable home services. Our mission is to make booking 
-        services simple, fast, and secure.
-    </p>
-</section>
-
-<section id="contact" class="contact">
-    <h2>Contact Us</h2>
-
-    <form>
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" rows="5" required></textarea>
-        <button type="submit">Send Message</button>
-    </form>
-</section>
-
-<footer class="footer">
-    <div class="footer-container">
-
-        <div class="footer-section">
-            <h3>Yours & Ours</h3>
-            <p>Connecting trusted professionals with customers across Egypt.</p>
-        </div>
-
-        <div class="footer-section">
-            <h4>Quick Links</h4>
-            <a href="#hero">Home</a>
-            <a href="#find-professionals">Find Professionals</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </div>
-
-        <div class="footer-section">
-            <h4>Contact Info</h4>
-            <p>Email: support@yoursandours.com</p>
-            <p>Phone: +20 100 000 0000</p>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-        <p>© 2026 Yours & Ours. All rights reserved.</p>
-    </div>
-</footer>
 </body>
 </html>
