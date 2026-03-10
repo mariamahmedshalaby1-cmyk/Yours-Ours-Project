@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Edit Profile - Yours&Ours</title>
+</head>
+<body>
+   
+
+    <main>
+        <section>
+            <h2>Profile Editor</h2>
+            <form action="#" method="get">
+                <article>
+                    <h3>Personal Information</h3>
+                    <p>Full Name: <input type="text" name="fullname"></p>
+                    <p>Email: <input type="email" name="email"></p>
+                    <p>Phone: <input type="tel" name="phone"></p>
+                    <p>Profile Picture: <input type="file" name="profile_pic"></p>
+                </article>
+
+                <article>
+                    <h3>Professional Details</h3>
+                    <p>Primary Specialty:
+                        <select name="specialty">
+                            <option value="electrician">Electrician</option>
+                            <option value="plumber">Plumber</option>
+                            <option value="carpenter">Carpenter</option>
+                        </select>
+                    </p>
+                    <p>Bio:<br>
+                        <textarea name="bio" rows="4" cols="50">Enter your professional background here...</textarea>
+                    </p>
+                    <p>Services Offered:<br>
+                        <input type="checkbox" name="service" value="repair" checked> Repair
+                        <input type="checkbox" name="service" value="installation"> Installation
+                        <input type="checkbox" name="service" value="maintenance"> Maintenance
+                    </p>
+                </article>
+
+                <input type="submit" value="Save Changes">
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <hr>
+        <p>&copy; 2026 Yours&Ours Home Services Platform</p>
+    </footer>
+</body>
+</html>

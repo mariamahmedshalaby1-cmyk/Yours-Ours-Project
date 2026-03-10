@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yours&Ours - Detailed Work Schedule</title>
+</head>
+<body>
+    
+    <main>
+        <section>
+            <h2>Add Work Session</h2>
+            <form action="save_schedule.php" method="POST">
+                <p>
+                    <label for="work-date">Date:</label><br>
+                    <input type="date" id="work-date" name="work-date" required>
+                </p>
+                
+                <p>
+                    <label for="start-time">Start Time:</label>
+                    <input type="time" id="start-time" name="start-time" required>
+                    
+                    <label for="end-time">End Time:</label>
+                    <input type="time" id="end-time" name="end-time" required>
+                </p>
+
+                <p>
+                    <label for="service">Service Type:</label><br>
+                    <select id="service" name="service">
+                        <option value="plumbing">Plumbing Installation</option>
+                        <option value="electrical">Electrical Wiring</option>
+                        <option value="carpentry">Furniture Assembly</option>
+                        <option value="maintenance">General Maintenance</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="location">Specific Spot/Address:</label><br>
+                    <input type="text" id="location" name="location" placeholder="e.g., Apartment 4, Building 12, Nasr City" size="50">
+                </p>
+
+                <button type="submit">Log Work Session</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section>
+            <h3>Planned Agenda</h3>
+            <table border="1" width="100%">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time Window</th>
+                        <th>Service</th>
+                        <th>Location Spot</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2026-03-15</td>
+                        <td>10:00 AM - 01:00 PM</td>
+                        <td>Electrical Wiring</td>
+                        <td>Maadi, Road 9, Villa 4</td>
+                        <td><strong>Scheduled</strong></td>
+                    </tr>
+                    <tr>
+                        <td>2026-03-15</td>
+                        <td>03:00 PM - 05:00 PM</td>
+                        <td>Plumbing Installation</td>
+                        <td>Zamalek, 22 Nile St.</td>
+                        <td><strong>Pending</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>
