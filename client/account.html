@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>My Dashboard - Yours&Ours</title>
+</head>
+<body>
+
+    <!-- CLIENT NAVBAR -->
+    <nav class="navbar navbar-client">
+        <a class="nav-logo" href="../index.html">Yours<span>&amp;</span><em>Ours</em></a>
+        <div class="nav-actions">
+            <span class="nav-badge client">Client</span>
+        </div>
+        <ul class="nav-links">
+            <li><a class="nav-link" href="directory.html">Browse Pros</a></li>
+            <li><a class="nav-link" href="booking.html">My Bookings</a></li>
+        </ul>
+        <div class="nav-icon-btn">
+            🔔
+            <span class="nav-dot"></span>
+        </div>
+    </nav>
+
+    <main class="dashboard-container">
+
+        <section class="active-booking-section">
+            <h3>🚨 Happening Now</h3>
+            
+            <div class="live-status-card">
+                <div class="status-header">
+                    <img src="https://via.placeholder.com/60" alt="Samy" class="pro-avatar">
+                    <div class="status-text">
+                        <h4>Electrical Repair with Samy Ahmed</h4>
+                        <p class="eta">Estimated Arrival: <strong>10 Minutes (6:00 PM)</strong></p>
+                    </div>
+                    <button class="call-btn">📞 Call Samy</button>
+                </div>
+
+                <div class="progress-timeline">
+                    <div class="milestone completed">✔ Request Accepted</div>
+                    <div class="milestone active">🚚 Pro is on the way</div>
+                    <div class="milestone pending">🛠️ Work in Progress</div>
+                    <div class="milestone pending">💳 Payment Pending</div>
+                </div>
+
+                <hr>
+
+                <div class="safety-and-prep">
+                    <div class="security-pin-box">
+                        <p><strong>Your Safety PIN:</strong></p>
+                        <h2 class="otp-code">4921</h2>
+                        <p class="tiny-text">🛡️ Give this to Samy at the door to verify his identity.</p>
+                    </div>
+                    
+                    <div class="prep-checklist">
+                        <p><strong>To prepare for this visit:</strong></p>
+                        <ul>
+                            <li>Ensure the fuse box area is clear of furniture.</li>
+                            <li>Keep pets in another room for their safety.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="support-link">
+                    <a href="../index.html#contact" class="sos-text">⚠️ Have an issue? Contact Yours&amp;Ours Support</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="favorites-section">
+            <h3>❤️ Your Trusted Neighborhood Pros</h3>
+            <p class="section-desc">Pros you've loved working with in the past. Re-book them in one tap!</p>
+            
+            <div class="favorites-grid">
+                <div class="fav-card">
+                    <img src="https://via.placeholder.com/80" alt="Ahmed" class="fav-avatar">
+                    <div class="fav-details">
+                        <h4>Ahmed Mostafa 🛡️</h4>
+                        <p>Master Plumber</p>
+                        <p class="last-hired">Last hired: 2 months ago</p>
+                    </div>
+                    <a href="booking.html" class="quick-rebook-btn">Quick Re-book</a>
+                </div>
+
+                <div class="fav-card">
+                    <img src="https://via.placeholder.com/80" alt="Sayed" class="fav-avatar">
+                    <div class="fav-details">
+                        <h4>Sayed Mahmoud 🛡️</h4>
+                        <p>Carpenter</p>
+                        <p class="last-hired">Last hired: 6 months ago</p>
+                    </div>
+                    <a href="booking.html" class="quick-rebook-btn">Quick Re-book</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="history-section">
+            <h3>Past Services</h3>
+            <table class="history-table">
+                <tr>
+                    <td>Oct 12, 2025</td>
+                    <td>AC Maintenance</td>
+                    <td>Tarek Youssef</td>
+                    <td><span class="status-badge success">Completed</span></td>
+                    <td><button class="text-btn">View Receipt</button></td>
+                </tr>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- FOOTER — exact original, links fixed -->
+    <footer>
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <div class="footer-brand-name">Yours<span>&amp;</span><em>Ours</em></div>
+        <p class="footer-tagline">Connecting communities with trusted, vetted professionals for every service need. Quality work, guaranteed.</p>
+
+  <br><a href="https://www.facebook.com" target="_blank" class="social-btn">
+    <i class="fa-brands fa-facebook-f" style="color: #6b8c6a;"></i>
+  </a></br>
+  <br><a href="https://www.google.com" target="_blank" class="social-btn">
+    <i class="fa-brands fa-google f" style="color: #6b8c6a;"></i>
+  </a></br>
+  <br><a href="https://www.twitter.com" target="_blank" class="social-btn">
+    <i class="fa-brands fa-x-twitter f" style="color: #6b8c6a;"></i>
+  </a></br>
+
+</div>
+        <div class="footer-newsletter">
+          <p><strong>Stay in the loop.</strong><br>Tips, new pros and platform updates.</p>
+          <input type="email" placeholder="your@email.com" />
+          <a class="btn btn-clay" href="#">Subscribe</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="directory.html">Browse Professionals</a></li>
+          <li><a href="../index.html#how-it-works">How It Works</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+          <li><a href="#">Gift Cards</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="../index.html#about">About Us</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
+
+</body>
+</html>

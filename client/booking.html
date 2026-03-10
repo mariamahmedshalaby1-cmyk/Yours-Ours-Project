@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Booking - Yours&Ours</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- CLIENT NAVBAR -->
+    <nav class="navbar navbar-client">
+        <a class="nav-logo" href="../index.html">Yours<span>&amp;</span><em>Ours</em></a>
+        <div class="nav-actions">
+            <span class="nav-badge client">Client</span>
+        </div>
+        <ul class="nav-links">
+            <li><a class="nav-link" href="directory.html">Browse Pros</a></li>
+            <li><a class="nav-link active" href="booking.html">My Bookings</a></li>
+        </ul>
+        <div class="nav-icon-btn">
+            🔔
+            <span class="nav-dot"></span>
+        </div>
+    </nav>
+
+    <main class="booking-page-container">
+        <nav class="booking-nav">
+            <a href="profile.html" class="back-link">← Cancel and return to profile</a>
+        </nav>
+
+        <header class="booking-header">
+            <h1>Request a Service</h1>
+            <div class="pro-summary-badge">
+                <img src="https://via.placeholder.com/40" alt="Samy Avatar" class="mini-avatar">
+                <p>Booking <strong>Samy Ahmed</strong> for <strong>Electrical Repair</strong></p>
+            </div>
+        </header>
+
+        <div class="form-progress-tracker">
+            <span class="step active">1. Details</span> → 
+            <span class="step active">2. Schedule</span> → 
+            <span class="step">3. Confirm</span>
+        </div>
+
+        <form class="smart-booking-form">
+            
+            <fieldset class="form-section">
+                <legend>What seems to be the problem?</legend>
+                
+                <div class="emergency-toggle">
+                    <label>
+                        <input type="checkbox" name="is_emergency">
+                        🚨 <strong>This is an emergency</strong> (e.g., sparking wires, power out)
+                    </label>
+                </div>
+
+                <textarea placeholder="Please describe the issue in detail..."></textarea>
+                
+                <div class="multimedia-upload-group">
+                    <div class="upload-btn photo-upload">
+                        <label>📸 Upload a Photo</label>
+                        <input type="file" accept="image/*">
+                    </div>
+                    <div class="upload-btn voice-upload">
+                        <button type="button">🎙️ Record a Voice Note (Max 1 min)</button>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>When and where do you need Samy?</legend>
+                
+                <div class="date-time-picker">
+                    <h4>Available Time Slots</h4>
+                    <div class="time-grid">
+                        <button type="button" class="time-pill selected">Today, 4:00 PM</button>
+                        <button type="button" class="time-pill">Today, 6:00 PM</button>
+                        <button type="button" class="time-pill">Tomorrow, 10:00 AM</button>
+                    </div>
+                </div>
+
+                <div class="address-inputs">
+                    <input type="text" placeholder="Neighborhood (e.g., Maadi, Degla)" required>
+                    <input type="text" placeholder="Street Name & Building Number" required>
+                    <input type="text" placeholder="Apartment / Floor">
+                    <input type="text" placeholder="Landmark or Special Instructions (e.g., 'Ring the doorbell twice')">
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section checkout-summary">
+                <legend>Review & Confirm</legend>
+
+                <div class="price-breakdown-card">
+                    <div class="price-row"><span>Visit Fee (Fixed)</span> <span>150 EGP</span></div>
+                    <div class="price-row"><span>Estimated Labor</span> <span>100 - 300 EGP</span></div>
+                    <hr>
+                    <div class="price-row total">
+                        <span><strong>Estimated Total</strong></span> 
+                        <span><strong>250 - 450 EGP</strong></span>
+                    </div>
+                    <p class="trust-note">🛡️ <strong>No upfront payment.</strong> You only pay when the job is done and you are satisfied.</p>
+                </div>
+
+                <div class="safety-agreement">
+                    <label>
+                        <input type="checkbox" required>
+                        I confirm that an adult (18+) will be present during the service visit.
+                    </label>
+                </div>
+
+                <button type="submit" class="primary-confirm-btn">Confirm & Send Request</button>
+            </fieldset>
+
+        </form>
+    </main>
+
+    <!-- FOOTER — exact original, links fixed -->
+    <footer>
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <div class="footer-brand-name">Yours<span>&amp;</span><em>Ours</em></div>
+        <p class="footer-tagline">Connecting communities with trusted, vetted professionals for every service need. Quality work, guaranteed.</p>
+
+  <br><a href="https://www.facebook.com" target="_blank" class="social-btn">
+    <i class="fa-brands fa-facebook-f" style="color: #6b8c6a;"></i>
+  </a></br>
+  <br><a href="https://www.google.com" target="_blank" class="social-btn">
+    <i class="fa-brands fa-google f" style="color: #6b8c6a;"></i>
+  </a></br>
+  <br><a href="https://www.twitter.com" target="_blank" class="social-btn">
+    <i class="fa-brands fa-x-twitter f" style="color: #6b8c6a;"></i>
+  </a></br>
+
+</div>
+        <div class="footer-newsletter">
+          <p><strong>Stay in the loop.</strong><br>Tips, new pros and platform updates.</p>
+          <input type="email" placeholder="your@email.com" />
+          <a class="btn btn-clay" href="#">Subscribe</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="directory.html">Browse Professionals</a></li>
+          <li><a href="../index.html#how-it-works">How It Works</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+          <li><a href="#">Gift Cards</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="../index.html">About Us</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
