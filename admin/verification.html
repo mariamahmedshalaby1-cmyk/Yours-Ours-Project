@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yours & Ours - Admin Verifications</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+    <nav class="navbar navbar-admin">
+    <a class="nav-logo" href="index.html">Yours<span>&amp;</span><em>Ours</em></a>
+    <div class="nav-actions">
+    <span class="nav-badge admin">Admin</span>
+    </div>
+    <ul class="nav-links">
+    <li><a class="nav-link" href="dashboard.html">Overview</a></li>
+    <li><a class="nav-link active" href="verification.html">Verifications</a></li>
+    <li><a class="nav-link" href="bookingshistory.html">Bookings History</a></li>
+    </ul>
+    <div class="nav-icon-btn">⚙️</div>
+    </nav>
+    <main class="verifications-page">
+    <header class="page-header">
+    <div class="header-left">
+    <div class="breadcrumbs">
+    <span class="text-muted">Home</span> / <b>Verifications</b>
+    </div>
+    <h1>All Verifications</h1>
+    </div>
+    </header>
+    <div class="stats-grid">
+
+    <div class="stat-card">
+    <div class="card-header">
+    <div class="icon-wrapper blue-bg">
+    <span class="material-icons-sharp">pending</span>
+    </div>
+    </div>
+    <p class="card-title">Requested</p>
+    <div class="card-body">
+    <h2>4,807</h2>
+    <span class="trend-badge trend-up">↑ 63.5%</span>
+    </div>
+    </div>
+
+    <div class="stat-card">
+    <div class="card-header">
+    <div class="icon-wrapper green-bg">
+    <span class="material-icons-sharp">check_circle</span>
+    </div>
+    </div>
+    <p class="card-title">Approved</p>
+    <div class="card-body">
+    <h2>2,394</h2>
+    <span class="trend-badge trend-down">↓ 12.5%</span>
+    </div>
+    </div>
+
+    <div class="stat-card">
+    <div class="card-header">
+    <div class="icon-wrapper red-bg">
+    <span class="material-icons-sharp">cancel</span>
+    </div>
+    </div>
+    <p class="card-title">Rejected</p>
+    <div class="card-body">
+    <h2>628</h2>
+    <span class="trend-badge trend-down">↓ 8.5%</span>
+    </div>
+    </div>
+
+    <div class="stat-card">
+    <div class="card-header">
+    <div class="icon-wrapper yellow-bg">
+    <span class="material-icons-sharp">pending_actions</span>
+    </div>
+    </div>
+    <p class="card-title">Pending</p>
+    <div class="card-body">
+    <h2>1,785</h2>
+    <span class="trend-badge trend-up">↑ 47.5%</span>
+    </div>
+    </div>
+    </div>
+
+    <div class="table-card">
+    <div class="table-header">
+    <h2>Pending Applications</h2>
+    <div class="table-controls">
+    <div class="search-input-group">
+    <span class="material-icons-sharp">search</span>
+    <input type="text" placeholder="Search by name or profession...">
+    </div>
+    <select class="filter-select">
+    <option value="">All Professions</option>
+    <option value="electrician">Electrician</option>
+    <option value="plumber">Plumber</option>
+    <option value="carpenter">Carpenter</option>
+    </select>
+    <button class="btn-text">
+    <span class="material-icons-sharp">swap_vert</span> Sort by Date
+    </button>
+    </div>
+    </div>
+    <p class="text-muted">Showing 20 pending applications — sorted A to Z</p>
+
+    <div class="alpha-divider">A</div>
+    <div class="queue-grid">
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Ahmed Hussen</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">bolt</span> Electrician
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 2 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>5 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Cairo, Nasr City</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201094567890">+20 109 456 7890</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:ahmedhussen@gmail.com">ahmedhussen@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>License.pdf, Certificate.pdf, ID.jpg</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Amir Mahmoud</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">plumbing</span> Plumber
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 2 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>1 year experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Alexandria, Smouha</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201264567898">+20 126 456 7898</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:amirmahmoud@gmail.com">amirmahmoud@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>ID.jpg, Proof_of_Address.pdf</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+    </div>
+
+    <div class="alpha-divider">D</div>
+    <div class="queue-grid">
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Diaa Fawzy</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">carpenter</span> Carpenter
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 1 week ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>6 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Mansoura, Dakahlia</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201034567907">+20 103 456 7907</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:diaafawzy@gmail.com">diaafawzy@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>ID.jpg, Custom_Furniture_Catalog.pdf</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+    </div>
+
+    <div class="alpha-divider">F</div>
+    <div class="queue-grid">
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Fares Youssef</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">plumbing</span> Plumber
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 6 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>3 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Tanta, Gharbia</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201134567896">+20 113 456 7896</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:faresyoussef@gmail.com">faresyoussef@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>Trade_School_Diploma.pdf, ID.jpg</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+    </div>
+
+    <div class="alpha-divider">K</div>
+    <div class="queue-grid">
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Karim Ali</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">carpenter</span> Carpenter
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 3 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>4 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Aswan, Edfu</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201144567892">+20 114 456 7892</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:karimali@gmail.com">karimali@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>Portfolio.pdf, ID.jpg, Reference_Letter.pdf</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+
+
+    <div class="alpha-divider">M</div>
+    <div class="queue-grid">
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Maged Hassan</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">bolt</span> Electrician
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 3 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>6 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Ismailia, Sheikh Zayed</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201254567899">+20 125 456 7899</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:magedhassan@gmail.com">magedhassan@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>ID.jpg, Previous_Projects.pdf</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+
+    <div class="alpha-divider">O</div>
+    <div class="queue-grid">
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Omar Diab</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">carpenter</span> Carpenter
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 3 hours ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>1 year experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Giza, Dokki</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201164567908">+20 116 456 7908</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:omardiab@gmail.com">omardiab@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>ID.jpg, Recommendation_Letter.pdf</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+
+    <div class="alpha-divider">S</div>
+    <div class="queue-grid">
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Samer Riad</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">bolt</span> Electrician
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 4 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>4 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Beni Suef, Biba</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201224567900">+20 122 456 7900</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:samerriad@gmail.com">samerriad@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>License.pdf, Safety_Cert.pdf, ID.jpg</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Sherif Abd Elsalam</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">plumbing</span> Plumber
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 2 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>10 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Hurghada, Dahar</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201064567909">+20 106 456 7909</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:sherifabdelsalam@gmail.com">sherifabdelsalam@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>ID.jpg, Commercial_License.pdf, Portfolio.pdf</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+    </div>
+    <div class="pagination-container">
+    <div class="pagination-button">
+    <button class="btn-page active">Load More</button>
+    </div>
+    </div>
+    </div>
+    </main>
+    <footer>
+    <div class="footer-bottom">
+    <p>© 2026 Yours & Ours. All rights reserved. — Admin Panel</p>
+    </div>
+    </footer>
+    </body>
+    </html>
