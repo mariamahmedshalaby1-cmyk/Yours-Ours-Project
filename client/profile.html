@@ -21,12 +21,26 @@
             🔔
             <span class="nav-dot"></span>
         </div>
-    </nav>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+    <ul class="mobile-menu" id="mobile-menu">
+        <li><a href="directory.html">Browse Pros</a></li>
+        <li><a href="booking.html">My Bookings</a></li>
+    </ul>
 
     <main class="profile-page">
+
         <nav class="breadcrumb-nav">
-            <a href="directory.html">← Back to Neighborhood Directory</a>
+            <a href="directory.html">← Back to Directory</a>
         </nav>
+
+        <!-- ══════════════════════════════════════
+             PROFILE: SAMY AHMED  (id="samy")
+             Link to this with: profile.html#samy
+        ══════════════════════════════════════ -->
+        <section id="samy" class="profile-section">
 
         <header class="profile-header">
             <div class="pro-identity">
@@ -34,15 +48,13 @@
                     <img src="https://via.placeholder.com/180" alt="Samy Ahmed Avatar" class="pro-photo">
                     <span class="online-indicator"></span>
                 </div>
-                
                 <div class="pro-text-details">
                     <div class="name-row">
                         <h1>Samy Ahmed</h1>
                         <span class="verified-badge" title="Identity & Background Checked">🛡️ Verified Pro</span>
                     </div>
-                    <p class="specialty">Master Electrician & Smart Home Specialist</p>
-                    <p class="neighborhood">📍 Primary Service Area: <strong>Maadi, Degla & Heliopolis</strong></p>
-                    
+                    <p class="specialty">Master Electrician &amp; Smart Home Specialist</p>
+                    <p class="neighborhood">📍 Primary Service Area: <strong>Maadi, Degla &amp; Heliopolis</strong></p>
                     <div class="rating-summary">
                         <span class="stars">⭐⭐⭐⭐⭐</span>
                         <span class="review-count"><strong>4.9</strong> (124 local reviews)</span>
@@ -50,16 +62,17 @@
                     </div>
                 </div>
             </div>
-
             <div class="booking-action-card">
                 <div class="price-info">
                     <p class="label">Starting Visit Fee</p>
                     <h2 class="price">150 EGP</h2>
                 </div>
                 <div class="button-group">
-                    <a href="booking.html" class="primary-btn">Check My Schedule</a>
+                    <a href="booking.html?pro=Samy+Ahmed&service=Electrical+Repair" class="btn btn-primary">Check My Schedule</a>
                     <button class="secondary-btn">💬 Chat with Samy</button>
                     <button class="favorite-btn">❤️ Save to My Favorites</button>
+                
+                    <a href="write-review.html?pro=Samy+Ahmed&service=Electrical+Repair" class="btn btn-outline" style="text-align:center;">⭐ Write a Review</a>
                 </div>
                 <p class="guarantee-text">🔒 Secure booking through Yours&amp;Ours</p>
             </div>
@@ -100,7 +113,10 @@
             <h2>About Me</h2>
             <p>"Hi, I'm Samy. I've been helping families in Cairo stay safe and powered up for over a decade. I believe in honest work and fair prices. I'm not just your electrician; I'm your neighbor."</p>
             <div class="skills-tags">
-                <span>Wiring</span> <span>AC Repair</span> <span>Lighting</span> <span>Smart Homes</span>
+                <span>Wiring</span>
+                <span>AC Repair</span>
+                <span>Lighting</span>
+                <span>Smart Homes</span>
             </div>
         </section>
 
@@ -115,6 +131,341 @@
                 <div class="review-rating">⭐⭐⭐⭐⭐</div>
             </div>
         </section>
+
+        </section><!-- end #samy -->
+
+
+        <!-- ══════════════════════════════════════
+             PROFILE: MOHAMMED ALI  (id="mohammed")
+             Link to this with: profile.html#mohammed
+        ══════════════════════════════════════ -->
+        <section id="mohammed" class="profile-section">
+
+        <header class="profile-header">
+            <div class="pro-identity">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/180" alt="Mohammed Ali" class="pro-photo">
+                    <span class="online-indicator"></span>
+                </div>
+                <div class="pro-text-details">
+                    <div class="name-row">
+                        <h1>Mohammed Ali</h1>
+                        <span class="verified-badge" title="Identity & Background Checked">🛡️ Verified Pro</span>
+                    </div>
+                    <p class="specialty">Master Plumber &amp; Pipe Specialist</p>
+                    <p class="neighborhood">📍 Primary Service Area: <strong>Zamalek, Mohandeseen &amp; Dokki</strong></p>
+                    <div class="rating-summary">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="review-count"><strong>4.6</strong> (98 local reviews)</span>
+                        <span class="experience-tag">| 8 Years Experience</span>
+                    </div>
+                </div>
+            </div>
+            <div class="booking-action-card">
+                <div class="price-info">
+                    <p class="label">Starting Visit Fee</p>
+                    <h2 class="price">120 EGP</h2>
+                </div>
+                <div class="button-group">
+                    <a href="booking.html?pro=Mohammed+Ali&service=Plumbing" class="btn btn-primary">Check My Schedule</a>
+                    <button class="secondary-btn">💬 Chat with Mohammed</button>
+                    <button class="favorite-btn">❤️ Save to My Favorites</button>
+                
+                    <a href="write-review.html?pro=Mohammed+Ali&service=Plumbing" class="btn btn-outline" style="text-align:center;">⭐ Write a Review</a>
+                </div>
+                <p class="guarantee-text">🔒 Secure booking through Yours&amp;Ours</p>
+            </div>
+        </header>
+
+        <hr class="section-divider">
+
+        <section class="pro-pledge">
+            <h3>My Service Promise to You</h3>
+            <div class="pledge-grid">
+                <div class="pledge-item">🔧 <strong>No Hidden Costs:</strong> Price agreed before work begins.</div>
+                <div class="pledge-item">🕒 <strong>On-Time:</strong> I respect your schedule and arrive on time.</div>
+                <div class="pledge-item">💧 <strong>Quality Parts:</strong> I only use certified Egyptian-standard pipes and fittings.</div>
+            </div>
+        </section>
+
+        <section class="work-portfolio">
+            <h2>Recent Success Stories</h2>
+            <div class="portfolio-grid">
+                <figure class="portfolio-item">
+                    <div class="comparison-images">
+                        <img src="https://via.placeholder.com/200x150" alt="Old Pipes">
+                        <img src="https://via.placeholder.com/200x150" alt="New Pipes">
+                    </div>
+                    <figcaption>Full Pipe Replacement - Zamalek Apartment</figcaption>
+                </figure>
+                <figure class="portfolio-item">
+                    <div class="comparison-images">
+                        <img src="https://via.placeholder.com/200x150" alt="Old Bathroom">
+                        <img src="https://via.placeholder.com/200x150" alt="New Bathroom">
+                    </div>
+                    <figcaption>Bathroom Renovation - Mohandeseen</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>About Me</h2>
+            <p>"I'm Mohammed and I've been fixing Cairo's water problems for 8 years. Whether it's a small dripping tap or a full bathroom installation, I bring the same care and precision to every job."</p>
+            <div class="skills-tags">
+                <span>Pipe Repair</span>
+                <span>Leak Detection</span>
+                <span>Drain Unclogging</span>
+                <span>Water Heaters</span>
+                <span>Bathroom Fitting</span>
+                <span>Emergency Plumbing</span>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <h2>What Neighbors Are Saying</h2>
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="user-name">Karim F.</span>
+                    <span class="review-date">1 week ago</span>
+                </div>
+                <p class="review-text">"Mohammed fixed our burst pipe at midnight. He came within 30 minutes and saved our entire apartment from flooding. Absolute lifesaver!"</p>
+                <div class="review-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="user-name">Dina M.</span>
+                    <span class="review-date">3 weeks ago</span>
+                </div>
+                <p class="review-text">"Very professional and clean. Fixed our kitchen sink and checked all pipes. Transparent pricing, no surprises."</p>
+                <div class="review-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+        </section>
+
+        </section><!-- end #mohammed -->
+
+
+        <!-- ══════════════════════════════════════
+             PROFILE: AHMED ALI  (id="ahmed")
+             Link: profile.html#ahmed
+        ══════════════════════════════════════ -->
+        <section id="ahmed" class="profile-section">
+        <header class="profile-header">
+            <div class="pro-identity">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/180" alt="Ahmed Ali" class="pro-photo">
+                    <span class="online-indicator"></span>
+                </div>
+                <div class="pro-text-details">
+                    <div class="name-row">
+                        <h1>Ahmed Ali</h1>
+                        <span class="verified-badge">🛡️ Verified Pro</span>
+                    </div>
+                    <p class="specialty">Certified Electrician</p>
+                    <p class="neighborhood">📍 Primary Service Area: <strong>Nasr City, Heliopolis &amp; New Cairo</strong></p>
+                    <div class="rating-summary">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="review-count"><strong>4.8</strong> (107 local reviews)</span>
+                        <span class="experience-tag">| 10 Years Experience</span>
+                    </div>
+                </div>
+            </div>
+            <div class="booking-action-card">
+                <div class="price-info">
+                    <p class="label">Starting Visit Fee</p>
+                    <h2 class="price">130 EGP</h2>
+                </div>
+                <div class="button-group">
+                    <a href="booking.html?pro=Ahmed+Ali&service=Electrical+Repair" class="btn btn-primary">Check My Schedule</a>
+                    <button class="secondary-btn">💬 Chat with Ahmed</button>
+                    <button class="favorite-btn">❤️ Save to My Favorites</button>
+                
+                    <a href="write-review.html?pro=Ahmed+Ali&service=Electrical+Repair" class="btn btn-outline" style="text-align:center;">⭐ Write a Review</a>
+                </div>
+                <p class="guarantee-text">🔒 Secure booking through Yours&amp;Ours</p>
+            </div>
+        </header>
+        <hr class="section-divider">
+        <section class="pro-pledge">
+            <h3>My Service Promise to You</h3>
+            <div class="pledge-grid">
+                <div class="pledge-item">⚡ <strong>Safety First:</strong> All work follows Egyptian electrical safety standards.</div>
+                <div class="pledge-item">🕒 <strong>Punctual:</strong> I notify you 30 mins before arrival.</div>
+                <div class="pledge-item">🔧 <strong>Guaranteed Work:</strong> 30-day warranty on all electrical repairs.</div>
+            </div>
+        </section>
+        <section class="about-section">
+            <h2>About Me</h2>
+            <p>"I'm Ahmed, a certified electrician serving Cairo families for 10 years. From simple socket repairs to full rewiring jobs, I deliver safe, clean, and reliable electrical work every time."</p>
+            <div class="skills-tags">
+                <span>Electrical Repairs</span>
+                <span>Wiring</span>
+                <span>Circuit Breakers</span>
+                <span>AC Installation</span>
+                <span>Lighting</span>
+            </div>
+        </section>
+        <section class="reviews-section">
+            <h2>What Neighbors Are Saying</h2>
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="user-name">Hassan T.</span>
+                    <span class="review-date">5 days ago</span>
+                </div>
+                <p class="review-text">"Ahmed came same day and fixed our entire fuse box. Very professional, explained everything clearly, and charged exactly what he quoted."</p>
+                <div class="review-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+        </section>
+        </section><!-- end #ahmed -->
+
+
+        <!-- ══════════════════════════════════════
+             PROFILE: AHMED MOSTAFA  (id="ahmed-mostafa")
+             Link: profile.html#ahmed-mostafa
+             (The plumber in the favorites section)
+        ══════════════════════════════════════ -->
+        <section id="ahmed-mostafa" class="profile-section">
+        <header class="profile-header">
+            <div class="pro-identity">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/180" alt="Ahmed Mostafa" class="pro-photo">
+                    <span class="online-indicator"></span>
+                </div>
+                <div class="pro-text-details">
+                    <div class="name-row">
+                        <h1>Ahmed Mostafa</h1>
+                        <span class="verified-badge">🛡️ Verified Pro</span>
+                    </div>
+                    <p class="specialty">Master Plumber</p>
+                    <p class="neighborhood">📍 Primary Service Area: <strong>Maadi, Tagammo &amp; New Cairo</strong></p>
+                    <div class="rating-summary">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="review-count"><strong>4.8</strong> (89 local reviews)</span>
+                        <span class="experience-tag">| 9 Years Experience</span>
+                    </div>
+                </div>
+            </div>
+            <div class="booking-action-card">
+                <div class="price-info">
+                    <p class="label">Starting Visit Fee</p>
+                    <h2 class="price">110 EGP</h2>
+                </div>
+                <div class="button-group">
+                    <a href="booking.html?pro=Ahmed+Mostafa&service=Plumbing" class="btn btn-primary">Check My Schedule</a>
+                    <button class="secondary-btn">💬 Chat with Ahmed</button>
+                    <button class="favorite-btn">❤️ Save to My Favorites</button>
+                
+                    <a href="write-review.html?pro=Ahmed+Mostafa&service=Plumbing" class="btn btn-outline" style="text-align:center;">⭐ Write a Review</a>
+                </div>
+                <p class="guarantee-text">🔒 Secure booking through Yours&amp;Ours</p>
+            </div>
+        </header>
+        <hr class="section-divider">
+        <section class="pro-pledge">
+            <h3>My Service Promise to You</h3>
+            <div class="pledge-grid">
+                <div class="pledge-item">💧 <strong>No Mess Left:</strong> I clean up completely after every job.</div>
+                <div class="pledge-item">🕒 <strong>Fast Response:</strong> Available for emergency calls within 1 hour.</div>
+                <div class="pledge-item">🔧 <strong>Transparent Pricing:</strong> Quote given before any work starts.</div>
+            </div>
+        </section>
+        <section class="about-section">
+            <h2>About Me</h2>
+            <p>"Hi, I'm Ahmed Mostafa — your reliable neighborhood plumber. I take pride in fast, clean, honest work. No job is too small or too complex for me to handle."</p>
+            <div class="skills-tags">
+                <span>Pipe Repair</span>
+                <span>Leak Fixing</span>
+                <span>Drain Cleaning</span>
+                <span>Water Heaters</span>
+                <span>Tap Installation</span>
+            </div>
+        </section>
+        <section class="reviews-section">
+            <h2>What Neighbors Are Saying</h2>
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="user-name">Rana K.</span>
+                    <span class="review-date">2 weeks ago</span>
+                </div>
+                <p class="review-text">"Ahmed Mostafa is a legend. Fixed a leak that two other plumbers couldn't figure out. Fast, affordable, and incredibly professional."</p>
+                <div class="review-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+        </section>
+        </section><!-- end #ahmed-mostafa -->
+
+
+        <!-- ══════════════════════════════════════
+             PROFILE: SAYED MAHMOUD  (id="sayed")
+             Link: profile.html#sayed
+             (The carpenter in the favorites section)
+        ══════════════════════════════════════ -->
+        <section id="sayed" class="profile-section">
+        <header class="profile-header">
+            <div class="pro-identity">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/180" alt="Sayed Mahmoud" class="pro-photo">
+                    <span class="online-indicator"></span>
+                </div>
+                <div class="pro-text-details">
+                    <div class="name-row">
+                        <h1>Sayed Mahmoud</h1>
+                        <span class="verified-badge">🛡️ Verified Pro</span>
+                    </div>
+                    <p class="specialty">Master Carpenter &amp; Furniture Specialist</p>
+                    <p class="neighborhood">📍 Primary Service Area: <strong>6th October, Sheikh Zayed &amp; Giza</strong></p>
+                    <div class="rating-summary">
+                        <span class="stars">⭐⭐⭐⭐</span>
+                        <span class="review-count"><strong>4.7</strong> (76 local reviews)</span>
+                        <span class="experience-tag">| 15 Years Experience</span>
+                    </div>
+                </div>
+            </div>
+            <div class="booking-action-card">
+                <div class="price-info">
+                    <p class="label">Starting Visit Fee</p>
+                    <h2 class="price">100 EGP</h2>
+                </div>
+                <div class="button-group">
+                    <a href="booking.html?pro=Sayed+Mahmoud&service=Carpentry" class="btn btn-primary">Check My Schedule</a>
+                    <button class="secondary-btn">💬 Chat with Sayed</button>
+                    <button class="favorite-btn">❤️ Save to My Favorites</button>
+                
+                    <a href="write-review.html?pro=Sayed+Mahmoud&service=Carpentry" class="btn btn-outline" style="text-align:center;">⭐ Write a Review</a>
+                </div>
+                <p class="guarantee-text">🔒 Secure booking through Yours&amp;Ours</p>
+            </div>
+        </header>
+        <hr class="section-divider">
+        <section class="pro-pledge">
+            <h3>My Service Promise to You</h3>
+            <div class="pledge-grid">
+                <div class="pledge-item">🪵 <strong>Quality Wood:</strong> I only use good grade materials for lasting results.</div>
+                <div class="pledge-item">🕒 <strong>Punctual:</strong> I arrive on time, every time — no excuses.</div>
+                <div class="pledge-item">✨ <strong>Clean Finish:</strong> Every job is sanded, cleaned, and polished before I leave.</div>
+            </div>
+        </section>
+        <section class="about-section">
+            <h2>About Me</h2>
+            <p>"I'm Sayed, a master carpenter with 15 years of experience. From furniture assembly to full custom wardrobes, I craft with care and precision. Every piece I build is built to last."</p>
+            <div class="skills-tags">
+                <span>Furniture Assembly</span>
+                <span>Custom Wardrobes</span>
+                <span>Door Repair</span>
+                <span>Cabinet Making</span>
+                <span>Wood Flooring</span>
+            </div>
+        </section>
+        <section class="reviews-section">
+            <h2>What Neighbors Are Saying</h2>
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="user-name">Layla S.</span>
+                    <span class="review-date">1 month ago</span>
+                </div>
+                <p class="review-text">"Sayed built us a custom wardrobe from scratch. It fits perfectly and looks incredible. Honestly one of the best investments we made for our apartment."</p>
+                <div class="review-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+        </section>
+        </section><!-- end #sayed -->
 
     </main>
     <footer>
@@ -157,7 +508,7 @@
       </div>
 
     </div>
-  </<footer>
+  </footer>
 
 </body>
 </html>
