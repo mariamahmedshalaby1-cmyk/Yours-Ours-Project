@@ -2,66 +2,133 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Edit Profile - Yours&Ours</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - Yours&amp;Ours</title>
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-   
 
-    <main>
-        <section>
-            <nav class="navbar navbar-professional">
+<nav class="navbar navbar-professional">
     <a class="nav-logo" href="../index.html">Yours<span>&amp;</span><em>Ours</em></a>
     <div class="nav-actions">
         <span class="nav-badge professional">Professional</span>
     </div>
     <ul class="nav-links">
-        <li><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
+        <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
         <li><a class="nav-link" href="requests.html">Requests</a></li>
-        <li><a class="nav-link" href="edit-profile.html">Edit Profile</a></li>
+        <li><a class="nav-link active" href="edit-profile.html">Edit Profile</a></li>
     </ul>
-    <div class="nav-icon-btn">
-        🔔
-        <span class="nav-dot"></span>
-    </div>
+    <div class="nav-icon-btn">🔔<span class="nav-dot"></span></div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
-            <h2>Profile Editor</h2>
-            <form action="#" method="get">
-                <article>
-                    <h3>Personal Information</h3>
-                    <p>Full Name: <input type="text" name="fullname"></p>
-                    <p>Email: <input type="email" name="email"></p>
-                    <p>Phone: <input type="tel" name="phone"></p>
-                    <p>Profile Picture: <input type="file" name="profile_pic"></p>
-                </article>
+<ul class="mobile-menu" id="mobile-menu">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="requests.html">Requests</a></li>
+    <li><a href="edit-profile.html">Edit Profile</a></li>
+</ul>
 
-                <article>
-                    <h3>Professional Details</h3>
-                    <p>Primary Specialty:
-                        <select name="specialty">
-                            <option value="electrician">Electrician</option>
-                            <option value="plumber">Plumber</option>
-                            <option value="carpenter">Carpenter</option>
-                        </select>
-                    </p>
-                    <p>Bio:<br>
-                        <textarea name="bio" rows="4" cols="50">Enter your professional background here...</textarea>
-                    </p>
-                    <p>Services Offered:<br>
-                        <input type="checkbox" name="service" value="repair" checked> Repair
-                        <input type="checkbox" name="service" value="installation"> Installation
-                        <input type="checkbox" name="service" value="maintenance"> Maintenance
-                    </p>
-                </article>
+<main class="pro-page-main">
 
-                <input type="submit" value="Save Changes">
-            </form>
-        </section>
-    </main>
-  <footer>
+    <div class="page-header">
+        <div class="header-left">
+            <div class="breadcrumbs"><span class="text-muted">Home</span> / <b>Edit Profile</b></div>
+            <h1>Profile Editor</h1>
+            <p class="text-muted">Keep your profile up to date so clients can find and trust you.</p>
+        </div>
+    </div>
+
+    <form action="#" method="get">
+
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            <hr style="border:none; border-top:1px solid var(--border-light); margin:14px 0 22px;">
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+
+                <div>
+                    <label class="form-label">Full Name</label>
+                    <input type="text" name="fullname" placeholder="e.g. Samy Ahmed" class="form-input">
+                </div>
+
+                <div>
+                    <label class="form-label">Email Address</label>
+                    <input type="email" name="email" placeholder="your@email.com" class="form-input">
+                </div>
+
+                <div>
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" name="phone" placeholder="+20 100 000 0000" class="form-input">
+                </div>
+
+                <div>
+                    <label class="form-label">Profile Picture</label>
+                    <label class="file-upload-btn">
+                        <input type="file" name="profile_pic" accept="image/*" id="profile_pic_input" onchange="showFileName(this)">
+                        <span class="file-upload-icon">📷</span>
+                        <span id="file-label">Choose a photo</span>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-section" style="margin-top:20px;">
+            <h3>Professional Details</h3>
+            <hr style="border:none; border-top:1px solid var(--border-light); margin:14px 0 22px;">
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+
+                <div>
+                    <label class="form-label">Primary Specialty</label>
+                    <select name="specialty" class="form-select">
+                        <option value="electrician">Electrician</option>
+                        <option value="plumber">Plumber</option>
+                        <option value="carpenter">Carpenter</option>
+                        <option value="cleaner">Cleaner</option>
+                        <option value="ac_repair">AC Repair</option>
+                        <option value="painter">Painter</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="form-label">Services Offered</label>
+                    <div class="form-input" style="display:flex; gap:20px; align-items:center;">
+                        <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-size:0.9rem;">
+                            <input type="checkbox" name="service" value="repair" checked style="accent-color:var(--palm); width:15px; height:15px;"> Repair
+                        </label>
+                        <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-size:0.9rem;">
+                            <input type="checkbox" name="service" value="installation" style="accent-color:var(--palm); width:15px; height:15px;"> Installation
+                        </label>
+                        <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-size:0.9rem;">
+                            <input type="checkbox" name="service" value="maintenance" style="accent-color:var(--palm); width:15px; height:15px;"> Maintenance
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="margin-top:18px;">
+                <label class="form-label">Bio</label>
+                <textarea name="bio" rows="5" class="form-textarea"
+                    placeholder="Tell clients about your experience, what makes you the best, and why they should choose you...">Enter your professional background here...</textarea>
+            </div>
+
+        </div>
+
+        <div style="margin-top:28px; display:flex; gap:14px; align-items:center;">
+            <input type="submit" value="Save Changes" class="btn btn-primary" style="cursor:pointer;">
+            <button type="button" class="btn btn-ghost" onclick="window.history.back()">Cancel</button>
+        </div>
+
+    </form>
+
+</main>
+
+     <footer>
     <div class="footer-top">
 
       <div class="footer-brand">
@@ -85,7 +152,7 @@
       <div class="footer-col">
         <div class="footer-col-title">Services</div>
         <ul class="footer-links">
-          <li><a href="../client/directory.html">Browse Professionals</a></li>
+          <li><a href="directory.html">Browse Professionals</a></li>
           <li><a href="../index.html#how-it-works">How It Works</a></li>
           <li><a href="../pricing.html">Pricing</a></li>
           <li><a href="../client/gift-card.html">Gift Cards</a></li>
@@ -95,12 +162,30 @@
       <div class="footer-col">
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
-          <li><a href="../index.html#about">About Us</a></li>
+          <li><a href="../index.html">About Us</a></li>
           <li><a href="../index.html#contact">Contact</a></li>
         </ul>
       </div>
 
     </div>
-</<footer>
+  </<footer>
+
+<script>
+function showFileName(input){
+    var label = document.getElementById("file-label");
+    if(input.files && input.files[0]){
+        label.textContent = input.files[0].name;
+    } else {
+        label.textContent = "Choose a photo";
+    }
+}
+function toggleMenu(){
+    var m=document.getElementById("mobile-menu");
+    var b=document.getElementById("hamburger");
+    if(m) m.classList.toggle("open");
+    if(b) b.classList.toggle("open");
+}
+</script>
+
 </body>
 </html>
