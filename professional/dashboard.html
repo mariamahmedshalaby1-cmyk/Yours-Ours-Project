@@ -5,13 +5,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <link rel="stylesheet" href="../style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-   
 
-    <main>
-        <nav class="navbar navbar-professional">
+<nav class="navbar navbar-professional">
     <a class="nav-logo" href="../index.html">Yours<span>&amp;</span><em>Ours</em></a>
     <div class="nav-actions">
         <span class="nav-badge professional">Professional</span>
@@ -25,7 +24,20 @@
         🔔
         <span class="nav-dot"></span>
     </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
+
+    
+    <ul class="mobile-menu" id="mobile-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="requests.html">Requests</a></li>
+        <li><a href="edit-profile.html">Edit Profile</a></li>
+    </ul>
+
+<main class="pro-page-main">
         <section>
             <h2>Welcome back, Professional!</h2>
             <p><mark>Notice:</mark> You have 3 new booking requests waiting for your approval.</p>
@@ -74,7 +86,7 @@
         </aside>
     </main>
 
-      <footer>
+     <footer>
     <div class="footer-top">
 
       <div class="footer-brand">
@@ -98,7 +110,7 @@
       <div class="footer-col">
         <div class="footer-col-title">Services</div>
         <ul class="footer-links">
-          <li><a href="../client/directory.html">Browse Professionals</a></li>
+          <li><a href="directory.html">Browse Professionals</a></li>
           <li><a href="../index.html#how-it-works">How It Works</a></li>
           <li><a href="../pricing.html">Pricing</a></li>
           <li><a href="../client/gift-card.html">Gift Cards</a></li>
@@ -108,12 +120,12 @@
       <div class="footer-col">
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
-          <li><a href="../index.html#about">About Us</a></li>
+          <li><a href="../index.html">About Us</a></li>
           <li><a href="../index.html#contact">Contact</a></li>
         </ul>
       </div>
 
     </div>
-</<footer>
+  </<footer>
 </body>
 </html>
