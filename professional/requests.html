@@ -2,99 +2,132 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Yours&Ours - Detailed Work Schedule</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Schedule - Yours&amp;Ours</title>
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    
-    <main>
-        <nav class="navbar navbar-professional">
+
+<nav class="navbar navbar-professional">
     <a class="nav-logo" href="../index.html">Yours<span>&amp;</span><em>Ours</em></a>
     <div class="nav-actions">
         <span class="nav-badge professional">Professional</span>
     </div>
     <ul class="nav-links">
-        <li><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
-        <li><a class="nav-link" href="requests.html">Requests</a></li>
+        <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+        <li><a class="nav-link active" href="requests.html">Requests</a></li>
         <li><a class="nav-link" href="edit-profile.html">Edit Profile</a></li>
     </ul>
-    <div class="nav-icon-btn">
-        🔔
-        <span class="nav-dot"></span>
-    </div>
+    <div class="nav-icon-btn">🔔<span class="nav-dot"></span></div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
-        <section>
-            <h2>Add Work Session</h2>
-            <form action="save_schedule.php" method="POST">
-                <p>
-                    <label for="work-date">Date:</label><br>
-                    <input type="date" id="work-date" name="work-date" required>
-                </p>
-                
-                <p>
-                    <label for="start-time">Start Time:</label>
-                    <input type="time" id="start-time" name="start-time" required>
-                    
-                    <label for="end-time">End Time:</label>
-                    <input type="time" id="end-time" name="end-time" required>
-                </p>
+<ul class="mobile-menu" id="mobile-menu">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="requests.html">Requests</a></li>
+    <li><a href="edit-profile.html">Edit Profile</a></li>
+</ul>
 
-                <p>
-                    <label for="service">Service Type:</label><br>
-                    <select id="service" name="service">
+<main class="pro-page-main">
+
+    <div class="page-header">
+        <div class="header-left">
+            <div class="breadcrumbs"><span class="text-muted">Home</span> / <b>Requests</b></div>
+            <h1>Work Schedule</h1>
+            <p class="text-muted">Log your upcoming sessions and track your planned agenda.</p>
+        </div>
+    </div>
+
+    <!-- Add Work Session Form -->
+    <div class="form-section">
+        <h3>Add Work Session</h3>
+        <hr style="border:none; border-top:1px solid var(--border-light); margin:14px 0 22px;">
+
+        <form action="save_schedule.php" method="POST">
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; margin-bottom:18px;">
+
+                <div>
+                    <label class="form-label">Date</label>
+                    <input type="date" id="work-date" name="work-date" required class="form-input">
+                </div>
+
+                <div>
+                    <label class="form-label">Start Time</label>
+                    <input type="time" id="start-time" name="start-time" required class="form-input">
+                </div>
+
+                <div>
+                    <label class="form-label">End Time</label>
+                    <input type="time" id="end-time" name="end-time" required class="form-input">
+                </div>
+
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:24px;">
+
+                <div>
+                    <label class="form-label">Service Type</label>
+                    <select id="service" name="service" class="form-select">
                         <option value="plumbing">Plumbing Installation</option>
                         <option value="electrical">Electrical Wiring</option>
                         <option value="carpentry">Furniture Assembly</option>
                         <option value="maintenance">General Maintenance</option>
                     </select>
-                </p>
+                </div>
 
-                <p>
-                    <label for="location">Specific Spot/Address:</label><br>
-                    <input type="text" id="location" name="location" placeholder="e.g., Apartment 4, Building 12, Nasr City" size="50">
-                </p>
+                <div>
+                    <label class="form-label">Specific Spot / Address</label>
+                    <input type="text" id="location" name="location" class="form-input"
+                           placeholder="e.g., Apartment 4, Building 12, Nasr City">
+                </div>
 
-                <button type="submit">Log Work Session</button>
-            </form>
-        </section>
+            </div>
 
-        <hr>
+            <button type="submit" class="btn btn-primary">Log Work Session</button>
 
-        <section>
-            <h3>Planned Agenda</h3>
-            <table border="1" width="100%">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Time Window</th>
-                        <th>Service</th>
-                        <th>Location Spot</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2026-03-15</td>
-                        <td>10:00 AM - 01:00 PM</td>
-                        <td>Electrical Wiring</td>
-                        <td>Maadi, Road 9, Villa 4</td>
-                        <td><strong>Scheduled</strong></td>
-                    </tr>
-                    <tr>
-                        <td>2026-03-15</td>
-                        <td>03:00 PM - 05:00 PM</td>
-                        <td>Plumbing Installation</td>
-                        <td>Zamalek, 22 Nile St.</td>
-                        <td><strong>Pending</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
-      <footer>
+        </form>
+    </div>
+
+    <!-- Planned Agenda Table -->
+    <div class="table-card" style="margin-top:28px;">
+        <div class="table-header">
+            <h2>Planned Agenda</h2>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time Window</th>
+                    <th>Service</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2026-03-15</td>
+                    <td>10:00 AM – 01:00 PM</td>
+                    <td>Electrical Wiring</td>
+                    <td>Maadi, Road 9, Villa 4</td>
+                    <td><span class="badge status-inprogress">Scheduled</span></td>
+                </tr>
+                <tr>
+                    <td>2026-03-15</td>
+                    <td>03:00 PM – 05:00 PM</td>
+                    <td>Plumbing Installation</td>
+                    <td>Zamalek, 22 Nile St.</td>
+                    <td><span class="badge status-pending">Pending</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+   <footer>
     <div class="footer-top">
 
       <div class="footer-brand">
@@ -118,7 +151,7 @@
       <div class="footer-col">
         <div class="footer-col-title">Services</div>
         <ul class="footer-links">
-          <li><a href="../client/directory.html">Browse Professionals</a></li>
+          <li><a href="directory.html">Browse Professionals</a></li>
           <li><a href="../index.html#how-it-works">How It Works</a></li>
           <li><a href="../pricing.html">Pricing</a></li>
           <li><a href="../client/gift-card.html">Gift Cards</a></li>
@@ -134,6 +167,16 @@
       </div>
 
     </div>
-</<footer>
+  </footer>
+
+<script>
+function toggleMenu(){
+    var m=document.getElementById("mobile-menu");
+    var b=document.getElementById("hamburger");
+    if(m) m.classList.toggle("open");
+    if(b) b.classList.toggle("open");
+}
+</script>
+
 </body>
 </html>
