@@ -23,9 +23,17 @@
             <a href="login.html">Login</a>
             <a href="signup.html">Sign Up</a>
         </div>
-    </nav>
-
-
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+    <ul class="mobile-menu" id="mobile-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="client/directory.html">Browse Pros</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+    </ul>
 
     <section id="hero" class="hero">
         <h1>Find Trusted Professionals Near You</h1>
@@ -43,19 +51,19 @@
                 <h3>Ahmed Ali</h3>
                 <p>Electrician</p>
                 <p>⭐ 4.8 Rating</p>
-                <button>View Profile</button>
+                <a href="client/profile.html#ahmed" class="btn btn-primary">View Profile</a>
             </div>
             <div class="professional-card">
-                <h3>Sara Mohamed</h3>
+                <h3>Mohammed Ali</h3>
                 <p>Plumber</p>
                 <p>⭐ 4.6 Rating</p>
-                <button>View Profile</button>
+                <a href="client/profile.html#mohammed" class="btn btn-primary">View Profile</a>
             </div>
             <div class="professional-card">
-                <h3>Omar Hassan</h3>
-                <p>Cleaner</p>
+                <h3>Samy Ahmed</h3>
+                <p>Electrician &amp; Smart Home Specialist</p>
                 <p>⭐ 4.9 Rating</p>
-                <button>View Profile</button>
+                <a href="client/profile.html#samy" class="btn btn-primary">View Profile</a>
             </div>
         </div>
     </section>
@@ -74,6 +82,208 @@
             <div class="step">
                 <h3>3. Get It Done</h3>
                 <p>Relax while the professional completes the job.</p>
+            </div>
+        </div>
+    </section>
+    <section class="reviews-ticker-section">
+        <div class="reviews-ticker-header">
+            <h2>What Our Neighbors Are Saying</h2>
+            <p>Trusted by families across Cairo — real reviews from real clients.</p>
+        </div>
+
+        <div class="ticker-wrapper">
+            <div class="ticker-track">
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"Samy fixed our entire electrical panel in under 2 hours. Incredibly professional — he even cleaned up after himself!"</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:var(--sail);">N</div>
+                        <div>
+                            <strong>Nadia G.</strong>
+                            <span>Hired Samy Ahmed · Electrician</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"Mohammed showed up at midnight when our pipe burst. Saved the whole apartment. Absolute legend, will hire again forever."</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:#b8e0c8;">K</div>
+                        <div>
+                            <strong>Karim F.</strong>
+                            <span>Hired Mohammed Ali · Plumber</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"Sayed built us a custom wardrobe from scratch. The quality is unreal — it looks like something from a furniture store."</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:var(--lime);">L</div>
+                        <div>
+                            <strong>Layla S.</strong>
+                            <span>Hired Sayed Mahmoud · Carpenter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"Ahmed Ali fixed a wiring issue that had been bothering us for months. Clear quote upfront, done in one visit. Very happy."</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:#ede7f6;">H</div>
+                        <div>
+                            <strong>Hassan T.</strong>
+                            <span>Hired Ahmed Ali · Electrician</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"Ahmed Mostafa found a leak two other plumbers missed. Fast, honest, and genuinely cares about doing a good job."</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:#fdf7dc;">R</div>
+                        <div>
+                            <strong>Rana K.</strong>
+                            <span>Hired Ahmed Mostafa · Plumber</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★☆</div>
+                    <p class="ticker-text">"Really impressed by how the platform works. Found a pro, booked in 5 minutes, job was done same day. This is the future."</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:var(--sail);">O</div>
+                        <div>
+                            <strong>Omar H.</strong>
+                            <span>Hired via Yours&amp;Ours</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"My AC was making a terrible noise and Samy diagnosed it in minutes. Super knowledgeable and reasonably priced."</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:#b8e0c8;">D</div>
+                        <div>
+                            <strong>Dina M.</strong>
+                            <span>Hired Samy Ahmed · AC Repair</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"Sayed reassembled all our IKEA furniture after we moved. Fast, careful, and our kids absolutely love the new room setup!"</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:var(--lime);">M</div>
+                        <div>
+                            <strong>Mona Z.</strong>
+                            <span>Hired Sayed Mahmoud · Carpenter</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"Samy fixed our entire electrical panel in under 2 hours. Incredibly professional — he even cleaned up after himself!"</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:var(--sail);">N</div>
+                        <div>
+                            <strong>Nadia G.</strong>
+                            <span>Hired Samy Ahmed · Electrician</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"Mohammed showed up at midnight when our pipe burst. Saved the whole apartment. Absolute legend, will hire again forever."</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:#b8e0c8;">K</div>
+                        <div>
+                            <strong>Karim F.</strong>
+                            <span>Hired Mohammed Ali · Plumber</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"Sayed built us a custom wardrobe from scratch. The quality is unreal — it looks like something from a furniture store."</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:var(--lime);">L</div>
+                        <div>
+                            <strong>Layla S.</strong>
+                            <span>Hired Sayed Mahmoud · Carpenter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"Ahmed Ali fixed a wiring issue that had been bothering us for months. Clear quote upfront, done in one visit. Very happy."</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:#ede7f6;">H</div>
+                        <div>
+                            <strong>Hassan T.</strong>
+                            <span>Hired Ahmed Ali · Electrician</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"Ahmed Mostafa found a leak two other plumbers missed. Fast, honest, and genuinely cares about doing a good job."</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:#fdf7dc;">R</div>
+                        <div>
+                            <strong>Rana K.</strong>
+                            <span>Hired Ahmed Mostafa · Plumber</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★☆</div>
+                    <p class="ticker-text">"Really impressed by how the platform works. Found a pro, booked in 5 minutes, job was done same day. This is the future."</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:var(--sail);">O</div>
+                        <div>
+                            <strong>Omar H.</strong>
+                            <span>Hired via Yours&amp;Ours</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"My AC was making a terrible noise and Samy diagnosed it in minutes. Super knowledgeable and reasonably priced."</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:#b8e0c8;">D</div>
+                        <div>
+                            <strong>Dina M.</strong>
+                            <span>Hired Samy Ahmed · AC Repair</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticker-card">
+                    <div class="ticker-stars">★★★★★</div>
+                    <p class="ticker-text">"Sayed reassembled all our IKEA furniture after we moved. Fast, careful, and our kids absolutely love the new room setup!"</p>
+                    <div class="ticker-author">
+                        <div class="ticker-avatar" style="background-color:var(--lime);">M</div>
+                        <div>
+                            <strong>Mona Z.</strong>
+                            <span>Hired Sayed Mahmoud · Carpenter</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -133,7 +343,7 @@
       </div>
 
     </div>
-</<footer>
+</footer>
 
 </body>
 </html>
