@@ -22,7 +22,14 @@
             🔔
             <span class="nav-dot"></span>
         </div>
-    </nav>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+    <ul class="mobile-menu" id="mobile-menu">
+        <li><a href="directory.html">Browse Pros</a></li>
+        <li><a href="booking.html">My Bookings</a></li>
+    </ul>
 
     <main class="booking-page-container">
         <nav class="booking-nav">
@@ -33,7 +40,7 @@
             <h1>Request a Service</h1>
             <div class="pro-summary-badge">
                 <img src="https://via.placeholder.com/40" alt="Samy Avatar" class="mini-avatar">
-                <p>Booking <strong>Samy Ahmed</strong> for <strong>Electrical Repair</strong></p>
+                <p>Booking <strong id="booking-pro-name">Samy Ahmed</strong> for <strong id="booking-service">Electrical Repair</strong></p>
             </div>
         </header>
 
@@ -157,5 +164,17 @@
     </div>
   </<footer>
 
+<script>
+(function() {
+    var params = new URLSearchParams(window.location.search);
+    var pro     = params.get('pro')     || 'Samy Ahmed';
+    var service = params.get('service') || 'Electrical Repair';
+    var proEl  = document.getElementById('booking-pro-name');
+    var svcEl  = document.getElementById('booking-service');
+    if (proEl)  proEl.textContent  = pro.replace(/\+/g, ' ');
+    if (svcEl)  svcEl.textContent  = service.replace(/\+/g, ' ');
+    document.title = 'Book ' + pro.replace(/\+/g, ' ') + ' | Yours&Ours';
+})();
+</script>
 </body>
 </html>
