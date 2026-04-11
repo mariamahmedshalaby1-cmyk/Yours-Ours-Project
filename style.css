@@ -3896,6 +3896,84 @@ figcaption {
   min-height: calc(100vh - var(--nav-height));
 }
 
+.alpha-divider {
+  font-size: 1.20rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  background-color: var(--serenade-dark);
+}
+
+.queue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.provider-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--serenade-dark);
+  color: var(--palm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.provider-title {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.provider-title h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.profession-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--serenade-dark);
+  color: var(--text-mid);
+  width: fit-content;
+}
+
+.status-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -4645,6 +4723,15 @@ figcaption {
 
 .urgent-issues {
   margin-bottom: 24px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--error);
+  border-radius: var(--radius);
+  background-color: #fdecec;
+  padding-top: 16px;
+  padding-bottom: 4px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .mt-4 {
