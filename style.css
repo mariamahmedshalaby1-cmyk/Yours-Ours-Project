@@ -4164,44 +4164,11 @@ figcaption {
   background: linear-gradient(to top, rgba(137, 201, 201, 0.25), transparent);
 }
 
-/* Top services progress bars */
-.service-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+/* For the three charts*/
+.chart-canvas-wrapper {
+  position: relative;
+  height: 200px;
 }
-
-.bar-item {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.bar-label-group {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.82rem;
-  color: var(--text-mid);
-}
-
-.progress-track {
-  height: 10px;
-  background-color: var(--serenade-dark);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  border-radius: var(--radius-full);
-}
-
-.progress-fill.green  { width: 80%; background-color: var(--lime); }
-.progress-fill.mint   { width: 65%; background-color: var(--sail); }
-.progress-fill.red    { width: 45%; background-color: var(--error); }
-.progress-fill.blue   { width: 38%; background-color: #4a90e2; }
-.progress-fill.orange { width: 25%; background-color: var(--warning); }
-
 
 /* ── 32. ADMIN TABLES & BADGES ─────────────────────────────── */
 .table-card {
