@@ -4098,6 +4098,12 @@ figcaption {
   border-bottom-color: var(--border-light);
 }
 
+.chart-filter-group {
+  display: flex;
+  row-gap: 8px;
+  column-gap: 8px;
+}
+
 .chart-header h2 {
   font-size: 1rem;
   color: var(--text-dark);
@@ -4629,28 +4635,15 @@ figcaption {
 
 
 /* ── 34. VERIFICATION PAGE ─────────────────────────────────── */
-.alpha-divider {
-  font-size: 1.20rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-top: 32px;
-  margin-bottom: 12px;
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
-  background-color: var(--serenade-dark);
-}
-
 .queue-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 60px; 
+  column-gap: 30px; 
+  margin-top: 24px;
   margin-bottom: 8px;
+  padding-left: 20px; 
+  padding-right: 20px; 
 }
 
 .provider-avatar {
@@ -4713,7 +4706,6 @@ figcaption {
   border-style: solid;
   border-color: var(--border-light);
   border-radius: var(--radius);
-  margin-bottom: 16px;
   overflow: hidden;
   transition-property: box-shadow, border-color;
   transition-duration: 0.2s;
@@ -4865,6 +4857,60 @@ figcaption {
   font-weight: 600;
 }
 
+.undo-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--palm);
+  color: var(--white);
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition-property: opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  z-index: 999;
+}
+
+.undo-toast.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.undo-toast #undo-btn {
+  background-color: var(--lime);
+  color: var(--palm);
+  border-width: 0;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 14px;
+  padding-right: 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.status-approved {
+  background-color: var(--lime);
+  color: var(--palm);
+}
+
+.status-rejected {
+  background-color: #fdecec;
+  color: var(--error);
+}
 
 /* ============================================================
    PERSON 5 — pricing.html · component.html
@@ -5073,7 +5119,14 @@ figcaption {
    ============================================================ */
 
 
-/* ── 36. TABLET (≤ 768px) ──────────────────────────────────── */
+/* ── NEW: TABLET (≤ 1024px) ──────────────────────────────────── */
+@media (max-width: 1024px) {
+  .queue-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on tablets */
+  }
+}
+
+/* ── 36. MOBILE/TABLET (≤ 768px) ─────────────────────────────── */
 @media (max-width: 768px) {
 
   /* Show hamburger, hide desktop nav links */
@@ -5150,6 +5203,14 @@ figcaption {
   .gift-cards-grid          { grid-template-columns: 1fr; }
   .gift-steps               { grid-template-columns: 1fr; }
   .data-grid                { grid-template-columns: 1fr; }
+  
+  /* ---> NEW ADMIN QUEUE GRID FOR MOBILE <--- */
+  .queue-grid {
+    grid-template-columns: 1fr; /* 1 card per row on mobile */
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   .charts-row               { flex-direction: column; }
   .favorites-grid           { grid-template-columns: 1fr; }
   .safety-and-prep          { grid-template-columns: 1fr; }
@@ -5290,3 +5351,4 @@ figcaption {
     border-radius: 0 0 var(--radius) var(--radius);
   }
 }
+
