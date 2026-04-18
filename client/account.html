@@ -33,6 +33,19 @@
 
     <main class="dashboard-container">
 
+        <section class="my-profile-section">
+    <h3>👤 My Account</h3>
+    <div class="live-status-card" style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <img src="https://via.placeholder.com/60" alt="My Avatar" class="pro-avatar">
+        <div>
+            <p><strong>Sara Khaled</strong></p>
+            <p>📞 +20 100 123 4567</p>
+            <p>✉️ sara.khaled@email.com</p>
+        </div>
+        <button class="text-btn" style="margin-left:auto;">Edit Profile</button>
+    </div>
+</section>
+
         <section class="active-booking-section">
             <h3>🚨 Happening Now</h3>
             
@@ -43,7 +56,7 @@
                         <h4>Electrical Repair with Samy Ahmed</h4>
                         <p class="eta">Estimated Arrival: <strong>10 Minutes (6:00 PM)</strong></p>
                     </div>
-                    <button class="call-btn">📞 Call Samy</button>
+                   <button class="call-btn" id="call-btn" onclick="showPhone()">📞 Call Samy</button>
                 </div>
 
                 <div class="progress-timeline">
@@ -60,6 +73,15 @@
                         <p><strong>Your Safety PIN:</strong></p>
                         <h2 class="otp-code">4921</h2>
                         <p class="tiny-text">🛡️ Give this to Samy at the door to verify his identity.</p>
+                        <div class="security-pin-box">
+    <p><strong>Pro's Confirmation Code:</strong></p>
+    <p class="tiny-text">Samy will show you a 4-digit code when the job is done. Enter it here to confirm payment.</p>
+    <div style="display:flex; gap:8px; align-items:center; margin-top:8px;">
+        <input type="text" id="pro-code-input" maxlength="4" placeholder="0000" style="width:80px; font-size:1.4rem; text-align:center; padding:6px; border:2px solid #ccc; border-radius:8px; letter-spacing:4px;">
+        <button class="call-btn" onclick="confirmProCode()">Confirm ✓</button>
+    </div>
+    <p id="confirm-msg" style="display:none; color:green; margin-top:8px;">✅ Confirmed! Payment released to Samy.</p>
+</div>
                     </div>
                     
                     <div class="prep-checklist">
@@ -181,5 +203,31 @@
 
 </footer>
 
+
+<script>
+function showPhone() {
+    var btn = document.getElementById('call-btn');
+    btn.textContent = '📞 +20 101 234 5678';
+    btn.onclick = null;
+}
+
+function confirmProCode() {
+    var input = document.getElementById('pro-code-input');
+    var msg = document.getElementById('confirm-msg');
+    if (input.value.length === 4) {
+        msg.style.display = 'block';
+        input.disabled = true;
+    } else {
+        input.style.border = '2px solid red';
+    }
+}
+
+function toggleMenu() {
+    var m = document.getElementById("mobile-menu");
+    var b = document.getElementById("hamburger");
+    if (m) m.classList.toggle("open");
+    if (b) b.classList.toggle("open");
+}
+</script>
 </body>
 </html>
