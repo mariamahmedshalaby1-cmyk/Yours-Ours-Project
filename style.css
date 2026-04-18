@@ -623,7 +623,7 @@ footer {
 .footer-top {
   background-color: var(--palm);
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
   gap: 48px;
   padding-top: 64px;
   padding-bottom: 40px;
@@ -784,6 +784,67 @@ footer .footer-top {
   text-align: center;
 }
 
+.footer-pro-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--palm-mid);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 28px;
+  padding-bottom: 28px;
+  padding-left: 40px;
+  padding-right: 40px;
+  gap: 24px;
+}
+
+.footer-pro-banner strong {
+  color: var(--lime);
+  font-size: 1rem;
+}
+
+.footer-pro-banner p {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.footer-bottom a {
+  color: rgba(255,255,255,0.5);
+}
+
+.footer-bottom a:hover {
+  color: var(--lime);
+}
+
+@media (max-width: 768px) {
+  .footer-pro-banner {
+    flex-direction: column;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 
 /* ============================================================
    PERSON 1 — index.html · login.html · signup.html
