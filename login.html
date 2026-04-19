@@ -29,17 +29,47 @@
         <li><a href="client/directory.html">Browse Pros</a></li>
         <li><a href="signup.html">Sign Up</a></li>
     </ul>
+<div class="login">
+    <h2>Login</h2>
+    <form onsubmit="return validateForm()">
+        <input type="email" id="email" placeholder="Email">
+        <span class="error-msg" id="emailError"></span>
 
-    <div class="login">
-        <h2>Login</h2>
-        <form>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
-            <a href="forgot-password.html">Forgot Password?</a>
-            <button type="submit">Login</button>
-        </form>
-        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
-    </div><footer>
+        <input type="password" id="password" placeholder="Password">
+        <span class="error-msg" id="passwordError"></span>
+
+        <a href="forgot-password.html">Forgot Password?</a>
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+</div>
+
+<script>
+    function validateForm() {
+        let valid = true;
+
+        // Clear previous errors
+        document.getElementById('emailError').innerText    = '';
+        document.getElementById('passwordError').innerText = '';
+
+        // Email validation
+        const email = document.getElementById('email').value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            document.getElementById('emailError').innerText = 'Please enter a valid email address.';
+            valid = false;
+        }
+
+        // Password validation
+        const password = document.getElementById('password').value.trim();
+        if (password.length < 8) {
+            document.getElementById('passwordError').innerText = 'Password must be at least 8 characters.';
+            valid = false;
+        }
+
+        return valid;
+    }
+</script><footer>
   <div class="footer-top">
 
     <div class="footer-brand">
