@@ -1809,3 +1809,132 @@ figcaption {
   font-size: 0.9rem;
   color: var(--text-mid);
 }
+/* ============================================================
+   PAYMENT / CHECKOUT PAGE STYLES
+   ============================================================ */
+
+.payment-page-main {
+    background-color: var(--serenade);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    min-height: 70vh; /* Ensures it takes up good space between header/footer */
+}
+
+.payment-container {
+    background-color: var(--white);
+    max-width: 550px;
+    width: 100%;
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-light);
+}
+
+.payment-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.payment-header h1 {
+    margin: 0 0 10px 0;
+    font-size: 2rem;
+    color: var(--palm);
+}
+
+.payment-header p {
+    color: var(--text-mid);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.payment-container .form-group {
+    margin-bottom: 20px;
+}
+
+.payment-container .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.payment-container .form-group input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    background-color: var(--serenade);
+    color: var(--text-dark);
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.payment-container .form-group input:focus {
+    border-color: var(--palm);
+}
+
+.payment-form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.payment-form-row .form-group {
+    flex: 1;
+}
+
+.error-message {
+    color: var(--error);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.text-error {
+    color: var(--error);
+}
+
+.btn-confirm {
+    padding: 16px !important;
+    font-size: 1.1rem !important;
+    border-radius: 9999px !important;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-confirm:hover {
+    opacity: 0.9;
+}
+
+.success-screen {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.success-screen i {
+    font-size: 4.5rem;
+    color: #22c55e; /* Success Green */
+    margin-bottom: 20px;
+}
+
+.success-screen h2 {
+    color: var(--palm);
+    margin-bottom: 10px;
+}
+
+.payment-back-link {
+    display: inline-block;
+    margin-top: 25px;
+    color: var(--palm);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Utility class for JS toggling */
+.hidden {
+    display: none !important;
+}
