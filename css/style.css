@@ -1,0 +1,1087 @@
+/* ============================================================
+   YOURS & OURS — style.css
+   Palette  : Makaya — Palm Leaf · Sail · Fringy Flower · Serenade
+   Fonts    : Cormorant Garamond (headings) + Jost (body)
+   Rules    : No shorthand — every property on its own line
+
+   TABLE OF CONTENTS
+   ─────────────────────────────────────────────────────────
+   SHARED BASE  (ALL teammates read this first)
+     01. Google Fonts
+     02. CSS Variables  ← change colors here
+     03. Reset & Base
+     04. Typography
+     05. Buttons
+     06. Navbar
+     07. Mobile Hamburger Menu
+     08. Footer
+
+   PERSON 1  — index · login · signup · forgot-password
+     09. Guest Nav  (plain <nav> tag)
+     10. Hero Section
+     11. Find Professionals Section
+     12. How It Works Section
+     13. About Section
+     14. Contact Section
+     15. Scrolling Reviews Ticker  (also index)
+     16. Login Page
+     17. Signup Page
+     18. Forgot Password Page
+
+   PERSON 2  — client folder
+     19. Account / Client Dashboard
+     20. Booking Page
+     21. Directory Page
+     22. Profile Page
+     23. Write Review Page
+     24. Gift Card Page
+
+   PERSON 3  — professional folder
+     25. Pro Dashboard
+     26. Requests Page
+     27. Edit Profile Page
+     28. Form Utility Classes  (labels, inputs, file upload)
+
+   PERSON 4  — admin folder
+     29. Admin Shared Layout
+     30. Admin Stat Cards
+     31. Admin Charts
+     32. Admin Tables & Badges
+     33. Admin Dashboard Extras
+     34. Verification Page
+
+   PERSON 5  — pricing · components
+     35. Pricing Page
+
+   RESPONSIVE
+     36. Tablet  (≤ 768px)
+     37. Mobile  (≤ 480px)
+   ─────────────────────────────────────────────────────────
+   ============================================================ */
+
+
+/* ============================================================
+   SHARED BASE
+   Every teammate depends on this — write it first.
+   ============================================================ */
+
+
+/* ── 01. GOOGLE FONTS ──────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap');
+
+
+/* ── 02. CSS VARIABLES ─────────────────────────────────────── */
+/*
+   To change the whole site's look, only edit this section.
+   --palm     = dark forest green  → navbars, buttons, footer bg
+   --sail     = teal / aqua        → focus rings, borders, accents
+   --lime     = bright lime green  → button text, active links, dots
+   --serenade = light blue-white   → page background, card bg
+*/
+:root {
+  /* ── Brand Colors ── */
+  --palm:           #02261e;
+  --palm-mid:       #0a3d2e;
+  --sail:           #89c9c9;
+  --sail-dark:      #5fa8a8;
+  --lime:           #d0fc92;
+  --lime-dark:      #b0e070;
+  --serenade:       #f2f7f9;
+  --serenade-dark:  #e2ecf0;
+
+  /* ── Neutrals ── */
+  --white:          #ffffff;
+  --text-dark:      #02261e;
+  --text-mid:       #1a4a3a;
+  --text-muted:     #5a7a6e;
+  --border:         #c8ddd8;
+  --border-light:   #deecea;
+
+  /* ── Status ── */
+  --success:        #2e7d5a;
+  --error:          #c0392b;
+  --warning:        #c4a020;
+
+  /* ── Fonts ── */
+  --font-heading:   'Cormorant Garamond', Georgia, serif;
+  --font-body:      'Jost', sans-serif;
+
+  /* ── Layout ── */
+  --nav-height:     68px;
+  --max-width:      1200px;
+  --radius:         10px;
+  --radius-sm:      6px;
+  --radius-full:    9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm:      0 2px 8px rgba(2, 38, 30, 0.07);
+  --shadow:         0 4px 20px rgba(2, 38, 30, 0.10);
+  --shadow-lg:      0 8px 40px rgba(2, 38, 30, 0.16);
+}
+
+
+/* ── 03. RESET & BASE ──────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--serenade);
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding-top: var(--nav-height);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+  border-width: 0;
+  background-color: transparent;
+}
+
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+}
+
+
+/* ── 04. TYPOGRAPHY ────────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-dark);
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+p {
+  color: var(--text-mid);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+
+/* ── 05. BUTTONS ───────────────────────────────────────────── */
+/*
+   .btn         = base class every button needs
+   .btn-primary = dark green fill, lime text  (main CTA)
+   .btn-clay    = same as btn-primary  (alias some teammates use)
+   .btn-outline = transparent, dark green border
+   .btn-lime    = bright lime fill  (pop/secondary CTA)
+   .btn-ghost   = plain transparent with grey border
+*/
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  padding-left: 24px;
+  padding-right: 24px;
+  border-radius: var(--radius-full);
+  border-width: 2px;
+  border-style: solid;
+  border-color: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition-property: background-color, color, border-color, transform, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary,
+.btn-clay {
+  background-color: var(--palm);
+  color: var(--lime);
+  border-color: var(--palm);
+}
+
+.btn-primary:hover,
+.btn-clay:hover {
+  background-color: var(--palm-mid);
+  border-color: var(--palm-mid);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--palm);
+  border-color: var(--palm);
+}
+
+.btn-outline:hover {
+  background-color: var(--palm);
+  color: var(--lime);
+}
+
+.btn-lime {
+  background-color: var(--lime);
+  color: var(--palm);
+  border-color: var(--lime);
+}
+
+.btn-lime:hover {
+  background-color: var(--lime-dark);
+  border-color: var(--lime-dark);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text-mid);
+  border-color: var(--border);
+}
+
+.btn-ghost:hover {
+  background-color: var(--serenade-dark);
+}
+
+
+/* ── 06. NAVBAR ────────────────────────────────────────────── */
+/*
+   position: fixed = stays at top while user scrolls
+   z-index: 1000   = always appears above all page content
+   All 4 nav types (guest, client, professional, admin) share
+   .navbar and just get a different class like .navbar-admin
+*/
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  background-color: var(--palm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 40px;
+  padding-right: 40px;
+  gap: 24px;
+  z-index: 1000;
+  box-shadow: 0 2px 12px rgba(2, 38, 30, 0.30);
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--lime);
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.nav-logo span {
+  color: var(--sail);
+}
+
+.nav-logo em {
+  font-style: italic;
+  color: var(--white);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-grow: 1;
+  justify-content: center;
+  list-style-type: none;
+}
+
+.nav-link {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.70);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 3px;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+/* Animated lime underline on hover / active */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--lime);
+  border-radius: var(--radius-full);
+  transition-property: width;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.nav-link:hover {
+  color: var(--lime);
+}
+
+.nav-link.active {
+  color: var(--lime);
+  font-weight: 600;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Role badges — CLIENT / PROFESSIONAL / ADMIN */
+.nav-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: var(--radius-full);
+}
+
+.nav-badge.client {
+  background-color: var(--sail);
+  color: var(--palm);
+}
+
+.nav-badge.professional {
+  background-color: var(--lime);
+  color: var(--palm);
+}
+
+.nav-badge.admin {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Bell / settings icon button */
+.nav-icon-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--white);
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.nav-icon-btn:hover {
+  background-color: var(--palm-mid);
+}
+
+/* Notification dot on the bell icon */
+.nav-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--lime);
+  border-radius: 50%;
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--palm);
+}
+
+/* Navbar button overrides so they look right on dark background */
+.navbar .btn-outline {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.navbar .btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.10);
+  border-color: var(--white);
+  color: var(--white);
+}
+
+.navbar .btn-lime {
+  background-color: var(--lime);
+  color: var(--palm);
+  border-color: var(--lime);
+}
+
+.navbar .btn-lime:hover {
+  background-color: var(--lime-dark);
+}
+
+
+/* ── 07. MOBILE HAMBURGER MENU ─────────────────────────────── */
+/*
+   .hamburger = hidden on desktop, shows on mobile (≤768px)
+   JS toggles .open class → bars animate into an X shape
+   .mobile-menu = dropdown — hidden until .open added by JS
+*/
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 17px;
+  background-color: transparent;
+  border-width: 0;
+  cursor: pointer;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--lime);
+  border-radius: var(--radius-full);
+  transition-property: transform, opacity;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+
+/* First bar rotates to form top of X */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+/* Middle bar disappears */
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+/* Last bar rotates to form bottom of X */
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  background-color: var(--palm);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--palm-mid);
+  box-shadow: 0 8px 24px rgba(2, 38, 30, 0.35);
+  z-index: 999;
+  flex-direction: column;
+  list-style-type: none;
+  padding-top: 6px;
+  padding-bottom: 12px;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-menu li {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.mobile-menu li:last-child {
+  border-bottom-width: 0;
+}
+
+.mobile-menu a {
+  display: block;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 28px;
+  padding-right: 28px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.80);
+  text-decoration: none;
+  transition-property: color, background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.mobile-menu a:hover {
+  color: var(--lime);
+  background-color: var(--palm-mid);
+}
+
+
+/* ── 08. FOOTER ────────────────────────────────────────────── */
+/*
+   Dark palm green background on all pages.
+   .footer-top = grid with 3 columns: brand col, links col x2
+   Safety net: if the <footer> HTML tag is missing on a page,
+   .footer-top still gets the dark background on its own.
+*/
+footer {
+  background-color: var(--palm);
+  color: rgba(255, 255, 255, 0.70);
+  padding-top: 64px;
+  padding-right: 40px;
+  padding-bottom: 32px;
+  padding-left: 40px;
+}
+
+.footer-top {
+  background-color: var(--palm);
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-top: 64px;
+  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+/* When footer-top is inside a proper <footer> tag,
+   remove the extra top padding and bg (footer handles those) */
+footer .footer-top {
+  background-color: transparent;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 40px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-brand-name {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--lime);
+}
+
+.footer-brand-name span {
+  color: var(--sail);
+}
+
+.footer-brand-name em {
+  font-style: italic;
+  color: var(--white);
+}
+
+.footer-tagline {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 280px;
+  line-height: 1.7;
+}
+
+/* Hide any <br> tags that might sit between social icons */
+.footer-brand br {
+  display: none;
+}
+
+/* Social icon circle buttons */
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.82rem;
+  margin-right: 6px;
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.social-btn:hover {
+  background-color: var(--lime);
+  border-color: var(--lime);
+  color: var(--palm);
+}
+
+/* Email newsletter block inside footer brand column */
+.footer-newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.footer-newsletter p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer-newsletter input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 14px;
+  padding-right: 14px;
+  border-radius: var(--radius);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.18);
+  background-color: rgba(255, 255, 255, 0.07);
+  color: var(--white);
+  font-size: 0.85rem;
+  outline: none;
+  transition-property: border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.footer-newsletter input::placeholder {
+  color: rgba(255, 255, 255, 0.30);
+}
+
+.footer-newsletter input:focus {
+  border-color: var(--sail);
+}
+
+/* Footer link columns */
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-col-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 6px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.60);
+  text-decoration: none;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.footer-links a:hover {
+  color: var(--sail);
+}
+
+.footer-bottom {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: rgba(255, 255, 255, 0.08);
+  padding-top: 20px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.30);
+  text-align: center;
+}
+
+.footer-pro-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--palm-mid);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 28px;
+  padding-bottom: 28px;
+  padding-left: 40px;
+  padding-right: 40px;
+  gap: 24px;
+}
+
+.footer-pro-banner strong {
+  color: var(--lime);
+  font-size: 1rem;
+}
+
+.footer-pro-banner p {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.footer-bottom a {
+  color: rgba(255,255,255,0.5);
+}
+
+.footer-bottom a:hover {
+  color: var(--lime);
+}
+
+@media (max-width: 768px) {
+  .footer-pro-banner {
+    flex-direction: column;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+
+/* ── NEW: TABLET (≤ 1024px) ──────────────────────────────────── */
+@media (max-width: 1024px) {
+  .queue-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on tablets */
+  }
+}
+
+/* ── 36. MOBILE/TABLET (≤ 768px) ─────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Show hamburger, hide desktop nav links */
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar .nav-links {
+    display: none;
+  }
+
+  nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) ul {
+    display: none;
+  }
+
+  nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div {
+    display: none;
+  }
+
+  /* Reduce navbar side padding */
+  .navbar,
+  nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Footer collapses to 1 column */
+  footer .footer-top,
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Reduce section side padding */
+  .hero,
+  .find-professionals,
+  .how-it-works,
+  .about,
+  .contact,
+  .gift-hero,
+  .gift-cards-section,
+  .gift-how-it-works,
+  .pricing-faq {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hero {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .gift-hero {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .gift-hero h1 {
+    font-size: 2.4rem;
+  }
+
+  /* Most grids → 1 column */
+  .professionals-container  { grid-template-columns: 1fr; }
+  .steps-container          { grid-template-columns: 1fr; }
+  .professionals-grid       { grid-template-columns: 1fr; }
+  .pledge-grid              { grid-template-columns: 1fr; }
+  .portfolio-grid           { grid-template-columns: 1fr; }
+  .gift-cards-grid          { grid-template-columns: 1fr; }
+  .gift-steps               { grid-template-columns: 1fr; }
+  .data-grid                { grid-template-columns: 1fr; }
+  
+  /* ---> NEW ADMIN QUEUE GRID FOR MOBILE <--- */
+  .queue-grid {
+    grid-template-columns: 1fr; /* 1 card per row on mobile */
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .charts-row               { flex-direction: column; }
+  .favorites-grid           { grid-template-columns: 1fr; }
+  .safety-and-prep          { grid-template-columns: 1fr; }
+
+  /* Stats → 2 columns on tablet */
+  .stats-grid,
+  .stats-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Profile page */
+  .profile-header { grid-template-columns: 1fr; }
+  .pro-identity   { flex-direction: column; }
+
+  /* Pricing plans stack */
+  .plans-row {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .plan {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .plan:nth-child(2) {
+    transform: none;
+  }
+
+  .gift-card-featured {
+    transform: none;
+  }
+
+  /* Admin pages */
+  .dashboard-page,
+  .bookings-page,
+  .verifications-page {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Client pages */
+  .dashboard-container,
+  .booking-page-container,
+  .directory-container,
+  .profile-page {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Professional pages */
+  .pro-page-main {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Review ticker */
+  .reviews-ticker-header {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .ticker-track {
+    animation-duration: 28s;
+  }
+
+  .ticker-card {
+    width: 260px;
+  }
+}
+
+
+/* ── 37. MOBILE (≤ 480px) ──────────────────────────────────── */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  /* Auth pages — reduce padding on very small screens */
+  .login,
+  .signup,
+  .forgot-password {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    margin-left: 16px;
+    margin-right: 16px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Stats → 1 column */
+  .stats-grid,
+  .stats-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .time-grid {
+    flex-direction: column;
+  }
+
+  .progress-timeline {
+    flex-direction: column;
+  }
+
+  .status-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .booking-action-card {
+    min-width: unset;
+    width: 100%;
+  }
+
+  /* Search bar stacks vertically */
+  .search-bar-ui {
+    flex-direction: column;
+    border-radius: var(--radius);
+  }
+
+  .search-bar-ui input:first-child {
+    border-right-width: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--border);
+  }
+
+  .primary-btn {
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+}
+

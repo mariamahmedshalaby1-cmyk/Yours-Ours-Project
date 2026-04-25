@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yours & Ours - Admin Verifications</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    </head>
+    <body>
+    <nav class="navbar navbar-admin">
+    <a class="nav-logo" href="../index.html">Yours<span>&amp;</span><em>Ours</em></a>
+    <div class="nav-actions">
+    <span class="nav-badge admin">Admin</span>
+    </div>
+    <ul class="nav-links">
+    <li><a class="nav-link" href="dashboard.html">Overview</a></li>
+    <li><a class="nav-link active" href="verification.html">Verifications</a></li>
+    <li><a class="nav-link" href="bookingshistory.html">Bookings History</a></li>
+    </ul>
+    <div class="nav-icon-btn">⚙️</div>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+    <ul class="mobile-menu" id="mobile-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="dashboard.html">Overview</a></li>
+        <li><a href="verification.html">Verifications</a></li>
+        <li><a href="bookingshistory.html">Bookings History</a></li>
+    </ul>
+    <div id="undo-toast" class="undo-toast">
+    <span></span>
+    <button id="undo-btn">Undo</button>
+    </div>
+    </div>
+    <main class="verifications-page">
+    <header class="page-header">
+    <div class="header-left">
+    <div class="breadcrumbs">
+    <span class="text-muted">Home</span> / <b>Verifications</b>
+    </div>
+    <h1>All Verifications</h1>
+    </div>
+    </header>
+    <div class="stats-grid-4">
+
+    <div class="stat-card">
+    <div class="card-header">
+    <div class="icon-wrapper blue-bg">
+    <span class="material-icons-sharp">pending</span>
+    </div>
+    </div>
+    <p class="card-title">Requested</p>
+    <div class="card-body">
+    <h3><span class="animate-number" data-target="4807">0</span></h3>
+    <span class="trend-badge trend-up">↑ 63.5%</span>
+    </div>
+    </div>
+
+    <div class="stat-card">
+    <div class="card-header">
+    <div class="icon-wrapper green-bg">
+    <span class="material-icons-sharp">check_circle</span>
+    </div>
+    </div>
+    <p class="card-title">Approved</p>
+    <div class="card-body">
+    <h3><span class="animate-number" data-target="2394">0</span></h3>
+    <span class="trend-badge trend-down">↓ 12.5%</span>
+    </div>
+    </div>
+
+    <div class="stat-card">
+    <div class="card-header">
+    <div class="icon-wrapper red-bg">
+    <span class="material-icons-sharp">cancel</span>
+    </div>
+    </div>
+    <p class="card-title">Rejected</p>
+    <div class="card-body">
+    <h3><span class="animate-number" data-target="628">0</span></h3>
+    <span class="trend-badge trend-down">↓ 8.5%</span>
+    </div>
+    </div>
+
+    <div class="stat-card">
+    <div class="card-header">
+    <div class="icon-wrapper yellow-bg">
+    <span class="material-icons-sharp">pending_actions</span>
+    </div>
+    </div>
+    <p class="card-title">Pending</p>
+    <div class="card-body">
+    <h3><span class="animate-number" data-target="1785">0</span></h3>
+    <span class="trend-badge trend-up">↑ 47.5%</span>
+    </div>
+    </div>
+    </div>
+
+    <div class="table-card">
+    <div class="table-header">
+    <h2>Pending Applications</h2>
+    <div class="table-controls">
+    <div class="search-input-group">
+    <span class="material-icons-sharp">search</span>
+    <input type="text" placeholder="Search by name or profession...">
+    </div>
+    <select class="filter-select">
+    <option value="">All Professions</option>
+    <option value="electrician">Electrician</option>
+    <option value="plumber">Plumber</option>
+    <option value="carpenter">Carpenter</option>
+    </select>
+    <button class="btn-text">
+    <span class="material-icons-sharp">swap_vert</span> Sort by Date
+    </button>
+    </div>
+    </div>
+    <p class="text-muted">Showing 9 pending applications</p>
+
+    <div class="queue-grid">
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Ahmed Hussen</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">bolt</span> Electrician
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 2 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>5 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Cairo, Nasr City</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201094567890">+20 109 456 7890</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:ahmedhussen@gmail.com">ahmedhussen@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>License.pdf, Certificate.pdf, ID.jpg</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Amir Mahmoud</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">plumbing</span> Plumber
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 2 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>1 year experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Alexandria, Smouha</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201264567898">+20 126 456 7898</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:amirmahmoud@gmail.com">amirmahmoud@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>ID.jpg, Proof_of_Address.pdf</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Diaa Fawzy</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">carpenter</span> Carpenter
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 1 week ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>6 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Mansoura, Dakahlia</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201034567907">+20 103 456 7907</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:diaafawzy@gmail.com">diaafawzy@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>ID.jpg, Custom_Furniture_Catalog.pdf</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Fares Youssef</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">plumbing</span> Plumber
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 6 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>3 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Tanta, Gharbia</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201134567896">+20 113 456 7896</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:faresyoussef@gmail.com">faresyoussef@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>Trade_School_Diploma.pdf, ID.jpg</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Karim Ali</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">carpenter</span> Carpenter
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 3 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>4 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Aswan, Edfu</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201144567892">+20 114 456 7892</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:karimali@gmail.com">karimali@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>Portfolio.pdf, ID.jpg, Reference_Letter.pdf</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Maged Hassan</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">bolt</span> Electrician
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 3 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>6 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Ismailia, Sheikh Zayed</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201254567899">+20 125 456 7899</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:magedhassan@gmail.com">magedhassan@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>ID.jpg, Previous_Projects.pdf</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Omar Diab</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">carpenter</span> Carpenter
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 3 hours ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>1 year experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Giza, Dokki</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201164567908">+20 116 456 7908</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:omardiab@gmail.com">omardiab@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>ID.jpg, Recommendation_Letter.pdf</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Samer Riad</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">bolt</span> Electrician
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 4 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>4 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Beni Suef, Biba</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201224567900">+20 122 456 7900</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:samerriad@gmail.com">samerriad@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>License.pdf, Safety_Cert.pdf, ID.jpg</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+
+    <div class="queue-card">
+    <div class="queue-card-header">
+    <div class="provider-avatar"><span class="material-icons-sharp">person</span></div>
+    <div class="provider-title">
+    <h3>Sherif Abd Elsalam</h3>
+    <span class="profession-badge">
+    <span class="material-icons-sharp">plumbing</span> Plumber
+    </span>
+    </div>
+    <span class="status-badge status-pending">Pending</span>
+    </div>
+    <div class="queue-card-body">
+    <div class="info-line">
+    <span class="material-icons-sharp">schedule</span>
+    <span>Applied 2 days ago</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">work</span>
+    <span>10 years experience</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">location_on</span>
+    <span>Hurghada, Dahar</span>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">phone</span>
+    <a href="tel:+201064567909">+20 106 456 7909</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">email</span>
+    <a href="mailto:sherifabdelsalam@gmail.com">sherifabdelsalam@gmail.com</a>
+    </div>
+    <div class="info-line">
+    <span class="material-icons-sharp">attach_file</span>
+    <span>ID.jpg, Commercial_License.pdf, Portfolio.pdf</span>
+    </div>
+    </div>
+    <div class="queue-card-actions docs-line">
+    <a href="#" class="btn-docs">
+    <span class="material-icons-sharp">folder_open</span> View Documents
+    </a>
+    </div>
+    <div class="queue-card-actions btns-line">
+    <button class="btn-approve">
+    <span class="material-icons-sharp">check</span> Approve
+    </button>
+    <button class="btn-reject">
+    <span class="material-icons-sharp">close</span> Reject
+    </button>
+    </div>
+    </div>
+    
+    </div> <div class="pagination-container">
+    <div class="pagination-button">
+    <button class="btn-page active">Load More</button>
+    </div>
+    </div>
+    </div>
+    </main>
+
+<footer>
+  <div class="footer-top">
+
+    <div class="footer-brand">
+      <div class="footer-brand-name">Yours<span>&amp;</span><em>Ours</em></div>
+      <p class="footer-tagline">Connecting communities with trusted, vetted professionals for every service need. Quality work, guaranteed.</p>
+      <div style="display:flex; gap:8px; margin-top:8px;">
+        <a href="https://www.facebook.com" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.google.com" target="_blank" class="social-btn"><i class="fa-brands fa-google"></i></a>
+        <a href="https://www.twitter.com" target="_blank" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-newsletter">
+      <p><strong>Stay in the loop.</strong><br>Tips, new pros and platform updates.</p>
+      <input type="email" placeholder="your@email.com" />
+      <a class="btn btn-clay" href="#">Subscribe</a>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="client/directory.html">Browse Professionals</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="client/gift-card.html">Gift Cards</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">For Professionals</div>
+      <ul class="footer-links">
+        <li><a href="signup.html">Join as a Professional</a></li>
+        <li><a href="pricing.html">Pro Pricing</a></li>
+        <li><a href="professional/dashboard.html">Pro Dashboard</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-pro-banner">
+    <div>
+      <strong>Want to be a Professional on Yours & Ours?</strong>
+      <p>Join hundreds of verified pros already earning through our platform.</p>
+    </div>
+    <a href="/signup.html" class="btn btn-lime">Join as a Pro →</a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Yours & Ours. All rights reserved.</p>
+    <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></p>
+  </div>
+
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. Core Elements ---
+    const grid = document.querySelector('.queue-grid');
+    const allCards = Array.from(document.querySelectorAll('.queue-card'));
+    const searchInput = document.querySelector('.search-input-group input');
+    const professionFilter = document.querySelector('.filter-select');
+    const sortBtn = document.querySelector('.table-controls .btn-text');
+    const loadMoreBtn = document.querySelector('.btn-page');
+    const loadMoreContainer = document.querySelector('.pagination-container'); 
+    const countText = document.querySelector('.table-card > .text-muted');
+
+    // --- 2. Dynamic "No More" Message Setup ---
+    const noMoreMsg = document.createElement('p');
+    noMoreMsg.className = 'text-muted';
+    noMoreMsg.textContent = 'No more pending applications to load at this time.';
+    noMoreMsg.style.display = 'none';
+    noMoreMsg.style.textAlign = 'center';
+    noMoreMsg.style.marginTop = '16px';
+    noMoreMsg.style.fontWeight = '500';
+    if (loadMoreContainer) {
+      loadMoreContainer.appendChild(noMoreMsg);
+    }
+
+    // --- 3. Undo System Variables ---
+    const undoToast = document.getElementById('undo-toast');
+    const undoToastText = undoToast.querySelector('span');
+    const undoBtn = document.getElementById('undo-btn');
+    let lastDeletedCard = null;
+    let toastTimeout;
+
+    // --- 4. State Variables ---
+    let sortAscending = true; 
+    let visibleLimit = 6; 
+
+    // --- 5. Helper: Age Calculation ---
+    function getAgeInHours(card) {
+      const timeText = card.querySelector('.info-line:first-child span:last-child').textContent;
+      const match = timeText.match(/(\d+)\s+(hour|day|week)/);
+      if (!match) return 9999; 
+      
+      const amount = parseInt(match[1]);
+      const unit = match[2];
+      
+      if (unit === 'hour') return amount;
+      if (unit === 'day') return amount * 24;
+      if (unit === 'week') return amount * 24 * 7;
+      
+      return 9999;
+    }
+
+    // --- 6. Main Render Function ---
+    function renderCards() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const profTerm = professionFilter.value.toLowerCase();
+
+      let filtered = allCards.filter(card => {
+        if (card.dataset.deleted === 'true') return false;
+
+        const name = card.querySelector('.provider-title h3').textContent.toLowerCase();
+        const profession = card.querySelector('.profession-badge').textContent.toLowerCase();
+
+        return (name.includes(searchTerm) || profession.includes(searchTerm)) && 
+               (profTerm === '' || profession.includes(profTerm));
+      });
+
+      filtered.sort((a, b) => {
+        const ageA = getAgeInHours(a);
+        const ageB = getAgeInHours(b);
+        return sortAscending ? ageA - ageB : ageB - ageA;
+      });
+
+      grid.innerHTML = ''; 
+      const cardsToShow = filtered.slice(0, visibleLimit);
+      cardsToShow.forEach(card => grid.appendChild(card));
+
+      countText.textContent = `Showing ${filtered.length} pending applications`;
+
+      // Load More Logic
+      if (visibleLimit >= filtered.length) {
+        if(loadMoreBtn) loadMoreBtn.style.display = 'none'; 
+        if (filtered.length > 0) {
+          noMoreMsg.style.display = 'block'; 
+        } else {
+          noMoreMsg.style.display = 'none'; 
+        }
+      } else {
+        if(loadMoreBtn) loadMoreBtn.style.display = 'inline-block'; 
+        noMoreMsg.style.display = 'none'; 
+      }
+    }
+
+    // --- 7. Event Listeners for Filters & Sorting ---
+    if(searchInput) searchInput.addEventListener('input', () => { visibleLimit = 6; renderCards(); });
+    if(professionFilter) professionFilter.addEventListener('change', () => { visibleLimit = 6; renderCards(); });
+    if(sortBtn) {
+      sortBtn.addEventListener('click', () => {
+        sortAscending = !sortAscending;
+        sortBtn.innerHTML = `<span class="material-icons-sharp">swap_vert</span> Sort by Date (${sortAscending ? 'Newest' : 'Oldest'})`;
+        renderCards();
+      });
+    }
+
+    // --- 8. Event Listener for Load More ---
+    if(loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', () => {
+        const originalText = loadMoreBtn.textContent;
+        loadMoreBtn.textContent = 'Loading...';
+        loadMoreBtn.style.opacity = '0.7';
+        loadMoreBtn.style.pointerEvents = 'none';
+
+        setTimeout(() => {
+          visibleLimit += 3;
+          renderCards();
+          
+          loadMoreBtn.textContent = originalText;
+          loadMoreBtn.style.opacity = '1';
+          loadMoreBtn.style.pointerEvents = 'auto';
+        }, 800); 
+      });
+    }
+
+    // --- 9. Undo Message Trigger ---
+    function showUndoMessage(providerName) {
+      undoToastText.textContent = `${providerName}'s application was resolved.`;
+      undoToast.classList.add('show');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        undoToast.classList.remove('show');
+        lastDeletedCard = null; 
+      }, 6000);
+    }
+
+    // --- 10. Undo Button Click Logic ---
+    if(undoBtn) {
+      undoBtn.addEventListener('click', () => {
+        if (lastDeletedCard) {
+          lastDeletedCard.dataset.deleted = 'false';
+          lastDeletedCard.style.opacity = '1';
+          lastDeletedCard.style.pointerEvents = 'auto';
+          lastDeletedCard.querySelector('.btns-line').style.opacity = '1';
+          
+          const badge = lastDeletedCard.querySelector('.status-badge');
+          badge.textContent = 'Pending';
+          badge.className = 'status-badge status-pending';
+
+          undoToast.classList.remove('show');
+          lastDeletedCard = null;
+          renderCards();
+        }
+      });
+    }
+
+    // --- 11. Approve & Reject Click Logic ---
+    if(grid) {
+      grid.addEventListener('click', (e) => {
+        const approveBtn = e.target.closest('.btn-approve');
+        const rejectBtn = e.target.closest('.btn-reject');
+        
+        if (approveBtn || rejectBtn) {
+          const card = e.target.closest('.queue-card');
+          const badge = card.querySelector('.status-badge');
+          const providerName = card.querySelector('h3').textContent;
+          const btnsLine = card.querySelector('.btns-line');
+          
+          if (approveBtn) {
+            badge.textContent = 'Approved';
+            badge.className = 'status-badge status-approved';
+          } else {
+            badge.textContent = 'Rejected';
+            badge.className = 'status-badge status-rejected';
+          }
+
+          btnsLine.style.opacity = '0.5';
+          card.style.pointerEvents = 'none';
+
+          // Wait 2 seconds, then trigger fade out and deletion
+          setTimeout(() => {
+            card.style.transition = 'opacity 0.3s ease';
+            card.style.opacity = '0';
+            
+            setTimeout(() => {
+              card.dataset.deleted = 'true';
+              lastDeletedCard = card; 
+              renderCards(); 
+              showUndoMessage(providerName); 
+            }, 300); 
+
+          }, 2000); 
+        }
+      });
+    }
+
+    // --- 12. Initial Load ---
+    renderCards();
+
+    // --- 13. STAT CARDS: COUNT-UP ANIMATION ONLY ---
+    const statNumbers = document.querySelectorAll('.animate-number');
+    
+    statNumbers.forEach(numberEl => {
+        // Get the target number from the HTML attribute
+        const target = +numberEl.getAttribute('data-target'); 
+        const duration = 1500; // Animation lasts 1.5 seconds
+        
+        // Calculate how much to add per frame
+        const increment = target / (duration / 16); 
+        let current = 0;
+        
+        const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+                // Format with commas and keep animating
+                numberEl.textContent = Math.ceil(current).toLocaleString();
+                requestAnimationFrame(updateCounter);
+            } else {
+                // Ensure it lands exactly on the target number at the end
+                numberEl.textContent = target.toLocaleString(); 
+            }
+        };
+        
+        // Start the animation
+        updateCounter();
+    });
+
+  });
+</script>
+</body>
+</html>

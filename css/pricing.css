@@ -1,0 +1,202 @@
+
+
+/* ============================================================
+   PERSON 5 — pricing.html · component.html
+   ============================================================ */
+
+
+/* ── 35. PRICING PAGE ──────────────────────────────────────── */
+.pricing-header {
+  padding-top: 80px;
+  padding-bottom: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: center;
+  background-color: var(--serenade);
+  display: block;
+}
+
+.pricing-header h1 {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.pricing-header > p {
+  color: var(--text-muted);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+}
+
+/* 3 plan cards sit side by side */
+.plans-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-top: 56px;
+  padding-bottom: 80px;
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: var(--serenade);
+}
+
+.plan {
+  background-color: var(--white);
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--border-light);
+  border-radius: var(--radius);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 32px;
+  padding-right: 32px;
+  width: 280px;
+  min-width: 240px;
+  flex-shrink: 0;
+  text-align: center;
+  position: relative;
+  transition-property: box-shadow, transform, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.plan:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  border-color: var(--sail);
+}
+
+/* Middle plan (Standard) always lifted */
+.plan:nth-child(2) {
+  border-color: var(--palm);
+  border-width: 2px;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-10px);
+}
+
+.plan:nth-child(2):hover {
+  transform: translateY(-14px);
+}
+
+.popular-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lime);
+  background-color: var(--palm);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border-radius: var(--radius-full);
+  margin-bottom: 14px;
+}
+
+.plan h3 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: var(--text-dark);
+}
+
+/* Support both .Plan_Price and .plan-price — teammates named them differently */
+.Plan_Price,
+.plan-price {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--palm);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.Plan_Price span,
+.plan-price span {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.Plan_features,
+.plan-features {
+  list-style-type: none;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Plan_features li,
+.plan-features li {
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--border-light);
+}
+
+.Plan_features li:last-child,
+.plan-features li:last-child {
+  border-bottom-width: 0;
+}
+
+.pricing-faq {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  padding-left: 40px;
+  padding-right: 40px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pricing-faq h2 {
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 2.2rem;
+}
+
+.faq-item {
+  background-color: var(--white);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-light);
+  border-radius: var(--radius);
+  padding-top: 24px;
+  padding-bottom: 24px;
+  padding-left: 28px;
+  padding-right: 28px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition-property: box-shadow, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.faq-item:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--sail);
+}
+
+.faq-item h4 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.faq-item p {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
