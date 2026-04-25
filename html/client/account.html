@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href='../../css/client.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>My Dashboard - Yours&Ours</title>
 </head>
 <body>
 
     <nav class="navbar navbar-client">
-        <a class="nav-logo" href="../index.html">Yours<span>&amp;</span><em>Ours</em></a>
+        <a class="nav-logo" href="../landing-page/index.html">Yours<span>&amp;</span><em>Ours</em></a>
         <div class="nav-actions">
             <span class="nav-badge client">Client</span>
         </div>
@@ -33,6 +34,19 @@
 
     <main class="dashboard-container">
 
+        <section class="my-profile-section">
+    <h3>👤 My Account</h3>
+    <div class="live-status-card" style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <img src="https://via.placeholder.com/60" alt="My Avatar" class="pro-avatar">
+        <div>
+            <p><strong>Sara Khaled</strong></p>
+            <p>📞 +20 100 123 4567</p>
+            <p>✉️ sara.khaled@email.com</p>
+        </div>
+        <button class="text-btn" style="margin-left:auto;">Edit Profile</button>
+    </div>
+</section>
+
         <section class="active-booking-section">
             <h3>🚨 Happening Now</h3>
             
@@ -43,7 +57,7 @@
                         <h4>Electrical Repair with Samy Ahmed</h4>
                         <p class="eta">Estimated Arrival: <strong>10 Minutes (6:00 PM)</strong></p>
                     </div>
-                    <button class="call-btn">📞 Call Samy</button>
+                   <button class="call-btn" id="call-btn" onclick="showPhone()">📞 Call Samy</button>
                 </div>
 
                 <div class="progress-timeline">
@@ -60,6 +74,15 @@
                         <p><strong>Your Safety PIN:</strong></p>
                         <h2 class="otp-code">4921</h2>
                         <p class="tiny-text">🛡️ Give this to Samy at the door to verify his identity.</p>
+                        <div class="security-pin-box">
+    <p><strong>Pro's Confirmation Code:</strong></p>
+    <p class="tiny-text">Samy will show you a 4-digit code when the job is done. Enter it here to confirm payment.</p>
+    <div style="display:flex; gap:8px; align-items:center; margin-top:8px;">
+        <input type="text" id="pro-code-input" maxlength="4" placeholder="0000" style="width:80px; font-size:1.4rem; text-align:center; padding:6px; border:2px solid #ccc; border-radius:8px; letter-spacing:4px;">
+        <button class="call-btn" onclick="confirmProCode()">Confirm ✓</button>
+    </div>
+    <p id="confirm-msg" style="display:none; color:green; margin-top:8px;">✅ Confirmed! Payment released to Samy.</p>
+</div>
                     </div>
                     
                     <div class="prep-checklist">
@@ -118,49 +141,70 @@
         </section>
 
     </main>
+<footer>
+  <div class="footer-top">
 
-    <footer>
-    <div class="footer-top">
-
-      <div class="footer-brand">
-        <div class="footer-brand-name">Yours<span>&amp;</span><em>Ours</em></div>
-        <p class="footer-tagline">Connecting communities with trusted, vetted professionals for every service need. Quality work, guaranteed.</p>
-
-  <div style="display:flex; gap:8px; margin-top:8px;">
-  <a href="https://www.facebook.com" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
-  <a href="https://www.google.com" target="_blank" class="social-btn"><i class="fa-brands fa-google"></i></a>
-  <a href="https://www.twitter.com" target="_blank" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
-</div>
-
-</div>
-        <div class="footer-newsletter">
-          <p><strong>Stay in the loop.</strong><br>Tips, new pros and platform updates.</p>
-          <input type="email" placeholder="your@email.com" />
-          <a class="btn btn-clay" href="#">Subscribe</a>
-        </div>
+    <div class="footer-brand">
+      <div class="footer-brand-name">Yours<span>&amp;</span><em>Ours</em></div>
+      <p class="footer-tagline">Connecting communities with trusted, vetted professionals for every service need. Quality work, guaranteed.</p>
+      <div style="display:flex; gap:8px; margin-top:8px;">
+        <a href="https://www.facebook.com" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.google.com" target="_blank" class="social-btn"><i class="fa-brands fa-google"></i></a>
+        <a href="https://www.twitter.com" target="_blank" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
       </div>
-
-      <div class="footer-col">
-        <div class="footer-col-title">Services</div>
-        <ul class="footer-links">
-          <li><a href="directory.html">Browse Professionals</a></li>
-          <li><a href="../index.html#how-it-works">How It Works</a></li>
-          <li><a href="../pricing.html">Pricing</a></li>
-          <li><a href="../client/gift-card.html">Gift Cards</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <div class="footer-col-title">Company</div>
-        <ul class="footer-links">
-          <li><a href="../index.html#about">About Us</a></li>
-          <li><a href="../index.html#contact">Contact</a></li>
-        </ul>
-      </div>
-
     </div>
-  </footer>
 
+    <div class="footer-newsletter">
+      <p><strong>Stay in the loop.</strong><br>Tips, new pros and platform updates.</p>
+      <input type="email" placeholder="your@email.com" />
+      <a class="btn btn-clay" href="#">Subscribe</a>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="client/directory.html">Browse Professionals</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="client/gift-card.html">Gift Cards</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">For Professionals</div>
+      <ul class="footer-links">
+        <li><a href="signup.html">Join as a Professional</a></li>
+        <li><a href="pricing.html">Pro Pricing</a></li>
+        <li><a href="professional/dashboard.html">Pro Dashboard</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-pro-banner">
+    <div>
+      <strong>Want to be a Professional on Yours & Ours?</strong>
+      <p>Join hundreds of verified pros already earning through our platform.</p>
+    </div>
+    <a href="/signup.html" class="btn btn-lime">Join as a Pro →</a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Yours & Ours. All rights reserved.</p>
+    <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></p>
+  </div>
+
+</footer>
+
+
+<script src="../../js/client/account.js"> </script>
 </body>
 </html>
-

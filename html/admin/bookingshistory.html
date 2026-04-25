@@ -6,14 +6,16 @@
     <title>Yours & Ours - Admin Bookings</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+
+
     </head>
 
     <body>
     <nav class="navbar navbar-admin">
-    <a class="nav-logo" href="index.html">Yours<span>&amp;</span><em>Ours</em></a>
+    <a class="nav-logo" href="../landing-page/index.html">Yours<span>&amp;</span><em>Ours</em></a>
     <div class="nav-actions">
     <span class="nav-badge admin">Admin</span>
     </div>
@@ -45,7 +47,7 @@
     </div>
     </header>
 
-    <div class="stats-grid">
+    <div class="stats-grid-4">
         
     <div class="stat-card">
     <div class="card-header">
@@ -55,7 +57,7 @@
     </div>
     <p class="card-title">Booking In Progress</p>
     <div class="card-body">
-    <h2>32</h2>
+    <h3><span class="animate-number" data-target="32">0</span></h3>
     <span class="trend-badge trend-up">↑ 10.5%</span>
     </div>
     </div>
@@ -68,7 +70,7 @@
     </div>
     <p class="card-title">Booking Pending</p>
     <div class="card-body">
-    <h2>25</h2>
+    <h3><span class="animate-number" data-target="25">0</span></h3>
     <span class="trend-badge trend-down">↓ 10.5%</span>
     </div>
     </div>
@@ -81,7 +83,7 @@
     </div>
     <p class="card-title">Booking Completed</p>
     <div class="card-body">
-    <h2>2,201</h2>
+    <h3><span class="animate-number" data-target="2201">0</span></h3>
     <span class="trend-badge trend-up">↑ 10.5%</span>
     </div>
     </div>
@@ -94,7 +96,7 @@
     </div>
     <p class="card-title">Booking Cancelled</p>
     <div class="card-body">
-    <h2>281</h2>
+    <h3><span class="animate-number" data-target="281">0</span></h3>
     <span class="trend-badge trend-down">↓ 10.5%</span>
     </div>
     </div>
@@ -120,7 +122,7 @@
     </div>
 
     <div class="table-actions">
-    <p class="text-muted">Showing 15 of 253 bookings</p>
+    <p class="text-muted">Showing 10 of 15 bookings</p>
     <select class="filter-select">
     <option value="">All Statuses</option>
     <option value="pending">Pending</option>
@@ -323,53 +325,74 @@
     <button class="btn-page" disabled>Previous</button>
     <button class="btn-page active">1</button>
     <button class="btn-page">2</button>
-    <button class="btn-page">3</button>
-    <button class="btn-page">4</button>
     <button class="btn-page">Next</button>
     </div>
     </div>
     </div>
     </main>
-    <footer>
-    <div class="footer-top">
+   <footer>
+  <div class="footer-top">
 
-      <div class="footer-brand">
-        <div class="footer-brand-name">Yours<span>&amp;</span><em>Ours</em></div>
-        <p class="footer-tagline">Connecting communities with trusted, vetted professionals for every service need. Quality work, guaranteed.</p>
-
-  <div style="display:flex; gap:8px; margin-top:8px;">
-  <a href="https://www.facebook.com" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
-  <a href="https://www.google.com" target="_blank" class="social-btn"><i class="fa-brands fa-google"></i></a>
-  <a href="https://www.twitter.com" target="_blank" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
-</div>
-
-</div>
-        <div class="footer-newsletter">
-          <p><strong>Stay in the loop.</strong><br>Tips, new pros and platform updates.</p>
-          <input type="email" placeholder="your@email.com" />
-          <a class="btn btn-clay" href="#">Subscribe</a>
-        </div>
+    <div class="footer-brand">
+      <div class="footer-brand-name">Yours<span>&amp;</span><em>Ours</em></div>
+      <p class="footer-tagline">Connecting communities with trusted, vetted professionals for every service need. Quality work, guaranteed.</p>
+      <div style="display:flex; gap:8px; margin-top:8px;">
+        <a href="https://www.facebook.com" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.google.com" target="_blank" class="social-btn"><i class="fa-brands fa-google"></i></a>
+        <a href="https://www.twitter.com" target="_blank" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
       </div>
-
-      <div class="footer-col">
-        <div class="footer-col-title">Services</div>
-        <ul class="footer-links">
-          <li><a href="../client/directory.html">Browse Professionals</a></li>
-          <li><a href="../index.html#how-it-works">How It Works</a></li>
-          <li><a href="../pricing.html">Pricing</a></li>
-          <li><a href="../client/gift-card.html">Gift Cards</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <div class="footer-col-title">Company</div>
-        <ul class="footer-links">
-          <li><a href="../index.html#about">About Us</a></li>
-          <li><a href="../index.html#contact">Contact</a></li>
-        </ul>
-      </div>
-
     </div>
+
+    <div class="footer-newsletter">
+      <p><strong>Stay in the loop.</strong><br>Tips, new pros and platform updates.</p>
+      <input type="email" placeholder="your@email.com" />
+      <a class="btn btn-clay" href="#">Subscribe</a>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="client/directory.html">Browse Professionals</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="client/gift-card.html">Gift Cards</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">For Professionals</div>
+      <ul class="footer-links">
+        <li><a href="signup.html">Join as a Professional</a></li>
+        <li><a href="pricing.html">Pro Pricing</a></li>
+        <li><a href="professional/dashboard.html">Pro Dashboard</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-pro-banner">
+    <div>
+      <strong>Want to be a Professional on Yours & Ours?</strong>
+      <p>Join hundreds of verified pros already earning through our platform.</p>
+    </div>
+    <a href="/signup.html" class="btn btn-lime">Join as a Pro →</a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Yours & Ours. All rights reserved.</p>
+    <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></p>
+  </div>
+
 </footer>
-    </body>
-    </html>
+
+<script src="../../js/admin/bookingshistory.js"> </script>
+</body>
+</html>

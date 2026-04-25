@@ -1,118 +1,130 @@
 /* ============================================================
    YOURS & OURS — style.css
-   Written with NO shorthand — every property is fully spelled out
-   so you can read exactly what each line does.
+   Palette  : Makaya — Palm Leaf · Sail · Fringy Flower · Serenade
+   Fonts    : Cormorant Garamond (headings) + Jost (body)
+   Rules    : No shorthand — every property on its own line
 
-   CONTENTS:
+   TABLE OF CONTENTS
    ─────────────────────────────────────────────────────────
-   SHARED BASE  (Person 1 + Person 5 write together FIRST)
-     1.  Google Fonts
-     2.  CSS Variables  (color/font shortcuts)
-     3.  Reset & Base
-     4.  Typography
-     5.  Buttons
-     6.  Navbar
-     7.  Footer
+   SHARED BASE  (ALL teammates read this first)
+     01. Google Fonts
+     02. CSS Variables  ← change colors here
+     03. Reset & Base
+     04. Typography
+     05. Buttons
+     06. Navbar
+     07. Mobile Hamburger Menu
+     08. Footer
 
    PERSON 1  — index · login · signup · forgot-password
-     8.  Guest Nav
-     9.  Hero Section
-     10. Find Professionals
-     11. How It Works
-     12. About Section
-     13. Contact Section
-     14. Login Page
-     15. Signup Page
-     16. Forgot Password Page
+     09. Guest Nav  (plain <nav> tag)
+     10. Hero Section
+     11. Find Professionals Section
+     12. How It Works Section
+     13. About Section
+     14. Contact Section
+     15. Scrolling Reviews Ticker  (also index)
+     16. Login Page
+     17. Signup Page
+     18. Forgot Password Page
 
    PERSON 2  — client folder
-     17. Account / Client Dashboard
-     18. Booking Page
-     19. Directory Page
-     20. Profile Page
-     21. Gift Card Page
+     19. Account / Client Dashboard
+     20. Booking Page
+     21. Directory Page
+     22. Profile Page
+     23. Write Review Page
+     24. Gift Card Page
 
    PERSON 3  — professional folder
-     22. Pro Dashboard
-     23. Requests Page
-     24. Edit Profile Page
+     25. Pro Dashboard
+     26. Requests Page
+     27. Edit Profile Page
+     28. Form Utility Classes  (labels, inputs, file upload)
 
    PERSON 4  — admin folder
-     25. Shared Admin Styles
-     26. Admin Dashboard
-     27. Bookings History
-     28. Verification Page  ← Person 4 writes this
+     29. Admin Shared Layout
+     30. Admin Stat Cards
+     31. Admin Charts
+     32. Admin Tables & Badges
+     33. Admin Dashboard Extras
+     34. Verification Page
 
    PERSON 5  — pricing · components
-     29. Pricing Page
+     35. Pricing Page
 
-   RESPONSIVE  (everyone benefits)
-     30. Tablet screens
-     31. Mobile screens
+   RESPONSIVE
+     36. Tablet  (≤ 768px)
+     37. Mobile  (≤ 480px)
    ─────────────────────────────────────────────────────────
    ============================================================ */
 
 
 /* ============================================================
-   ██████████████████████████████████████████████████████████
-   SHARED BASE — Person 1 + Person 5 write this together
-   Do this section FIRST before anyone else starts.
-   ██████████████████████████████████████████████████████████
+   SHARED BASE
+   Every teammate depends on this — write it first.
    ============================================================ */
 
 
-/* ─────────────────────────────────────────────────────────
-   1. GOOGLE FONTS
-   This line loads our two fonts from the internet.
-   Cormorant Garamond = headings (fancy serif)
-   Jost = body text (clean and modern)
-───────────────────────────────────────────────────────── */
+/* ── 01. GOOGLE FONTS ──────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap');
 
 
-/* ─────────────────────────────────────────────────────────
-   2. CSS VARIABLES
-   Think of these like named shortcuts.
-   Instead of writing #B5613A every time,
-   you write var(--clay) and it fills in the color.
-   Change it once here → it changes everywhere.
-───────────────────────────────────────────────────────── */
+/* ── 02. CSS VARIABLES ─────────────────────────────────────── */
+/*
+   To change the whole site's look, only edit this section.
+   --palm     = dark forest green  → navbars, buttons, footer bg
+   --sail     = teal / aqua        → focus rings, borders, accents
+   --lime     = bright lime green  → button text, active links, dots
+   --serenade = light blue-white   → page background, card bg
+*/
 :root {
-  --cream:         #F7F3EE;
-  --cream-dark:    #EDE7DE;
-  --clay:          #B5613A;
-  --clay-dark:     #8F4A28;
-  --terracotta:    #D4855A;
-  --sand:          #D9C5B0;
-  --sand-light:    #EBD9C7;
-  --charcoal:      #2E2620;
-  --charcoal-mid:  #5C4A3A;
-  --muted:         #9A8070;
-  --white:         #FFFFFF;
-  --success:       #2E7D5A;
-  --error:         #C0392B;
-  --warning:       #D4A017;
+  /* ── Brand Colors ── */
+  --palm:           #02261e;
+  --palm-mid:       #0a3d2e;
+  --sail:           #89c9c9;
+  --sail-dark:      #5fa8a8;
+  --lime:           #d0fc92;
+  --lime-dark:      #b0e070;
+  --serenade:       #f2f7f9;
+  --serenade-dark:  #e2ecf0;
 
-  --font-heading:  'Cormorant Garamond', Georgia, serif;
-  --font-body:     'Jost', sans-serif;
+  /* ── Neutrals ── */
+  --white:          #ffffff;
+  --text-dark:      #02261e;
+  --text-mid:       #1a4a3a;
+  --text-muted:     #5a7a6e;
+  --border:         #c8ddd8;
+  --border-light:   #deecea;
 
-  --nav-height:    72px;
-  --max-width:     1200px;
-  --radius:        10px;
-  --radius-full:   9999px;
-  --transition:    0.2s ease;
+  /* ── Status ── */
+  --success:        #2e7d5a;
+  --error:          #c0392b;
+  --warning:        #c4a020;
+
+  /* ── Fonts ── */
+  --font-heading:   'Cormorant Garamond', Georgia, serif;
+  --font-body:      'Jost', sans-serif;
+
+  /* ── Layout ── */
+  --nav-height:     68px;
+  --max-width:      1200px;
+  --radius:         10px;
+  --radius-sm:      6px;
+  --radius-full:    9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm:      0 2px 8px rgba(2, 38, 30, 0.07);
+  --shadow:         0 4px 20px rgba(2, 38, 30, 0.10);
+  --shadow-lg:      0 8px 40px rgba(2, 38, 30, 0.16);
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   3. RESET & BASE
-   Browsers add their own default margins and padding.
-   We remove all of that here so we start clean.
-───────────────────────────────────────────────────────── */
-
-/* The * selector means "apply to every single element" */
-* {
-  box-sizing: border-box; /* padding is included in the element's total width */
+/* ── 03. RESET & BASE ──────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin-top: 0;
   margin-right: 0;
   margin-bottom: 0;
@@ -124,16 +136,16 @@
 }
 
 html {
-  scroll-behavior: smooth; /* makes clicking anchor links scroll smoothly */
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-body);
-  background-color: var(--cream);
-  color: var(--charcoal);
+  background-color: var(--serenade);
+  color: var(--text-dark);
   line-height: 1.6;
-  padding-top: var(--nav-height); /* pushes content below the fixed navbar */
-  -webkit-font-smoothing: antialiased; /* makes text look sharper */
+  padding-top: var(--nav-height);
+  -webkit-font-smoothing: antialiased;
 }
 
 img {
@@ -143,12 +155,12 @@ img {
 }
 
 ul {
-  list-style-type: none; /* removes bullet points */
+  list-style-type: none;
 }
 
 a {
-  text-decoration: none; /* removes underlines from links */
-  color: inherit;        /* inherits text color from parent */
+  text-decoration: none;
+  color: inherit;
 }
 
 button {
@@ -165,10 +177,7 @@ textarea {
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   4. TYPOGRAPHY
-   Controls how all headings and paragraphs look.
-───────────────────────────────────────────────────────── */
+/* ── 04. TYPOGRAPHY ────────────────────────────────────────── */
 h1,
 h2,
 h3,
@@ -178,39 +187,60 @@ h6 {
   font-family: var(--font-heading);
   font-weight: 600;
   line-height: 1.2;
-  color: var(--charcoal);
+  color: var(--text-dark);
 }
 
-h1 { font-size: 3rem; }
-h2 { font-size: 2.2rem; }
-h3 { font-size: 1.6rem; }
-h4 { font-size: 1.1rem; }
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
 
 p {
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
   line-height: 1.7;
+  font-size: 0.95rem;
 }
 
 .text-muted {
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   5. BUTTONS
-   .btn = base styles every button gets
-   .btn-clay / .btn-outline / .btn-primary = color versions
-───────────────────────────────────────────────────────── */
+/* ── 05. BUTTONS ───────────────────────────────────────────── */
+/*
+   .btn         = base class every button needs
+   .btn-primary = dark green fill, lime text  (main CTA)
+   .btn-clay    = same as btn-primary  (alias some teammates use)
+   .btn-outline = transparent, dark green border
+   .btn-lime    = bright lime fill  (pop/secondary CTA)
+   .btn-ghost   = plain transparent with grey border
+*/
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding-top: 11px;
+  padding-bottom: 11px;
   padding-left: 24px;
   padding-right: 24px;
   border-radius: var(--radius-full);
@@ -219,78 +249,81 @@ p {
   border-color: transparent;
   cursor: pointer;
   white-space: nowrap;
-  transition-property: background-color, color, border-color, transform;
+  text-decoration: none;
+  transition-property: background-color, color, border-color, transform, box-shadow;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .btn:active {
-  transform: scale(0.97); /* slightly shrinks button when clicked */
+  transform: scale(0.97);
 }
 
-/* Clay button — filled with clay color */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary,
 .btn-clay {
-  background-color: var(--clay);
-  color: var(--white);
-  border-color: var(--clay);
+  background-color: var(--palm);
+  color: var(--lime);
+  border-color: var(--palm);
 }
 
+.btn-primary:hover,
 .btn-clay:hover {
-  background-color: var(--clay-dark);
-  border-color: var(--clay-dark);
+  background-color: var(--palm-mid);
+  border-color: var(--palm-mid);
 }
 
-/* Outline button — transparent with a clay border */
 .btn-outline {
   background-color: transparent;
-  color: var(--clay);
-  border-color: var(--clay);
+  color: var(--palm);
+  border-color: var(--palm);
 }
 
 .btn-outline:hover {
-  background-color: var(--clay);
-  color: var(--white);
+  background-color: var(--palm);
+  color: var(--lime);
 }
 
-/* Primary — same as clay, used by some teammates */
-.btn-primary {
-  background-color: var(--clay);
-  color: var(--white);
-  border-color: var(--clay);
+.btn-lime {
+  background-color: var(--lime);
+  color: var(--palm);
+  border-color: var(--lime);
 }
 
-.btn-primary:hover {
-  background-color: var(--clay-dark);
+.btn-lime:hover {
+  background-color: var(--lime-dark);
+  border-color: var(--lime-dark);
 }
 
-/* Ghost — subtle button with a light border */
 .btn-ghost {
   background-color: transparent;
-  color: var(--charcoal-mid);
-  border-color: var(--sand);
+  color: var(--text-mid);
+  border-color: var(--border);
 }
 
 .btn-ghost:hover {
-  background-color: var(--cream-dark);
+  background-color: var(--serenade-dark);
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   6. NAVBAR
-   position: fixed  → stays at the top when you scroll
-   z-index: 1000    → makes sure it's on top of everything
-───────────────────────────────────────────────────────── */
+/* ── 06. NAVBAR ────────────────────────────────────────────── */
+/*
+   position: fixed = stays at top while user scrolls
+   z-index: 1000   = always appears above all page content
+   All 4 nav types (guest, client, professional, admin) share
+   .navbar and just get a different class like .navbar-admin
+*/
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: var(--nav-height);
-  background-color: var(--white);
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: var(--cream-dark);
-  box-shadow: 0 1px 8px rgba(46, 38, 32, 0.07);
+  background-color: var(--palm);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -298,41 +331,41 @@ p {
   padding-right: 40px;
   gap: 24px;
   z-index: 1000;
+  box-shadow: 0 2px 12px rgba(2, 38, 30, 0.30);
 }
 
-/* Logo */
 .nav-logo {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   font-weight: 700;
-  color: var(--clay);
+  color: var(--lime);
   white-space: nowrap;
   flex-shrink: 0;
   text-decoration: none;
 }
 
 .nav-logo span {
-  color: var(--charcoal);
+  color: var(--sail);
 }
 
 .nav-logo em {
   font-style: italic;
+  color: var(--white);
 }
 
-/* The links in the middle */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 28px;
   flex-grow: 1;
   justify-content: center;
   list-style-type: none;
 }
 
 .nav-link {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
-  color: var(--charcoal-mid);
+  color: rgba(255, 255, 255, 0.70);
   text-decoration: none;
   position: relative;
   padding-bottom: 3px;
@@ -341,15 +374,15 @@ p {
   transition-timing-function: ease;
 }
 
-/* The underline that slides in on hover */
+/* Animated lime underline on hover / active */
 .nav-link::after {
   content: '';
   position: absolute;
   bottom: -2px;
   left: 0;
-  width: 0;       /* starts with no width */
+  width: 0;
   height: 2px;
-  background-color: var(--clay);
+  background-color: var(--lime);
   border-radius: var(--radius-full);
   transition-property: width;
   transition-duration: 0.2s;
@@ -357,22 +390,22 @@ p {
 }
 
 .nav-link:hover {
-  color: var(--clay);
+  color: var(--lime);
 }
 
 .nav-link.active {
-  color: var(--clay);
+  color: var(--lime);
+  font-weight: 600;
 }
 
 .nav-link:hover::after {
-  width: 100%; /* slides the underline in */
+  width: 100%;
 }
 
 .nav-link.active::after {
   width: 100%;
 }
 
-/* Right side of navbar (badge + icons) */
 .nav-actions {
   display: flex;
   align-items: center;
@@ -380,11 +413,11 @@ p {
   flex-shrink: 0;
 }
 
-/* The colored badge (Client / Professional / Admin) */
+/* Role badges — CLIENT / PROFESSIONAL / ADMIN */
 .nav-badge {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -394,21 +427,24 @@ p {
 }
 
 .nav-badge.client {
-  background-color: #F3E6DF;
-  color: var(--clay);
+  background-color: var(--sail);
+  color: var(--palm);
 }
 
 .nav-badge.professional {
-  background-color: #E2F0EB;
-  color: var(--success);
+  background-color: var(--lime);
+  color: var(--palm);
 }
 
 .nav-badge.admin {
-  background-color: var(--cream-dark);
-  color: var(--charcoal);
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
-/* Bell / settings icon circle */
+/* Bell / settings icon button */
 .nav-icon-btn {
   position: relative;
   width: 40px;
@@ -419,48 +455,189 @@ p {
   border-radius: var(--radius-full);
   font-size: 1.1rem;
   cursor: pointer;
-  color: var(--charcoal-mid);
+  color: var(--white);
   transition-property: background-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .nav-icon-btn:hover {
-  background-color: var(--cream-dark);
+  background-color: var(--palm-mid);
 }
 
-/* The red dot on the bell */
+/* Notification dot on the bell icon */
 .nav-dot {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 7px;
+  right: 7px;
   width: 8px;
   height: 8px;
-  background-color: var(--clay);
+  background-color: var(--lime);
   border-radius: 50%;
   border-width: 2px;
   border-style: solid;
+  border-color: var(--palm);
+}
+
+/* Navbar button overrides so they look right on dark background */
+.navbar .btn-outline {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.navbar .btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.10);
   border-color: var(--white);
+  color: var(--white);
+}
+
+.navbar .btn-lime {
+  background-color: var(--lime);
+  color: var(--palm);
+  border-color: var(--lime);
+}
+
+.navbar .btn-lime:hover {
+  background-color: var(--lime-dark);
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   7. FOOTER
-───────────────────────────────────────────────────────── */
+/* ── 07. MOBILE HAMBURGER MENU ─────────────────────────────── */
+/*
+   .hamburger = hidden on desktop, shows on mobile (≤768px)
+   JS toggles .open class → bars animate into an X shape
+   .mobile-menu = dropdown — hidden until .open added by JS
+*/
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 17px;
+  background-color: transparent;
+  border-width: 0;
+  cursor: pointer;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--lime);
+  border-radius: var(--radius-full);
+  transition-property: transform, opacity;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+
+/* First bar rotates to form top of X */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+/* Middle bar disappears */
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+/* Last bar rotates to form bottom of X */
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  background-color: var(--palm);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--palm-mid);
+  box-shadow: 0 8px 24px rgba(2, 38, 30, 0.35);
+  z-index: 999;
+  flex-direction: column;
+  list-style-type: none;
+  padding-top: 6px;
+  padding-bottom: 12px;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-menu li {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.mobile-menu li:last-child {
+  border-bottom-width: 0;
+}
+
+.mobile-menu a {
+  display: block;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 28px;
+  padding-right: 28px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.80);
+  text-decoration: none;
+  transition-property: color, background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.mobile-menu a:hover {
+  color: var(--lime);
+  background-color: var(--palm-mid);
+}
+
+
+/* ── 08. FOOTER ────────────────────────────────────────────── */
+/*
+   Dark palm green background on all pages.
+   .footer-top = grid with 3 columns: brand col, links col x2
+   Safety net: if the <footer> HTML tag is missing on a page,
+   .footer-top still gets the dark background on its own.
+*/
 footer {
-  background-color: var(--charcoal);
-  color: var(--sand);
+  background-color: var(--palm);
+  color: rgba(255, 255, 255, 0.70);
   padding-top: 64px;
   padding-right: 40px;
   padding-bottom: 32px;
   padding-left: 40px;
 }
 
-/* 3 columns: brand | services | company */
 .footer-top {
+  background-color: var(--palm);
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr;
   gap: 48px;
+  padding-top: 64px;
+  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+/* When footer-top is inside a proper <footer> tag,
+   remove the extra top padding and bg (footer handles those) */
+footer .footer-top {
+  background-color: transparent;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
   margin-bottom: 40px;
 }
 
@@ -474,37 +651,43 @@ footer {
   font-family: var(--font-heading);
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--lime);
 }
 
 .footer-brand-name span {
-  color: var(--terracotta);
+  color: var(--sail);
 }
 
 .footer-brand-name em {
   font-style: italic;
+  color: var(--white);
 }
 
 .footer-tagline {
   font-size: 0.88rem;
-  color: var(--sand);
+  color: rgba(255, 255, 255, 0.55);
   max-width: 280px;
   line-height: 1.7;
 }
 
-/* Social icon circles */
+/* Hide any <br> tags that might sit between social icons */
+.footer-brand br {
+  display: none;
+}
+
+/* Social icon circle buttons */
 .social-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: var(--radius-full);
   border-width: 1px;
   border-style: solid;
-  border-color: rgba(255, 255, 255, 0.15);
-  color: var(--sand);
-  font-size: 0.85rem;
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.82rem;
   margin-right: 6px;
   transition-property: background-color, border-color, color;
   transition-duration: 0.2s;
@@ -512,12 +695,12 @@ footer {
 }
 
 .social-btn:hover {
-  background-color: var(--clay);
-  border-color: var(--clay);
-  color: var(--white);
+  background-color: var(--lime);
+  border-color: var(--lime);
+  color: var(--palm);
 }
 
-/* Newsletter */
+/* Email newsletter block inside footer brand column */
 .footer-newsletter {
   display: flex;
   flex-direction: column;
@@ -527,7 +710,7 @@ footer {
 
 .footer-newsletter p {
   font-size: 0.85rem;
-  color: var(--sand);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .footer-newsletter input {
@@ -538,7 +721,7 @@ footer {
   border-radius: var(--radius);
   border-width: 1px;
   border-style: solid;
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.18);
   background-color: rgba(255, 255, 255, 0.07);
   color: var(--white);
   font-size: 0.85rem;
@@ -549,14 +732,14 @@ footer {
 }
 
 .footer-newsletter input::placeholder {
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.30);
 }
 
 .footer-newsletter input:focus {
-  border-color: var(--clay);
+  border-color: var(--sail);
 }
 
-/* Services / Company columns */
+/* Footer link columns */
 .footer-col {
   display: flex;
   flex-direction: column;
@@ -564,68 +747,63 @@ footer {
 }
 
 .footer-col-title {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--white);
-  margin-bottom: 4px;
+  color: var(--lime);
+  margin-bottom: 6px;
 }
 
 .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .footer-links a {
   font-size: 0.9rem;
-  color: var(--sand);
+  color: rgba(255, 255, 255, 0.60);
+  text-decoration: none;
   transition-property: color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .footer-links a:hover {
-  color: var(--terracotta);
+  color: var(--sail);
 }
 
-/* Copyright bar at the bottom */
 .footer-bottom {
   border-top-width: 1px;
   border-top-style: solid;
   border-top-color: rgba(255, 255, 255, 0.08);
   padding-top: 20px;
   font-size: 0.8rem;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.30);
   text-align: center;
 }
 
 
 /* ============================================================
-   ██████████████████████████████████████████████████████████
    PERSON 1 — index.html · login.html · signup.html
               forgot-password.html
-   ██████████████████████████████████████████████████████████
    ============================================================ */
 
 
-/* ─────────────────────────────────────────────────────────
-   8. GUEST NAV
+/* ── 09. GUEST NAV (plain <nav> tag) ───────────────────────── */
+/*
    Person 1 uses a plain <nav> tag instead of .navbar.
-   This styles it to look the same.
-───────────────────────────────────────────────────────── */
+   This selector targets it without affecting other nav tags.
+*/
 nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: var(--nav-height);
-  background-color: var(--white);
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: var(--cream-dark);
-  box-shadow: 0 1px 8px rgba(46, 38, 32, 0.07);
+  background-color: var(--palm);
+  box-shadow: 0 2px 12px rgba(2, 38, 30, 0.30);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -637,22 +815,22 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) {
 
 nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) a:first-child {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   font-weight: 700;
-  color: var(--clay);
+  color: var(--lime);
   text-decoration: none;
 }
 
 nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) ul {
   display: flex;
-  gap: 32px;
+  gap: 28px;
   list-style-type: none;
 }
 
 nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) ul a {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
-  color: var(--charcoal-mid);
+  color: rgba(255, 255, 255, 0.70);
   text-decoration: none;
   transition-property: color;
   transition-duration: 0.2s;
@@ -660,75 +838,91 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) ul a {
 }
 
 nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) ul a:hover {
-  color: var(--clay);
+  color: var(--lime);
 }
 
 nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div {
   display: flex;
-  gap: 12px;
+  gap: 10px;
+  align-items: center;
 }
 
 nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--clay);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
   padding-top: 8px;
   padding-bottom: 8px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border-radius: var(--radius-full);
   border-width: 2px;
   border-style: solid;
-  border-color: var(--clay);
-  border-radius: var(--radius-full);
-  text-decoration: none;
-  transition-property: background-color, color;
+  transition-property: background-color, color, border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
-nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
-  background-color: var(--clay);
-  color: var(--white);
+/* Login button = outline style */
+nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:first-child {
+  color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.35);
+  background-color: transparent;
+}
+
+nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:first-child:hover {
+  background-color: rgba(255, 255, 255, 0.10);
+  border-color: var(--white);
+}
+
+/* Sign Up button = lime filled */
+nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:last-child {
+  background-color: var(--lime);
+  color: var(--palm);
+  border-color: var(--lime);
+}
+
+nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:last-child:hover {
+  background-color: var(--lime-dark);
+  border-color: var(--lime-dark);
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   9. HERO SECTION  (index.html)
-───────────────────────────────────────────────────────── */
+/* ── 10. HERO SECTION ──────────────────────────────────────── */
 .hero {
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 96px;
+  padding-bottom: 96px;
   padding-left: 40px;
   padding-right: 40px;
+  background-color: var(--serenade);
   text-align: center;
-  background-color: var(--cream);
 }
 
 .hero h1 {
-  max-width: 640px;
+  max-width: 660px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 16px;
+  font-size: 3.4rem;
 }
 
 .hero p {
   font-size: 1.05rem;
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
 
-/* Search bar */
 .search-bar {
   display: flex;
-  max-width: 520px;
+  max-width: 560px;
   margin-left: auto;
   margin-right: auto;
   border-width: 2px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius-full);
   overflow: hidden;
   background-color: var(--white);
@@ -738,36 +932,36 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .search-bar:focus-within {
-  border-color: var(--clay);
-  box-shadow: 0 0 0 3px rgba(181, 97, 58, 0.12);
+  border-color: var(--sail);
+  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.20);
 }
 
 .search-bar input {
   flex-grow: 1;
   border-width: 0;
   outline: none;
-  padding-top: 13px;
-  padding-bottom: 13px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 22px;
+  padding-right: 22px;
   font-size: 0.95rem;
   background-color: transparent;
-  color: var(--charcoal);
+  color: var(--text-dark);
 }
 
 .search-bar input::placeholder {
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .search-bar button {
-  background-color: var(--clay);
-  color: var(--white);
-  padding-top: 13px;
-  padding-bottom: 13px;
-  padding-left: 28px;
-  padding-right: 28px;
+  background-color: var(--palm);
+  color: var(--lime);
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 30px;
+  padding-right: 30px;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   border-width: 0;
   cursor: pointer;
   transition-property: background-color;
@@ -776,16 +970,14 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .search-bar button:hover {
-  background-color: var(--clay-dark);
+  background-color: var(--palm-mid);
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   10. FIND PROFESSIONALS  (index.html)
-───────────────────────────────────────────────────────── */
+/* ── 11. FIND PROFESSIONALS SECTION ───────────────────────── */
 .find-professionals {
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding-top: 80px;
+  padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
   background-color: var(--white);
@@ -793,7 +985,11 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .find-professionals h2 {
-  margin-bottom: 40px;
+  margin-bottom: 12px;
+}
+
+.find-professionals > p {
+  margin-bottom: 48px;
 }
 
 .professionals-container {
@@ -806,24 +1002,25 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .professional-card {
-  background-color: var(--cream);
+  background-color: var(--serenade);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--cream-dark);
+  border-color: var(--border-light);
   border-radius: var(--radius);
-  padding-top: 28px;
-  padding-bottom: 28px;
+  padding-top: 32px;
+  padding-bottom: 32px;
   padding-left: 24px;
   padding-right: 24px;
   text-align: center;
-  transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform, border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .professional-card:hover {
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
+  box-shadow: var(--shadow);
   transform: translateY(-3px);
+  border-color: var(--sail);
 }
 
 .professional-card h3 {
@@ -832,48 +1029,34 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .professional-card p {
-  font-size: 0.9rem;
-  color: var(--muted);
+  font-size: 0.88rem;
+  color: var(--text-muted);
   margin-bottom: 4px;
 }
 
-.professional-card button {
-  margin-top: 16px;
-  background-color: var(--clay);
-  color: var(--white);
-  padding-top: 9px;
-  padding-bottom: 9px;
-  padding-left: 22px;
-  padding-right: 22px;
-  border-radius: var(--radius-full);
-  font-size: 0.85rem;
-  font-weight: 600;
-  border-width: 0;
-  cursor: pointer;
-  transition-property: background-color;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
-}
-
-.professional-card button:hover {
-  background-color: var(--clay-dark);
+/* .btn inside a card needs top spacing */
+.professional-card .btn {
+  margin-top: 20px;
+  display: inline-flex;
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   11. HOW IT WORKS  (index.html)
-───────────────────────────────────────────────────────── */
+/* ── 12. HOW IT WORKS SECTION ──────────────────────────────── */
 .how-it-works {
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding-top: 80px;
+  padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
-  background-color: var(--cream);
+  background-color: var(--serenade);
   text-align: center;
 }
 
 .how-it-works h2 {
-  margin-bottom: 40px;
+  margin-bottom: 12px;
+}
+
+.how-it-works > p {
+  margin-bottom: 48px;
 }
 
 .steps-container {
@@ -888,24 +1071,26 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 .step {
   background-color: var(--white);
   border-radius: var(--radius);
-  padding-top: 32px;
-  padding-bottom: 32px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  padding-left: 28px;
+  padding-right: 28px;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--cream-dark);
-  transition-property: box-shadow;
+  border-color: var(--border-light);
+  text-align: left;
+  transition-property: box-shadow, border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .step:hover {
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
+  box-shadow: var(--shadow);
+  border-color: var(--sail);
 }
 
 .step h3 {
-  color: var(--clay);
+  color: var(--palm);
   margin-bottom: 12px;
 }
 
@@ -914,25 +1099,23 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   12. ABOUT SECTION  (index.html)
-───────────────────────────────────────────────────────── */
+/* ── 13. ABOUT SECTION ─────────────────────────────────────── */
 .about {
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding-top: 80px;
+  padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
-  background-color: var(--charcoal);
+  background-color: var(--palm);
   text-align: center;
 }
 
 .about h2 {
-  color: var(--white);
+  color: var(--lime);
   margin-bottom: 20px;
 }
 
 .about p {
-  color: var(--sand);
+  color: rgba(255, 255, 255, 0.72);
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -941,12 +1124,10 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   13. CONTACT SECTION  (index.html)
-───────────────────────────────────────────────────────── */
+/* ── 14. CONTACT SECTION ───────────────────────────────────── */
 .contact {
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding-top: 80px;
+  padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
   background-color: var(--white);
@@ -954,7 +1135,11 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .contact h2 {
-  margin-bottom: 32px;
+  margin-bottom: 12px;
+}
+
+.contact > p {
+  margin-bottom: 40px;
 }
 
 .contact form {
@@ -968,41 +1153,42 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .contact input,
 .contact textarea {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 18px;
+  padding-right: 18px;
   border-width: 1.5px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius);
   font-size: 0.95rem;
-  color: var(--charcoal);
-  background-color: var(--cream);
+  color: var(--text-dark);
+  background-color: var(--serenade);
   outline: none;
-  transition-property: border-color;
+  transition-property: border-color, box-shadow;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .contact input:focus,
 .contact textarea:focus {
-  border-color: var(--clay);
+  border-color: var(--sail);
+  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.15);
 }
 
 .contact input::placeholder,
 .contact textarea::placeholder {
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .contact button[type="submit"] {
-  background-color: var(--clay);
-  color: var(--white);
-  padding-top: 13px;
-  padding-bottom: 13px;
+  background-color: var(--palm);
+  color: var(--lime);
+  padding-top: 14px;
+  padding-bottom: 14px;
   border-radius: var(--radius-full);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   border-width: 0;
   cursor: pointer;
   transition-property: background-color;
@@ -1011,13 +1197,159 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .contact button[type="submit"]:hover {
-  background-color: var(--clay-dark);
+  background-color: var(--palm-mid);
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   14. LOGIN PAGE
-───────────────────────────────────────────────────────── */
+/* ── 15. SCROLLING REVIEWS TICKER ──────────────────────────── */
+/*
+   Sits between "How It Works" and "About" on index.html.
+   Cards scroll infinitely left using a CSS @keyframes animation.
+   The track is duplicated (8 cards x 2 = 16) so it loops seamlessly.
+   Hover pauses the animation so users can read.
+*/
+.reviews-ticker-section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: var(--white);
+  overflow: hidden;
+}
+
+.reviews-ticker-header {
+  text-align: center;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-bottom: 48px;
+}
+
+.reviews-ticker-header h2 {
+  margin-bottom: 10px;
+}
+
+.reviews-ticker-header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Clips overflow + fades both edges using a gradient mask */
+.ticker-wrapper {
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+/* The moving track — 2x cards make the loop seamless */
+.ticker-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation-name: ticker-scroll;
+  animation-duration: 40s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-card {
+  background-color: var(--serenade);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-light);
+  border-radius: 14px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition-property: box-shadow, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.ticker-card:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--sail);
+}
+
+.ticker-stars {
+  font-size: 1.1rem;
+  color: #f5c518;
+  letter-spacing: 2px;
+}
+
+.ticker-text {
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+  font-style: italic;
+  flex-grow: 1;
+}
+
+.ticker-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.ticker-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--palm);
+  flex-shrink: 0;
+}
+
+.ticker-author strong {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+.ticker-author span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+
+/* ── 16. LOGIN PAGE ────────────────────────────────────────── */
 .login {
   max-width: 420px;
   margin-top: 60px;
@@ -1027,14 +1359,15 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   background-color: var(--white);
   padding-top: 48px;
   padding-bottom: 48px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 44px;
+  padding-right: 44px;
   border-radius: var(--radius);
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
+  box-shadow: var(--shadow-lg);
   text-align: center;
 }
 
 .login h2 {
+  font-size: 2rem;
   margin-bottom: 28px;
 }
 
@@ -1046,45 +1379,46 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .login input {
   width: 100%;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 18px;
+  padding-right: 18px;
   border-width: 1.5px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius);
   font-size: 0.95rem;
-  color: var(--charcoal);
-  background-color: var(--cream);
+  color: var(--text-dark);
+  background-color: var(--serenade);
   outline: none;
-  transition-property: border-color;
+  transition-property: border-color, box-shadow;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .login input:focus {
-  border-color: var(--clay);
+  border-color: var(--sail);
+  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.15);
 }
 
 .login input::placeholder {
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .login form a {
   font-size: 0.82rem;
-  color: var(--clay);
+  color: var(--sail-dark);
   text-align: right;
 }
 
 .login button[type="submit"] {
-  background-color: var(--clay);
-  color: var(--white);
-  padding-top: 13px;
-  padding-bottom: 13px;
+  background-color: var(--palm);
+  color: var(--lime);
+  padding-top: 14px;
+  padding-bottom: 14px;
   border-radius: var(--radius-full);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   width: 100%;
   border-width: 0;
   cursor: pointer;
@@ -1094,26 +1428,24 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .login button[type="submit"]:hover {
-  background-color: var(--clay-dark);
+  background-color: var(--palm-mid);
 }
 
 .login > p {
-  margin-top: 20px;
+  margin-top: 24px;
   font-size: 0.88rem;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .login > p a {
-  color: var(--clay);
-  font-weight: 600;
+  color: var(--palm);
+  font-weight: 700;
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   15. SIGNUP PAGE
-───────────────────────────────────────────────────────── */
+/* ── 17. SIGNUP PAGE ───────────────────────────────────────── */
 .signup {
-  max-width: 460px;
+  max-width: 480px;
   margin-top: 60px;
   margin-bottom: 60px;
   margin-left: auto;
@@ -1121,14 +1453,15 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   background-color: var(--white);
   padding-top: 48px;
   padding-bottom: 48px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 44px;
+  padding-right: 44px;
   border-radius: var(--radius);
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
+  box-shadow: var(--shadow-lg);
   text-align: center;
 }
 
 .signup h2 {
+  font-size: 2rem;
   margin-bottom: 28px;
 }
 
@@ -1141,40 +1474,41 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 .signup input,
 .signup select {
   width: 100%;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 18px;
+  padding-right: 18px;
   border-width: 1.5px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius);
   font-size: 0.95rem;
-  color: var(--charcoal);
-  background-color: var(--cream);
+  color: var(--text-dark);
+  background-color: var(--serenade);
   outline: none;
-  transition-property: border-color;
+  transition-property: border-color, box-shadow;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .signup input:focus,
 .signup select:focus {
-  border-color: var(--clay);
+  border-color: var(--sail);
+  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.15);
 }
 
 .signup input::placeholder {
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .signup button[type="submit"] {
-  background-color: var(--clay);
-  color: var(--white);
-  padding-top: 13px;
-  padding-bottom: 13px;
+  background-color: var(--palm);
+  color: var(--lime);
+  padding-top: 14px;
+  padding-bottom: 14px;
   border-radius: var(--radius-full);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   width: 100%;
   border-width: 0;
   cursor: pointer;
@@ -1184,24 +1518,22 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .signup button[type="submit"]:hover {
-  background-color: var(--clay-dark);
+  background-color: var(--palm-mid);
 }
 
 .signup > p {
-  margin-top: 20px;
+  margin-top: 24px;
   font-size: 0.88rem;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .signup > p a {
-  color: var(--clay);
-  font-weight: 600;
+  color: var(--palm);
+  font-weight: 700;
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   16. FORGOT PASSWORD PAGE
-───────────────────────────────────────────────────────── */
+/* ── 18. FORGOT PASSWORD PAGE ──────────────────────────────── */
 .forgot-password {
   max-width: 420px;
   margin-top: 60px;
@@ -1211,20 +1543,21 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   background-color: var(--white);
   padding-top: 48px;
   padding-bottom: 48px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 44px;
+  padding-right: 44px;
   border-radius: var(--radius);
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
+  box-shadow: var(--shadow-lg);
   text-align: center;
 }
 
 .forgot-password h2 {
+  font-size: 2rem;
   margin-bottom: 10px;
 }
 
 .forgot-password > p {
   font-size: 0.9rem;
-  color: var(--muted);
+  color: var(--text-muted);
   margin-bottom: 28px;
 }
 
@@ -1236,39 +1569,40 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .forgot-password input {
   width: 100%;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 18px;
+  padding-right: 18px;
   border-width: 1.5px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius);
   font-size: 0.95rem;
-  background-color: var(--cream);
-  color: var(--charcoal);
+  background-color: var(--serenade);
+  color: var(--text-dark);
   outline: none;
-  transition-property: border-color;
+  transition-property: border-color, box-shadow;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .forgot-password input:focus {
-  border-color: var(--clay);
+  border-color: var(--sail);
+  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.15);
 }
 
 .forgot-password input::placeholder {
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .forgot-password button[type="submit"] {
-  background-color: var(--clay);
-  color: var(--white);
-  padding-top: 13px;
-  padding-bottom: 13px;
+  background-color: var(--palm);
+  color: var(--lime);
+  padding-top: 14px;
+  padding-bottom: 14px;
   border-radius: var(--radius-full);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   width: 100%;
   border-width: 0;
   cursor: pointer;
@@ -1278,62 +1612,59 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .forgot-password button[type="submit"]:hover {
-  background-color: var(--clay-dark);
+  background-color: var(--palm-mid);
 }
 
 .forgot-password > p:last-child {
-  margin-top: 20px;
+  margin-top: 24px;
   font-size: 0.88rem;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .forgot-password > p:last-child a {
-  color: var(--clay);
-  font-weight: 600;
+  color: var(--palm);
+  font-weight: 700;
 }
 
 
 /* ============================================================
-   ██████████████████████████████████████████████████████████
    PERSON 2 — client/account.html · booking.html
-              directory.html · profile.html · gift-card.html
-   ██████████████████████████████████████████████████████████
+              directory.html · profile.html
+              write-review.html · gift-card.html
    ============================================================ */
 
 
-/* ─────────────────────────────────────────────────────────
-   17. ACCOUNT / CLIENT DASHBOARD
-───────────────────────────────────────────────────────── */
+/* ── 19. ACCOUNT / CLIENT DASHBOARD ───────────────────────── */
 .dashboard-container {
   max-width: var(--max-width);
   margin-left: auto;
   margin-right: auto;
-  padding-top: 40px;
+  padding-top: 48px;
   padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
 }
 
 .active-booking-section {
-  margin-bottom: 48px;
+  margin-bottom: 56px;
 }
 
 .active-booking-section h3 {
+  font-size: 1.5rem;
   margin-bottom: 20px;
-  font-size: 1.4rem;
 }
 
 .live-status-card {
   background-color: var(--white);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand-light);
+  border-color: var(--border-light);
   border-radius: var(--radius);
   padding-top: 28px;
   padding-bottom: 28px;
   padding-left: 28px;
   padding-right: 28px;
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
+  box-shadow: var(--shadow);
 }
 
 .status-header {
@@ -1351,7 +1682,7 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   object-fit: cover;
   border-width: 3px;
   border-style: solid;
-  border-color: var(--sand-light);
+  border-color: var(--sail);
   flex-shrink: 0;
 }
 
@@ -1366,41 +1697,40 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .eta {
   font-size: 0.88rem;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .call-btn {
-  background-color: var(--success);
-  color: var(--white);
+  background-color: var(--sail);
+  color: var(--palm);
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 20px;
   padding-right: 20px;
   border-radius: var(--radius-full);
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 700;
   border-width: 0;
   cursor: pointer;
-  transition-property: opacity;
+  transition-property: background-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .call-btn:hover {
-  opacity: 0.85;
+  background-color: var(--sail-dark);
 }
 
-/* Progress steps */
 .progress-timeline {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 24px;
 }
 
 .milestone {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   padding-left: 16px;
   padding-right: 16px;
   border-radius: var(--radius-full);
@@ -1408,28 +1738,29 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   font-weight: 500;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand);
-  color: var(--muted);
-  background-color: var(--cream);
+  border-color: var(--border);
+  color: var(--text-muted);
+  background-color: var(--serenade);
 }
 
 .milestone.completed {
-  background-color: #E2F0EB;
-  color: var(--success);
-  border-color: #C5E0D6;
+  background-color: var(--lime);
+  color: var(--palm);
+  border-color: var(--lime-dark);
+  font-weight: 700;
 }
 
 .milestone.active {
-  background-color: #F3E6DF;
-  color: var(--clay);
-  border-color: #E8C9BB;
+  background-color: var(--sail);
+  color: var(--palm);
+  border-color: var(--sail-dark);
+  font-weight: 700;
 }
 
 .milestone.pending {
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
-/* Safety and prep */
 .safety-and-prep {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1438,20 +1769,23 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .security-pin-box {
-  background-color: var(--cream);
+  background-color: var(--serenade);
   border-radius: var(--radius);
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 20px;
   padding-right: 20px;
   text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-light);
 }
 
 .otp-code {
   font-family: var(--font-heading);
   font-size: 3rem;
   font-weight: 700;
-  color: var(--clay);
+  color: var(--palm);
   letter-spacing: 8px;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -1459,14 +1793,11 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .tiny-text {
   font-size: 0.78rem;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .prep-checklist {
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
 }
 
 .prep-checklist ul {
@@ -1476,36 +1807,29 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .prep-checklist li {
   font-size: 0.88rem;
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
   margin-bottom: 8px;
 }
 
 .sos-text {
   font-size: 0.85rem;
   color: var(--error);
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
-  transition-property: opacity;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
 }
 
-.sos-text:hover {
-  opacity: 0.75;
-}
-
-/* Favorites */
 .favorites-section {
-  margin-bottom: 48px;
+  margin-bottom: 56px;
 }
 
 .favorites-section h3 {
+  font-size: 1.5rem;
   margin-bottom: 8px;
 }
 
 .section-desc {
   font-size: 0.88rem;
-  color: var(--muted);
+  color: var(--text-muted);
   margin-bottom: 24px;
 }
 
@@ -1519,7 +1843,7 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   background-color: var(--white);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand-light);
+  border-color: var(--border-light);
   border-radius: var(--radius);
   padding-top: 20px;
   padding-bottom: 20px;
@@ -1528,13 +1852,14 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   display: flex;
   align-items: center;
   gap: 16px;
-  transition-property: box-shadow;
+  transition-property: box-shadow, border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .fav-card:hover {
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
+  box-shadow: var(--shadow);
+  border-color: var(--sail);
 }
 
 .fav-avatar {
@@ -1543,6 +1868,9 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--sail);
 }
 
 .fav-details {
@@ -1556,25 +1884,25 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .fav-details p {
   font-size: 0.85rem;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .last-hired {
   font-size: 0.78rem;
-  color: var(--muted);
+  color: var(--text-muted);
   margin-top: 4px;
 }
 
 .quick-rebook-btn {
-  background-color: var(--clay);
-  color: var(--white);
+  background-color: var(--palm);
+  color: var(--lime);
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 16px;
   padding-right: 16px;
   border-radius: var(--radius-full);
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 700;
   white-space: nowrap;
   text-decoration: none;
   transition-property: background-color;
@@ -1583,11 +1911,11 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .quick-rebook-btn:hover {
-  background-color: var(--clay-dark);
+  background-color: var(--palm-mid);
 }
 
-/* Past services table */
 .history-section h3 {
+  font-size: 1.5rem;
   margin-bottom: 20px;
 }
 
@@ -1597,7 +1925,7 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   background-color: var(--white);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
+  box-shadow: var(--shadow);
 }
 
 .history-table td {
@@ -1606,10 +1934,10 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   padding-left: 20px;
   padding-right: 20px;
   font-size: 0.9rem;
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--cream-dark);
+  border-bottom-color: var(--border-light);
 }
 
 .status-badge {
@@ -1620,41 +1948,33 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   padding-right: 12px;
   border-radius: var(--radius-full);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .status-badge.success {
-  background-color: #E2F0EB;
-  color: var(--success);
+  background-color: var(--lime);
+  color: var(--palm);
 }
 
 .text-btn {
   background-color: transparent;
   border-width: 0;
-  color: var(--clay);
+  color: var(--sail-dark);
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
-  transition-property: opacity;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
-}
-
-.text-btn:hover {
-  opacity: 0.7;
+  text-decoration: underline;
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   18. BOOKING PAGE
-───────────────────────────────────────────────────────── */
+/* ── 20. BOOKING PAGE ──────────────────────────────────────── */
 .booking-page-container {
   max-width: 760px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 40px;
+  padding-top: 48px;
   padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
@@ -1666,16 +1986,9 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .back-link {
   font-size: 0.9rem;
-  color: var(--clay);
-  font-weight: 500;
+  color: var(--sail-dark);
+  font-weight: 700;
   text-decoration: none;
-  transition-property: opacity;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
-}
-
-.back-link:hover {
-  opacity: 0.7;
 }
 
 .booking-header {
@@ -1690,7 +2003,7 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   display: flex;
   align-items: center;
   gap: 12px;
-  background-color: var(--cream-dark);
+  background-color: var(--serenade);
   padding-top: 12px;
   padding-bottom: 12px;
   padding-left: 20px;
@@ -1698,6 +2011,9 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   border-radius: var(--radius-full);
   font-size: 0.9rem;
   width: fit-content;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border);
 }
 
 .mini-avatar {
@@ -1713,29 +2029,29 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   gap: 8px;
   margin-bottom: 40px;
   font-size: 0.88rem;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .form-progress-tracker .step {
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .form-progress-tracker .step.active {
-  color: var(--clay);
-  font-weight: 600;
+  color: var(--palm);
+  font-weight: 700;
 }
 
 .smart-booking-form {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 28px;
 }
 
 .form-section {
   background-color: var(--white);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand-light);
+  border-color: var(--border-light);
   border-radius: var(--radius);
   padding-top: 28px;
   padding-bottom: 28px;
@@ -1745,19 +2061,19 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .form-section legend {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  color: var(--charcoal);
+  color: var(--text-dark);
   padding-left: 8px;
   padding-right: 8px;
   margin-bottom: 20px;
 }
 
 .emergency-toggle {
-  background-color: #FFF4F2;
+  background-color: #fff8f2;
   border-width: 1px;
   border-style: solid;
-  border-color: #F5C5BB;
+  border-color: #f5c5bb;
   border-radius: var(--radius);
   padding-top: 14px;
   padding-bottom: 14px;
@@ -1770,24 +2086,25 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 .smart-booking-form textarea {
   width: 100%;
   min-height: 120px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 18px;
+  padding-right: 18px;
   border-width: 1.5px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius);
   resize: vertical;
   font-size: 0.95rem;
   outline: none;
+  background-color: var(--serenade);
   transition-property: border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .smart-booking-form textarea:focus {
-  border-color: var(--clay);
+  border-color: var(--sail);
 }
 
 .multimedia-upload-group {
@@ -1807,19 +2124,16 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   padding-right: 16px;
   border-width: 1.5px;
   border-style: dashed;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius);
   font-size: 0.88rem;
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
   cursor: pointer;
-  transition-property: border-color, background-color;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
 }
 
 .upload-btn:hover {
-  border-color: var(--clay);
-  background-color: var(--cream);
+  border-color: var(--sail);
+  background-color: var(--serenade);
 }
 
 .upload-btn input[type="file"] {
@@ -1831,8 +2145,8 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .date-time-picker h4 {
+  font-size: 1rem;
   margin-bottom: 12px;
-  font-size: 0.95rem;
 }
 
 .time-grid {
@@ -1848,22 +2162,22 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   padding-right: 18px;
   border-width: 1.5px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius-full);
   font-size: 0.85rem;
-  color: var(--charcoal-mid);
-  background-color: var(--cream);
+  color: var(--text-mid);
+  background-color: var(--serenade);
   cursor: pointer;
-  transition-property: border-color, background-color, color;
+  transition-property: background-color, border-color, color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .time-pill:hover,
 .time-pill.selected {
-  border-color: var(--clay);
-  background-color: var(--clay);
-  color: var(--white);
+  border-color: var(--palm);
+  background-color: var(--palm);
+  color: var(--lime);
 }
 
 .address-inputs {
@@ -1874,17 +2188,17 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .address-inputs input {
   width: 100%;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 18px;
+  padding-right: 18px;
   border-width: 1.5px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius);
   font-size: 0.95rem;
-  background-color: var(--cream);
-  color: var(--charcoal);
+  background-color: var(--serenade);
+  color: var(--text-dark);
   outline: none;
   transition-property: border-color;
   transition-duration: 0.2s;
@@ -1892,39 +2206,43 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .address-inputs input:focus {
-  border-color: var(--clay);
+  border-color: var(--sail);
 }
 
 .address-inputs input::placeholder {
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .price-breakdown-card {
-  background-color: var(--cream);
+  background-color: var(--serenade);
   border-radius: var(--radius);
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 20px;
   padding-right: 20px;
   margin-bottom: 20px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-light);
 }
 
 .price-row {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  color: var(--charcoal-mid);
+  padding-top: 9px;
+  padding-bottom: 9px;
+  color: var(--text-mid);
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--cream-dark);
+  border-bottom-color: var(--border-light);
 }
 
 .price-row.total {
   font-size: 1rem;
   padding-top: 16px;
-  color: var(--charcoal);
+  color: var(--text-dark);
+  font-weight: 700;
   border-bottom-width: 0;
 }
 
@@ -1937,18 +2255,18 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 .safety-agreement {
   margin-bottom: 20px;
   font-size: 0.88rem;
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
 }
 
 .primary-confirm-btn {
   width: 100%;
-  background-color: var(--clay);
-  color: var(--white);
-  padding-top: 14px;
-  padding-bottom: 14px;
+  background-color: var(--palm);
+  color: var(--lime);
+  padding-top: 15px;
+  padding-bottom: 15px;
   border-radius: var(--radius-full);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   border-width: 0;
   cursor: pointer;
   transition-property: background-color;
@@ -1957,13 +2275,11 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .primary-confirm-btn:hover {
-  background-color: var(--clay-dark);
+  background-color: var(--palm-mid);
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   19. DIRECTORY PAGE
-───────────────────────────────────────────────────────── */
+/* ── 21. DIRECTORY PAGE ────────────────────────────────────── */
 .directory-container {
   max-width: var(--max-width);
   margin-left: auto;
@@ -1974,22 +2290,23 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .diy-alert-banner {
-  background-color: #FBF3DC;
+  background-color: #e8f7ee;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: #EFD98A;
+  border-bottom-color: #b8e0c8;
   padding-top: 12px;
   padding-bottom: 12px;
   padding-left: 40px;
   padding-right: 40px;
   font-size: 0.88rem;
   text-align: center;
+  color: var(--palm);
 }
 
 .diy-alert-banner a {
-  color: var(--clay);
-  font-weight: 600;
-  text-decoration: none;
+  color: var(--palm);
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 .search-section {
@@ -2004,19 +2321,19 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .hero-sub {
   font-size: 1rem;
-  color: var(--charcoal-mid);
-  margin-bottom: 32px;
+  color: var(--text-mid);
+  margin-bottom: 36px;
 }
 
 .search-bar-ui {
   display: flex;
-  max-width: 640px;
+  max-width: 660px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   border-width: 2px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius-full);
   overflow: hidden;
   background-color: var(--white);
@@ -2026,42 +2343,42 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .search-bar-ui:focus-within {
-  border-color: var(--clay);
-  box-shadow: 0 0 0 3px rgba(181, 97, 58, 0.12);
+  border-color: var(--sail);
+  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.15);
 }
 
 .search-bar-ui input {
   flex-grow: 1;
   border-width: 0;
   outline: none;
-  padding-top: 13px;
-  padding-bottom: 13px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 22px;
+  padding-right: 22px;
   font-size: 0.95rem;
   background-color: transparent;
-  color: var(--charcoal);
+  color: var(--text-dark);
 }
 
 .search-bar-ui input:first-child {
   border-right-width: 1px;
   border-right-style: solid;
-  border-right-color: var(--sand);
+  border-right-color: var(--border);
 }
 
 .search-bar-ui input::placeholder {
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .primary-btn {
-  background-color: var(--clay);
-  color: var(--white);
-  padding-top: 13px;
-  padding-bottom: 13px;
-  padding-left: 28px;
-  padding-right: 28px;
+  background-color: var(--palm);
+  color: var(--lime);
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 30px;
+  padding-right: 30px;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   border-width: 0;
   cursor: pointer;
   transition-property: background-color;
@@ -2070,7 +2387,7 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .primary-btn:hover {
-  background-color: var(--clay-dark);
+  background-color: var(--palm-mid);
 }
 
 .quick-filters {
@@ -2087,10 +2404,11 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   padding-right: 18px;
   border-width: 1.5px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius-full);
   font-size: 0.85rem;
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
+  background-color: var(--white);
   cursor: pointer;
   transition-property: background-color, border-color, color;
   transition-duration: 0.2s;
@@ -2099,9 +2417,9 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .filter-tag:hover,
 .filter-tag.active {
-  background-color: var(--clay);
-  border-color: var(--clay);
-  color: var(--white);
+  background-color: var(--palm);
+  border-color: var(--palm);
+  color: var(--lime);
 }
 
 .professionals-grid {
@@ -2109,24 +2427,24 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   padding-top: 40px;
-  padding-bottom: 40px;
 }
 
 .pro-card {
   background-color: var(--white);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand-light);
+  border-color: var(--border-light);
   border-radius: var(--radius);
   overflow: hidden;
-  transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform, border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .pro-card:hover {
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-3px);
+  border-color: var(--sail);
 }
 
 .card-header {
@@ -2137,14 +2455,14 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   padding-bottom: 12px;
   padding-left: 16px;
   padding-right: 16px;
-  background-color: var(--cream);
+  background-color: var(--serenade);
 }
 
 .urgency-badge {
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--error);
-  background-color: #FDECEC;
+  background-color: #fdecec;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 10px;
@@ -2154,9 +2472,9 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .top-rated-badge {
   font-size: 0.75rem;
-  font-weight: 600;
-  color: #7A5C00;
-  background-color: #FBF3DC;
+  font-weight: 700;
+  color: var(--palm);
+  background-color: var(--lime);
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 10px;
@@ -2169,7 +2487,7 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   border-width: 0;
   font-size: 1.2rem;
   cursor: pointer;
-  color: var(--muted);
+  color: var(--text-muted);
   transition-property: color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
@@ -2195,23 +2513,28 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   margin-bottom: 12px;
   border-width: 3px;
   border-style: solid;
-  border-color: var(--sand-light);
+  border-color: var(--sail);
 }
 
 .pro-info h3 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin-bottom: 4px;
 }
 
 .pro-title {
   font-size: 0.85rem;
-  color: var(--clay);
+  color: var(--sail-dark);
+  font-weight: 600;
   margin-bottom: 4px;
 }
 
 .pro-rating {
   font-size: 0.82rem;
-  color: var(--muted);
+  color: var(--text-muted);
+}
+
+.verified-badge {
+  font-size: 0.85rem;
 }
 
 .card-footer {
@@ -2224,45 +2547,48 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   padding-right: 20px;
   border-top-width: 1px;
   border-top-style: solid;
-  border-top-color: var(--cream-dark);
+  border-top-color: var(--border-light);
   margin-top: 16px;
 }
 
 .price-estimate {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--charcoal);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-dark);
 }
 
+/* View Profile & Book button */
 .book-btn {
-  background-color: var(--clay);
-  color: var(--white);
+  display: inline-block;
+  background-color: var(--palm);
+  color: var(--lime);
   padding-top: 9px;
   padding-bottom: 9px;
   padding-left: 18px;
   padding-right: 18px;
   border-radius: var(--radius-full);
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
-  transition-property: background-color;
+  border-width: 0;
+  cursor: pointer;
+  transition-property: background-color, color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .book-btn:hover {
-  background-color: var(--clay-dark);
+  background-color: var(--palm-mid);
+  color: var(--lime);
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   20. PROFILE PAGE
-───────────────────────────────────────────────────────── */
+/* ── 22. PROFILE PAGE ──────────────────────────────────────── */
 .profile-page {
   max-width: var(--max-width);
   margin-left: auto;
   margin-right: auto;
-  padding-top: 40px;
+  padding-top: 48px;
   padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
@@ -2274,8 +2600,8 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .breadcrumb-nav a {
   font-size: 0.9rem;
-  color: var(--clay);
-  font-weight: 500;
+  color: var(--sail-dark);
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -2284,7 +2610,7 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   grid-template-columns: 1fr auto;
   gap: 40px;
   align-items: start;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
 }
 
 .pro-identity {
@@ -2304,7 +2630,7 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   object-fit: cover;
   border-width: 4px;
   border-style: solid;
-  border-color: var(--sand-light);
+  border-color: var(--sail);
 }
 
 .online-indicator {
@@ -2313,7 +2639,7 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   right: 8px;
   width: 16px;
   height: 16px;
-  background-color: var(--success);
+  background-color: var(--lime);
   border-radius: 50%;
   border-width: 3px;
   border-style: solid;
@@ -2330,14 +2656,14 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .specialty {
   font-size: 0.95rem;
-  color: var(--clay);
+  color: var(--sail-dark);
   margin-bottom: 6px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .neighborhood {
   font-size: 0.88rem;
-  color: var(--muted);
+  color: var(--text-muted);
   margin-bottom: 16px;
 }
 
@@ -2347,25 +2673,25 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   gap: 10px;
   flex-wrap: wrap;
   font-size: 0.88rem;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .review-count {
-  font-weight: 600;
-  color: var(--charcoal);
+  font-weight: 700;
+  color: var(--text-dark);
 }
 
 .booking-action-card {
   background-color: var(--white);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand-light);
+  border-color: var(--border-light);
   border-radius: var(--radius);
   padding-top: 28px;
   padding-bottom: 28px;
   padding-left: 28px;
   padding-right: 28px;
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
+  box-shadow: var(--shadow);
   min-width: 260px;
 }
 
@@ -2374,19 +2700,19 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .price-info .label {
-  font-size: 0.78rem;
-  color: var(--muted);
+  font-size: 0.75rem;
+  color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   display: block;
   margin-bottom: 4px;
 }
 
 .price-info .price {
   font-family: var(--font-heading);
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 700;
-  color: var(--clay);
+  color: var(--palm);
 }
 
 .button-group {
@@ -2398,15 +2724,15 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .secondary-btn {
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 11px;
+  padding-bottom: 11px;
   border-width: 1.5px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius-full);
   font-size: 0.88rem;
-  font-weight: 500;
-  color: var(--charcoal-mid);
+  font-weight: 600;
+  color: var(--text-mid);
   background-color: transparent;
   cursor: pointer;
   transition-property: border-color, color;
@@ -2415,20 +2741,20 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .secondary-btn:hover {
-  border-color: var(--clay);
-  color: var(--clay);
+  border-color: var(--sail);
+  color: var(--palm);
 }
 
 .favorite-btn {
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 11px;
+  padding-bottom: 11px;
   border-width: 1.5px;
   border-style: solid;
   border-color: var(--error);
   border-radius: var(--radius-full);
   font-size: 0.88rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--error);
   background-color: transparent;
   cursor: pointer;
@@ -2444,7 +2770,7 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 
 .guarantee-text {
   font-size: 0.78rem;
-  color: var(--muted);
+  color: var(--text-muted);
   text-align: center;
 }
 
@@ -2452,9 +2778,9 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   border-width: 0;
   border-top-width: 1px;
   border-top-style: solid;
-  border-top-color: var(--cream-dark);
-  margin-top: 40px;
-  margin-bottom: 40px;
+  border-top-color: var(--border-light);
+  margin-top: 48px;
+  margin-bottom: 48px;
 }
 
 .pro-pledge {
@@ -2462,6 +2788,7 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
 }
 
 .pro-pledge h3 {
+  font-size: 1.6rem;
   margin-bottom: 20px;
 }
 
@@ -2475,14 +2802,14 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   background-color: var(--white);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--cream-dark);
+  border-color: var(--border-light);
   border-radius: var(--radius);
   padding-top: 16px;
   padding-bottom: 16px;
   padding-left: 20px;
   padding-right: 20px;
   font-size: 0.88rem;
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
 }
 
 .work-portfolio {
@@ -2504,7 +2831,7 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:hover {
   overflow: hidden;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand-light);
+  border-color: var(--border-light);
 }
 
 .comparison-images {
@@ -2524,7 +2851,7 @@ figcaption {
   padding-left: 16px;
   padding-right: 16px;
   font-size: 0.85rem;
-  color: var(--muted);
+  color: var(--text-muted);
   background-color: var(--white);
 }
 
@@ -2539,26 +2866,29 @@ figcaption {
 .about-section > p {
   font-size: 0.95rem;
   font-style: italic;
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
   margin-bottom: 20px;
 }
 
 .skills-tags {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .skills-tags span {
-  background-color: var(--cream-dark);
-  color: var(--charcoal-mid);
+  background-color: var(--serenade);
+  color: var(--palm);
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 16px;
   padding-right: 16px;
   border-radius: var(--radius-full);
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border);
 }
 
 .reviews-section h2 {
@@ -2569,7 +2899,7 @@ figcaption {
   background-color: var(--white);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand-light);
+  border-color: var(--border-light);
   border-radius: var(--radius);
   padding-top: 24px;
   padding-bottom: 24px;
@@ -2585,33 +2915,331 @@ figcaption {
 }
 
 .user-name {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9rem;
 }
 
 .review-date {
   font-size: 0.8rem;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .review-text {
   font-size: 0.9rem;
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
   font-style: italic;
   margin-bottom: 12px;
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   21. GIFT CARD PAGE
-───────────────────────────────────────────────────────── */
+/* ── 23. WRITE REVIEW PAGE ─────────────────────────────────── */
+/*
+   File: client/write-review.html
+   URL params: ?pro=Samy+Ahmed&service=Electrical+Repair
+   The JS in write-review.html reads those and fills in the pro name.
+*/
+.review-page {
+  min-height: calc(100vh - var(--nav-height));
+  background-color: var(--serenade);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 48px;
+  padding-bottom: 64px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.review-card {
+  background-color: var(--white);
+  border-radius: 18px;
+  box-shadow: 0 12px 48px rgba(2, 38, 30, 0.12);
+  width: 100%;
+  max-width: 520px;
+  overflow: hidden;
+}
+
+/* Dark green banner at top showing who you are reviewing */
+.review-pro-banner {
+  background-color: var(--palm);
+  padding-top: 28px;
+  padding-bottom: 28px;
+  padding-left: 32px;
+  padding-right: 32px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.review-pro-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border-width: 3px;
+  border-style: solid;
+  border-color: var(--lime);
+  flex-shrink: 0;
+}
+
+.review-pro-info h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--lime);
+  margin-bottom: 2px;
+}
+
+.review-pro-info p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Form body — white area below the banner */
+.review-form-body {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.review-form-body h2 {
+  font-size: 1.6rem;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.review-form-body > p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+/*
+   Star rating trick:
+   flex-direction: row-reverse = stars are in reverse DOM order
+   The ~ CSS sibling selector then highlights all stars "before"
+   the hovered one, which visually are "after" it in the list.
+*/
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  font-size: 2.4rem;
+  color: var(--border);
+  cursor: pointer;
+  transition-property: color, transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+  line-height: 1;
+}
+
+/* Turn yellow and scale up on hover + for all stars before hovered + on select */
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+  color: #f5c518;
+  transform: scale(1.15);
+}
+
+.star-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: -20px;
+  margin-bottom: 24px;
+  min-height: 18px;
+  transition-property: color;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+
+.review-textarea {
+  width: 100%;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: var(--border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: var(--serenade);
+  outline: none;
+  resize: none;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  transition-property: border-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.review-textarea:focus {
+  border-color: var(--sail);
+  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.15);
+}
+
+.review-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.char-counter {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: -16px;
+  margin-bottom: 20px;
+}
+
+.review-submit-btn {
+  width: 100%;
+  background-color: var(--palm);
+  color: var(--lime);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: var(--radius-full);
+  font-size: 1rem;
+  font-weight: 700;
+  border-width: 0;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition-property: background-color, transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.review-submit-btn:hover {
+  background-color: var(--palm-mid);
+}
+
+.review-submit-btn:active {
+  transform: scale(0.98);
+}
+
+/* Success screen — hidden until JS shows it after submit */
+.review-success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  padding-left: 32px;
+  padding-right: 32px;
+  animation-name: slideUp;
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background-color: var(--lime);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  animation-name: popIn;
+  animation-duration: 0.4s;
+  animation-delay: 0.2s;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation-fill-mode: both;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+.review-success h2 {
+  font-size: 1.8rem;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.review-success p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  max-width: 320px;
+  margin-bottom: 28px;
+}
+
+.success-stars {
+  font-size: 1.8rem;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+  color: #f5c518;
+}
+
+.success-review-text {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-mid);
+  background-color: var(--serenade);
+  border-radius: var(--radius);
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 28px;
+  border-left-width: 3px;
+  border-left-style: solid;
+  border-left-color: var(--sail);
+  text-align: left;
+  width: 100%;
+}
+
+
+/* ── 24. GIFT CARD PAGE ────────────────────────────────────── */
 .gift-hero {
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 96px;
+  padding-bottom: 96px;
   padding-left: 40px;
   padding-right: 40px;
   text-align: center;
-  background-color: var(--cream);
+  background-color: var(--palm);
 }
 
 .gift-hero h1 {
@@ -2619,19 +3247,21 @@ figcaption {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 16px;
+  color: var(--lime);
+  font-size: 3.4rem;
 }
 
 .gift-hero p {
   font-size: 1.05rem;
-  color: var(--charcoal-mid);
+  color: rgba(255, 255, 255, 0.72);
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .gift-cards-section {
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding-top: 80px;
+  padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
   background-color: var(--white);
@@ -2643,9 +3273,9 @@ figcaption {
 }
 
 .gift-cards-sub {
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 0.9rem;
-  margin-bottom: 48px;
+  margin-bottom: 56px;
 }
 
 .gift-cards-grid {
@@ -2658,30 +3288,31 @@ figcaption {
 }
 
 .gift-card-item {
-  background-color: var(--cream);
+  background-color: var(--serenade);
   border-width: 2px;
   border-style: solid;
-  border-color: var(--cream-dark);
+  border-color: var(--border-light);
   border-radius: var(--radius);
-  padding-top: 36px;
-  padding-bottom: 36px;
+  padding-top: 40px;
+  padding-bottom: 40px;
   padding-left: 28px;
   padding-right: 28px;
   text-align: center;
   position: relative;
-  transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform, border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .gift-card-item:hover {
-  box-shadow: 0 8px 40px rgba(46, 38, 32, 0.16);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-4px);
+  border-color: var(--sail);
 }
 
 .gift-card-featured {
-  border-color: var(--clay);
-  box-shadow: 0 8px 40px rgba(46, 38, 32, 0.16);
+  border-color: var(--palm);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-8px);
   background-color: var(--white);
 }
@@ -2691,35 +3322,35 @@ figcaption {
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--clay);
-  color: var(--white);
-  font-size: 0.72rem;
+  background-color: var(--palm);
+  color: var(--lime);
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 18px;
+  padding-right: 18px;
   border-radius: var(--radius-full);
   white-space: nowrap;
 }
 
 .gift-card-icon {
-  font-size: 2.5rem;
-  margin-bottom: 12px;
+  font-size: 2.8rem;
+  margin-bottom: 14px;
 }
 
 .gift-card-item h3 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   margin-bottom: 10px;
 }
 
 .gift-card-price {
   font-family: var(--font-heading);
-  font-size: 2.6rem;
+  font-size: 2.8rem;
   font-weight: 700;
-  color: var(--clay);
+  color: var(--palm);
   line-height: 1.1;
   margin-bottom: 10px;
 }
@@ -2728,27 +3359,27 @@ figcaption {
   font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 400;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .gift-card-desc {
   font-size: 0.88rem;
-  color: var(--charcoal-mid);
-  margin-bottom: 24px;
+  color: var(--text-mid);
+  margin-bottom: 28px;
   line-height: 1.6;
 }
 
 .gift-how-it-works {
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding-top: 80px;
+  padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
-  background-color: var(--cream);
+  background-color: var(--serenade);
   text-align: center;
 }
 
 .gift-how-it-works h2 {
-  margin-bottom: 40px;
+  margin-bottom: 48px;
 }
 
 .gift-steps {
@@ -2763,23 +3394,31 @@ figcaption {
 .gift-step {
   background-color: var(--white);
   border-radius: var(--radius);
-  padding-top: 32px;
-  padding-bottom: 32px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  padding-left: 28px;
+  padding-right: 28px;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--cream-dark);
+  border-color: var(--border-light);
+  transition-property: border-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.gift-step:hover {
+  border-color: var(--sail);
+  box-shadow: var(--shadow);
 }
 
 .gift-step-number {
-  width: 40px;
-  height: 40px;
-  background-color: var(--clay);
-  color: var(--white);
+  width: 44px;
+  height: 44px;
+  background-color: var(--lime);
+  color: var(--palm);
   border-radius: 50%;
   font-family: var(--font-heading);
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -2790,32 +3429,32 @@ figcaption {
 }
 
 .gift-step h4 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin-bottom: 10px;
 }
 
 .gift-step p {
   font-size: 0.9rem;
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
 }
 
 
 /* ============================================================
-   ██████████████████████████████████████████████████████████
    PERSON 3 — professional/dashboard.html · requests.html
               edit-profile.html
-   ██████████████████████████████████████████████████████████
    ============================================================ */
 
 
-/* ─────────────────────────────────────────────────────────
-   22. PRO DASHBOARD
-───────────────────────────────────────────────────────── */
+/* ── 25. PRO DASHBOARD ─────────────────────────────────────── */
+/*
+   All 3 professional pages use <main class="pro-page-main">
+   The nav must be OUTSIDE and BEFORE the main tag.
+*/
 .pro-page-main {
   max-width: var(--max-width);
   margin-left: auto;
   margin-right: auto;
-  padding-top: 40px;
+  padding-top: 48px;
   padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
@@ -2825,23 +3464,26 @@ figcaption {
   margin-bottom: 40px;
 }
 
-.pro-page-main section h2 {
+.pro-page-main h2 {
+  font-size: 2rem;
   margin-bottom: 16px;
 }
 
-.pro-page-main section h3 {
+.pro-page-main h3 {
+  font-size: 1.6rem;
   margin-bottom: 16px;
 }
 
-/* Notice with yellow highlight */
+/* Notice / alert highlight */
 .pro-page-main section > p mark {
-  background-color: #FBF3DC;
-  color: #7A5C00;
+  background-color: var(--lime);
+  color: var(--palm);
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 6px;
   padding-right: 6px;
   border-radius: 4px;
+  font-weight: 700;
 }
 
 /* Booking requests table */
@@ -2851,20 +3493,22 @@ figcaption {
   background-color: var(--white);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
+  box-shadow: var(--shadow);
   margin-top: 16px;
 }
 
 .pro-page-main table th {
-  background-color: var(--charcoal);
-  color: var(--white);
+  background-color: var(--palm);
+  color: var(--lime);
   padding-top: 14px;
   padding-bottom: 14px;
   padding-left: 20px;
   padding-right: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-align: left;
+  text-transform: uppercase;
 }
 
 .pro-page-main table td {
@@ -2873,20 +3517,20 @@ figcaption {
   padding-left: 20px;
   padding-right: 20px;
   font-size: 0.9rem;
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--cream-dark);
+  border-bottom-color: var(--border-light);
 }
 
 .pro-page-main table tr:hover td {
-  background-color: var(--cream);
+  background-color: var(--serenade);
 }
 
 .pro-page-main table td i {
   color: var(--warning);
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* Accept button */
@@ -2897,15 +3541,19 @@ figcaption {
   padding-right: 16px;
   border-radius: var(--radius-full);
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   border-width: 0;
   margin-right: 6px;
-  background-color: var(--success);
-  color: var(--white);
-  transition-property: opacity;
+  background-color: var(--lime);
+  color: var(--palm);
+  transition-property: background-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
+}
+
+.pro-page-main table button:first-of-type:hover {
+  background-color: var(--lime-dark);
 }
 
 /* Decline button */
@@ -2916,28 +3564,29 @@ figcaption {
   padding-right: 16px;
   border-radius: var(--radius-full);
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   border-width: 1px;
   border-style: solid;
   border-color: var(--error);
-  background-color: #FDECEC;
+  background-color: #fdecec;
   color: var(--error);
-  transition-property: opacity;
+  transition-property: background-color, color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
-.pro-page-main table button:hover {
-  opacity: 0.8;
+.pro-page-main table button:last-of-type:hover {
+  background-color: var(--error);
+  color: var(--white);
 }
 
-/* Pro tip box */
+/* Pro tip / alert box */
 .pro-page-main aside {
-  background-color: #FBF3DC;
+  background-color: #e8f7ee;
   border-left-width: 4px;
   border-left-style: solid;
-  border-left-color: var(--warning);
+  border-left-color: var(--lime);
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 24px;
@@ -2947,23 +3596,25 @@ figcaption {
 }
 
 .pro-page-main aside h4 {
-  color: #7A5C00;
+  color: var(--palm);
   margin-bottom: 8px;
 }
 
 .pro-page-main aside p {
   font-size: 0.9rem;
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   23. REQUESTS PAGE
-───────────────────────────────────────────────────────── */
+/* ── 26. REQUESTS PAGE ─────────────────────────────────────── */
+/*
+   Add Work Session form + Planned Agenda table.
+   Inputs use .form-label and .form-input classes (see section 28).
+*/
 .pro-page-main form p label {
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--charcoal);
+  color: var(--text-dark);
   display: block;
   margin-bottom: 6px;
 }
@@ -2972,17 +3623,17 @@ figcaption {
 .pro-page-main form input[type="time"],
 .pro-page-main form input[type="text"],
 .pro-page-main form select {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 11px;
+  padding-bottom: 11px;
   padding-left: 14px;
   padding-right: 14px;
   border-width: 1.5px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius);
   font-size: 0.9rem;
-  color: var(--charcoal);
-  background-color: var(--cream);
+  color: var(--text-dark);
+  background-color: var(--serenade);
   outline: none;
   transition-property: border-color;
   transition-duration: 0.2s;
@@ -2991,19 +3642,19 @@ figcaption {
 
 .pro-page-main form input:focus,
 .pro-page-main form select:focus {
-  border-color: var(--clay);
+  border-color: var(--sail);
 }
 
 .pro-page-main form button[type="submit"] {
-  background-color: var(--clay);
-  color: var(--white);
-  padding-top: 11px;
-  padding-bottom: 11px;
+  background-color: var(--palm);
+  color: var(--lime);
+  padding-top: 12px;
+  padding-bottom: 12px;
   padding-left: 28px;
   padding-right: 28px;
   border-radius: var(--radius-full);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   border-width: 0;
   cursor: pointer;
   margin-top: 8px;
@@ -3013,18 +3664,16 @@ figcaption {
 }
 
 .pro-page-main form button[type="submit"]:hover {
-  background-color: var(--clay-dark);
+  background-color: var(--palm-mid);
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   24. EDIT PROFILE PAGE
-───────────────────────────────────────────────────────── */
+/* ── 27. EDIT PROFILE PAGE ─────────────────────────────────── */
 .pro-page-main form article {
   background-color: var(--white);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand-light);
+  border-color: var(--border-light);
   border-radius: var(--radius);
   padding-top: 28px;
   padding-bottom: 28px;
@@ -3034,24 +3683,24 @@ figcaption {
 }
 
 .pro-page-main form article h3 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-bottom: 20px;
   padding-bottom: 12px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--cream-dark);
+  border-bottom-color: var(--border-light);
 }
 
 .pro-page-main form input[type="submit"] {
-  background-color: var(--clay);
-  color: var(--white);
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 36px;
-  padding-right: 36px;
+  background-color: var(--palm);
+  color: var(--lime);
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 40px;
+  padding-right: 40px;
   border-radius: var(--radius-full);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   border-width: 0;
   cursor: pointer;
   transition-property: background-color;
@@ -3060,24 +3709,182 @@ figcaption {
 }
 
 .pro-page-main form input[type="submit"]:hover {
-  background-color: var(--clay-dark);
+  background-color: var(--palm-mid);
+}
+
+
+/* ── 28. FORM UTILITY CLASSES ──────────────────────────────── */
+/*
+   Reusable styled input classes for edit-profile and requests.
+   Add these classes to your HTML elements directly:
+     <label class="form-label">Full Name</label>
+     <input class="form-input" type="text">
+     <select class="form-select">...</select>
+     <textarea class="form-textarea"></textarea>
+*/
+.form-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.form-input {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: var(--border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: var(--serenade);
+  outline: none;
+  transition-property: border-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.form-input:focus {
+  border-color: var(--sail);
+  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.15);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-select {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: var(--border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: var(--serenade);
+  outline: none;
+  cursor: pointer;
+  transition-property: border-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.form-select:focus {
+  border-color: var(--sail);
+  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.15);
+}
+
+.form-textarea {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: var(--border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: var(--serenade);
+  outline: none;
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+  transition-property: border-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.form-textarea:focus {
+  border-color: var(--sail);
+  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.15);
+}
+
+.form-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* White card wrapper for form sections */
+.pro-page-main .form-section {
+  background-color: var(--white);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-light);
+  border-radius: var(--radius);
+  padding-top: 28px;
+  padding-bottom: 28px;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.pro-page-main .form-section h3 {
+  font-size: 1.4rem;
+  color: var(--text-dark);
+  margin-bottom: 0;
+}
+
+/* Custom file upload — hides ugly browser default, shows styled button */
+.file-upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-width: 1.5px;
+  border-style: dashed;
+  border-color: var(--border);
+  border-radius: var(--radius);
+  background-color: var(--serenade);
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  font-family: var(--font-body);
+  transition-property: border-color, background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.file-upload-btn:hover {
+  border-color: var(--sail);
+  background-color: var(--white);
+}
+
+.file-upload-btn input[type="file"] {
+  display: none;
+}
+
+.file-upload-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
 }
 
 
 /* ============================================================
-   ██████████████████████████████████████████████████████████
    PERSON 4 — admin/dashboard.html · bookingshistory.html
               verification.html
-   ██████████████████████████████████████████████████████████
    ============================================================ */
 
 
-/* ─────────────────────────────────────────────────────────
-   25. SHARED ADMIN STYLES
-   Used on all admin pages
-───────────────────────────────────────────────────────── */
+/* ── 29. ADMIN SHARED LAYOUT ───────────────────────────────── */
 .dashboard-page,
-.bookings-page {
+.bookings-page,
+.verifications-page {
   max-width: var(--max-width);
   margin-left: auto;
   margin-right: auto;
@@ -3085,40 +3892,63 @@ figcaption {
   padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
+  background-color: var(--serenade);
+  min-height: calc(100vh - var(--nav-height));
 }
 
 .page-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
   flex-wrap: wrap;
   gap: 16px;
 }
 
+.header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .breadcrumbs {
-  font-size: 0.82rem;
-  color: var(--muted);
-  margin-bottom: 8px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.breadcrumbs b {
+  color: var(--text-dark);
 }
 
 .page-header h1 {
   font-size: 2rem;
+  color: var(--text-dark);
+}
+
+.page-header p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
 }
 
 .header-right .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: var(--clay);
-  color: var(--white);
+  background-color: var(--palm);
+  color: var(--lime);
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 22px;
-  padding-right: 22px;
+  padding-left: 20px;
+  padding-right: 20px;
   border-radius: var(--radius-full);
-  font-size: 0.88rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 700;
   border-width: 0;
   cursor: pointer;
   transition-property: background-color;
@@ -3127,127 +3957,287 @@ figcaption {
 }
 
 .header-right .btn-primary:hover {
-  background-color: var(--clay-dark);
+  background-color: var(--palm-mid);
 }
 
-/* Stats row (4 cards) */
+
+/* ── 30. ADMIN STAT CARDS ──────────────────────────────────── */
 .stats-grid {
   display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stats-grid-4 {
+  display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-bottom: 36px;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .stat-card {
   background-color: var(--white);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand-light);
+  border-color: var(--border-light);
   border-radius: var(--radius);
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  transition-property: box-shadow;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 18px;
+  padding-right: 18px;
+  transition-property: box-shadow, border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .stat-card:hover {
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
+  box-shadow: var(--shadow);
+  border-color: var(--sail);
 }
 
 .stat-card .card-header {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-/* Colored icon boxes */
+/* Colored icon square */
 .icon-wrapper {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius);
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
-.icon-wrapper.green-bg  { background-color: #E2F0EB; color: var(--success); }
-.icon-wrapper.purple-bg { background-color: #EDE7F6; color: #6B3FA0; }
-.icon-wrapper.cyan-bg   { background-color: #E0F4F8; color: #0E7490; }
-.icon-wrapper.yellow-bg { background-color: #FBF3DC; color: var(--warning); }
-.icon-wrapper.red-bg    { background-color: #FDECEC; color: var(--error); }
-.icon-wrapper.blue-bg   { background-color: #E0EEFF; color: #1E6FD9; }
+.icon-wrapper.green-bg  { background-color: var(--lime);  color: var(--palm); }
+.icon-wrapper.cyan-bg   { background-color: #d4f3f3;       color: var(--sail-dark); }
+.icon-wrapper.purple-bg { background-color: #ede7f6;        color: #6b3fa0; }
+.icon-wrapper.yellow-bg { background-color: #fdf7dc;        color: var(--warning); }
+.icon-wrapper.red-bg    { background-color: #fdecec;        color: var(--error); }
+.icon-wrapper.blue-bg   { background-color: #e0eeff;        color: #1e6fd9; }
 
 .card-title {
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  margin-bottom: 8px;
+  letter-spacing: 0.09em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
 }
 
 .stat-card .card-body {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .stat-card .card-body h2 {
   font-family: var(--font-heading);
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: 700;
-  color: var(--charcoal);
+  color: var(--text-dark);
+  line-height: 1;
 }
 
 .trend-badge {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 700;
   padding-top: 3px;
   padding-bottom: 3px;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 7px;
+  padding-right: 7px;
   border-radius: var(--radius-full);
 }
 
-.trend-badge.trend-up   { background-color: #E2F0EB; color: var(--success); }
-.trend-badge.trend-down { background-color: #FDECEC; color: var(--error); }
+.trend-badge.trend-up   { background-color: var(--lime); color: var(--palm); }
+.trend-badge.trend-down { background-color: #fdecec;      color: var(--error); }
 
-/* Table cards */
+
+/* ── 31. ADMIN CHARTS ──────────────────────────────────────── */
+.charts-section {
+  margin-bottom: 32px;
+}
+
+.chart-card {
+  background-color: var(--white);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-light);
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  flex: 1;
+  min-width: 0;
+}
+
+.charts-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--border-light);
+}
+
+.chart-header h2 {
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.date-filter {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  outline: none;
+  background-color: var(--white);
+  color: var(--text-dark);
+}
+
+.chart-body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Placeholder box where a real chart library will render */
+.placeholder-chart {
+  background-color: var(--serenade);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  position: relative;
+}
+
+.line-chart-placeholder {
+  height: 220px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-light);
+}
+
+.area-chart-placeholder {
+  height: 170px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-light);
+  overflow: hidden;
+}
+
+/* Fake gradient fill to suggest an area chart */
+.area-chart-placeholder::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(137, 201, 201, 0.25), transparent);
+}
+
+/* Top services progress bars */
+.service-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.bar-label-group {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--text-mid);
+}
+
+.progress-track {
+  height: 10px;
+  background-color: var(--serenade-dark);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+}
+
+.progress-fill.green  { width: 80%; background-color: var(--lime); }
+.progress-fill.mint   { width: 65%; background-color: var(--sail); }
+.progress-fill.red    { width: 45%; background-color: var(--error); }
+.progress-fill.blue   { width: 38%; background-color: #4a90e2; }
+.progress-fill.orange { width: 25%; background-color: var(--warning); }
+
+
+/* ── 32. ADMIN TABLES & BADGES ─────────────────────────────── */
 .table-card {
   background-color: var(--white);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand-light);
+  border-color: var(--border-light);
   border-radius: var(--radius);
   overflow: hidden;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .table-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--cream-dark);
+  border-bottom-color: var(--border-light);
   flex-wrap: wrap;
   gap: 12px;
 }
 
 .table-header h2 {
-  font-size: 1.1rem;
+  font-size: 1rem;
+  color: var(--text-dark);
 }
 
 .table-controls {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -3257,37 +4247,37 @@ figcaption {
   gap: 8px;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius-full);
-  padding-top: 7px;
-  padding-bottom: 7px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   padding-left: 14px;
   padding-right: 14px;
-  background-color: var(--cream);
+  background-color: var(--serenade);
 }
 
 .search-input-group input {
   border-width: 0;
   outline: none;
   background-color: transparent;
-  font-size: 0.88rem;
-  color: var(--charcoal);
-  width: 160px;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  width: 150px;
 }
 
 .btn-text {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 0.85rem;
-  color: var(--charcoal-mid);
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-left: 14px;
-  padding-right: 14px;
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius-full);
   background-color: var(--white);
   cursor: pointer;
@@ -3297,38 +4287,39 @@ figcaption {
 }
 
 .btn-text:hover {
-  border-color: var(--clay);
-  color: var(--clay);
+  border-color: var(--palm);
+  color: var(--palm);
 }
 
 .table-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 24px;
-  padding-right: 24px;
-  background-color: var(--cream);
+  gap: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: var(--serenade);
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--cream-dark);
+  border-bottom-color: var(--border-light);
   flex-wrap: wrap;
 }
 
 .filter-select,
 .date-input {
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand);
-  border-radius: var(--radius);
-  font-size: 0.85rem;
+  border-color: var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
   background-color: var(--white);
   outline: none;
+  color: var(--text-dark);
   transition-property: border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
@@ -3336,24 +4327,24 @@ figcaption {
 
 .filter-select:focus,
 .date-input:focus {
-  border-color: var(--clay);
+  border-color: var(--sail);
 }
 
 .btn-export {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   background-color: var(--white);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand);
+  border-color: var(--border);
   border-radius: var(--radius-full);
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-left: 16px;
-  padding-right: 16px;
-  font-size: 0.85rem;
-  color: var(--charcoal-mid);
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 14px;
+  padding-right: 14px;
+  font-size: 0.82rem;
+  color: var(--text-mid);
   cursor: pointer;
   transition-property: border-color, color;
   transition-duration: 0.2s;
@@ -3361,23 +4352,23 @@ figcaption {
 }
 
 .btn-export:hover {
-  border-color: var(--clay);
-  color: var(--clay);
+  border-color: var(--palm);
+  color: var(--palm);
 }
 
 .btn-danger {
-  background-color: #FDECEC;
+  background-color: #fdecec;
   color: var(--error);
   border-width: 1px;
   border-style: solid;
   border-color: var(--error);
   border-radius: var(--radius-full);
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-left: 16px;
-  padding-right: 16px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 14px;
+  padding-right: 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
   cursor: pointer;
   transition-property: background-color, color;
   transition-duration: 0.2s;
@@ -3389,39 +4380,38 @@ figcaption {
   color: var(--white);
 }
 
-/* Data table */
 .data-table {
   width: 100%;
   border-collapse: collapse;
 }
 
 .data-table th {
-  background-color: var(--cream);
-  padding-top: 12px;
-  padding-bottom: 12px;
+  background-color: var(--serenade);
+  padding-top: 11px;
+  padding-bottom: 11px;
   padding-left: 20px;
   padding-right: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--muted);
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
   text-align: left;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--cream-dark);
+  border-bottom-color: var(--border-light);
 }
 
 .data-table td {
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding-top: 13px;
+  padding-bottom: 13px;
   padding-left: 20px;
   padding-right: 20px;
-  font-size: 0.88rem;
-  color: var(--charcoal-mid);
+  font-size: 0.85rem;
+  color: var(--text-mid);
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--cream-dark);
+  border-bottom-color: var(--border-light);
 }
 
 .data-table tr:last-child td {
@@ -3429,105 +4419,113 @@ figcaption {
 }
 
 .data-table tr:hover td {
-  background-color: var(--cream);
+  background-color: #f5fbf8;
 }
 
 .data-table input[type="checkbox"] {
-  accent-color: var(--clay);
+  accent-color: var(--palm);
 }
 
-/* Status badges */
+/* Status badge colors */
 .badge {
   display: inline-block;
   padding-top: 4px;
   padding-bottom: 4px;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-radius: var(--radius-full);
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
-.status-pending    { background-color: #FBF3DC; color: #7A5C00; }
-.status-completed  { background-color: #E2F0EB; color: var(--success); }
-.status-inprogress { background-color: #E0EEFF; color: #1E6FD9; }
-.status-cancelled  { background-color: #FDECEC; color: var(--error); }
+.status-pending    { background-color: #fdf7dc; color: var(--warning); }
+.status-completed  { background-color: var(--lime); color: var(--palm); }
+.status-inprogress { background-color: #d4f3f3; color: var(--sail-dark); }
+.status-cancelled  { background-color: #fdecec; color: var(--error); }
 
-/* Review / dismiss buttons */
 .btn-view {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background-color: #E0EEFF;
-  color: #1E6FD9;
+  background-color: #d4f3f3;
+  color: var(--sail-dark);
   border-width: 0;
-  padding-top: 6px;
-  padding-bottom: 6px;
-  padding-left: 14px;
-  padding-right: 14px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 12px;
+  padding-right: 12px;
   border-radius: var(--radius-full);
-  font-size: 0.82rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 700;
   cursor: pointer;
   margin-right: 6px;
-  transition-property: opacity;
+  transition-property: background-color, color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
+}
+
+.btn-view:hover {
+  background-color: var(--sail);
+  color: var(--palm);
 }
 
 .btn-cancel {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background-color: #FDECEC;
+  background-color: #fdecec;
   color: var(--error);
   border-width: 0;
-  padding-top: 6px;
-  padding-bottom: 6px;
-  padding-left: 14px;
-  padding-right: 14px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 12px;
+  padding-right: 12px;
   border-radius: var(--radius-full);
-  font-size: 0.82rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 700;
   cursor: pointer;
-  transition-property: opacity;
+  transition-property: background-color, color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
-.btn-view:hover,
 .btn-cancel:hover {
-  opacity: 0.75;
+  background-color: var(--error);
+  color: var(--white);
 }
 
-/* Pagination */
 .pagination-container {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .pagination-buttons {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
+.pagination-button {
+  display: flex;
+  gap: 6px;
+}
+
 .btn-page {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 14px;
-  padding-right: 14px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--sand);
-  border-radius: var(--radius);
-  font-size: 0.85rem;
+  border-color: var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
   background-color: var(--white);
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
   cursor: pointer;
   transition-property: border-color, color, background-color;
   transition-duration: 0.2s;
@@ -3535,14 +4533,14 @@ figcaption {
 }
 
 .btn-page:hover {
-  border-color: var(--clay);
-  color: var(--clay);
+  border-color: var(--palm);
+  color: var(--palm);
 }
 
 .btn-page.active {
-  background-color: var(--clay);
-  border-color: var(--clay);
-  color: var(--white);
+  background-color: var(--palm);
+  border-color: var(--palm);
+  color: var(--lime);
 }
 
 .btn-page:disabled {
@@ -3551,138 +4549,27 @@ figcaption {
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   26. ADMIN DASHBOARD
-───────────────────────────────────────────────────────── */
-.charts-section {
-  margin-bottom: 36px;
+/* ── 33. ADMIN DASHBOARD EXTRAS ────────────────────────────── */
+.additional-data-section {
+  margin-top: 20px;
 }
 
-.chart-card {
-  background-color: var(--white);
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--sand-light);
-  border-radius: var(--radius);
-  margin-bottom: 24px;
-  overflow: hidden;
-}
-
-.chart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 24px;
-  padding-right: 24px;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: var(--cream-dark);
-}
-
-.chart-header h2 {
-  font-size: 1.1rem;
-}
-
-.date-filter {
-  padding-top: 6px;
-  padding-bottom: 6px;
-  padding-left: 12px;
-  padding-right: 12px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--sand);
-  border-radius: var(--radius);
-  font-size: 0.85rem;
-  outline: none;
-  background-color: var(--white);
-}
-
-.chart-body {
-  padding-top: 24px;
-  padding-bottom: 24px;
-  padding-left: 24px;
-  padding-right: 24px;
-}
-
-.placeholder-chart {
-  background-color: var(--cream);
-  border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-size: 0.88rem;
-}
-
-.line-chart-placeholder  { height: 200px; }
-.area-chart-placeholder  { height: 160px; }
-
-.charts-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-/* Service progress bars */
-.service-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.bar-item {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.bar-label-group {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  color: var(--charcoal-mid);
-}
-
-.progress-track {
-  height: 8px;
-  background-color: var(--cream-dark);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  border-radius: var(--radius-full);
-}
-
-.progress-fill.green { width: 80%; background-color: var(--success); }
-.progress-fill.mint  { width: 65%; background-color: #0E7490; }
-.progress-fill.red   { width: 45%; background-color: var(--error); }
-
-/* Flagged issues */
-.urgent-issues {
-  margin-bottom: 36px;
-}
-
-/* Activity + workers grid */
 .data-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 24px;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
 .activity-list {
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   padding-top: 0;
-  padding-bottom: 24px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .activity-list li {
@@ -3692,43 +4579,43 @@ figcaption {
 }
 
 .activity-list .time {
-  font-size: 0.75rem;
-  color: var(--muted);
+  font-size: 0.72rem;
+  color: var(--text-muted);
 }
 
 .activity-list p {
-  font-size: 0.88rem;
-  color: var(--charcoal-mid);
+  font-size: 0.85rem;
+  color: var(--text-mid);
 }
 
 .worker-list {
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   padding-top: 0;
-  padding-bottom: 24px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .worker-item {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .worker-avatar {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background-color: var(--clay);
-  color: var(--white);
+  background-color: var(--palm);
+  color: var(--lime);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -3741,135 +4628,303 @@ figcaption {
 }
 
 .worker-info strong {
-  font-size: 0.9rem;
-  color: var(--charcoal);
+  font-size: 0.88rem;
+  color: var(--text-dark);
 }
 
 .worker-info span {
-  font-size: 0.78rem;
-  color: var(--muted);
+  font-size: 0.75rem;
+  color: var(--text-muted);
 }
 
 .rating {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--warning);
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.urgent-issues {
+  margin-bottom: 24px;
 }
 
 .mt-4 {
-  margin-top: 24px;
+  margin-top: 20px;
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   27. BOOKINGS HISTORY
-   Uses the same table styles as section 25 above.
-───────────────────────────────────────────────────────── */
+/* ── 34. VERIFICATION PAGE ─────────────────────────────────── */
+.queue-card {
+  background-color: var(--white);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-light);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition-property: box-shadow, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
 
+.queue-card:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--sail);
+}
 
-/* ─────────────────────────────────────────────────────────
-   28. VERIFICATION PAGE
-   Person 4 — write your styles here
-───────────────────────────────────────────────────────── */
+.queue-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--border-light);
+  background-color: var(--serenade);
+}
+
+.queue-card-body {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.queue-card-actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: var(--border-light);
+}
+
+.btn-approve {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #e8f7ee;
+  color: var(--success);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #b8e0c8;
+  border-radius: var(--radius-full);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 18px;
+  padding-right: 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition-property: background-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.btn-approve:hover {
+  background-color: var(--success);
+  color: var(--white);
+}
+
+.btn-reject {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #fdecec;
+  color: var(--error);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #f5c5bb;
+  border-radius: var(--radius-full);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 18px;
+  padding-right: 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition-property: background-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.btn-reject:hover {
+  background-color: var(--error);
+  color: var(--white);
+}
+
+.btn-docs {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--serenade);
+  color: var(--text-mid);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border);
+  border-radius: var(--radius-full);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 18px;
+  padding-right: 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  justify-content: center;
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.btn-docs:hover {
+  background-color: var(--serenade-dark);
+  border-color: var(--palm);
+  color: var(--palm);
+}
+
+.info-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--border-light);
+}
+
+.info-line:last-child {
+  border-bottom-width: 0;
+}
+
+.info-line a {
+  color: var(--sail-dark);
+  text-decoration: none;
+  font-weight: 600;
+}
 
 
 /* ============================================================
-   ██████████████████████████████████████████████████████████
    PERSON 5 — pricing.html · component.html
-   ██████████████████████████████████████████████████████████
    ============================================================ */
 
 
-/* ─────────────────────────────────────────────────────────
-   29. PRICING PAGE
-───────────────────────────────────────────────────────── */
+/* ── 35. PRICING PAGE ──────────────────────────────────────── */
 .pricing-header {
-  padding-top: 64px;
+  padding-top: 80px;
   padding-bottom: 0;
   padding-left: 40px;
   padding-right: 40px;
   text-align: center;
-  background-color: var(--cream);
+  background-color: var(--serenade);
+  display: block;
 }
 
 .pricing-header h1 {
+  font-size: 3rem;
   margin-bottom: 12px;
 }
 
 .pricing-header > p {
-  color: var(--muted);
+  color: var(--text-muted);
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 48px;
+  margin-bottom: 0;
 }
 
-/* Wrapper to put the 3 plans side by side */
+/* 3 plan cards sit side by side */
 .plans-row {
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  align-items: flex-start;
   gap: 24px;
   flex-wrap: wrap;
-  padding-top: 0;
-  padding-bottom: 64px;
+  padding-top: 56px;
+  padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
-  background-color: var(--cream);
+  background-color: var(--serenade);
 }
 
 .plan {
   background-color: var(--white);
   border-width: 2px;
   border-style: solid;
-  border-color: var(--cream-dark);
+  border-color: var(--border-light);
   border-radius: var(--radius);
-  padding-top: 36px;
-  padding-bottom: 36px;
-  padding-left: 28px;
-  padding-right: 28px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 32px;
+  padding-right: 32px;
   width: 280px;
+  min-width: 240px;
+  flex-shrink: 0;
   text-align: center;
   position: relative;
-  transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform, border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .plan:hover {
-  box-shadow: 0 8px 40px rgba(46, 38, 32, 0.16);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-4px);
+  border-color: var(--sail);
+}
+
+/* Middle plan (Standard) always lifted */
+.plan:nth-child(2) {
+  border-color: var(--palm);
+  border-width: 2px;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-10px);
+}
+
+.plan:nth-child(2):hover {
+  transform: translateY(-14px);
 }
 
 .popular-label {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--white);
-  background-color: var(--clay);
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 16px;
-  padding-right: 16px;
+  color: var(--lime);
+  background-color: var(--palm);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 18px;
+  padding-right: 18px;
   border-radius: var(--radius-full);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .plan h3 {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: var(--text-dark);
 }
 
-/* Both naming styles used across the team */
+/* Support both .Plan_Price and .plan-price — teammates named them differently */
 .Plan_Price,
 .plan-price {
   font-family: var(--font-heading);
-  font-size: 2.6rem;
+  font-size: 3rem;
   font-weight: 700;
-  color: var(--clay);
-  line-height: 1.1;
-  margin-bottom: 4px;
+  color: var(--palm);
+  line-height: 1;
+  margin-bottom: 6px;
 }
 
 .Plan_Price span,
@@ -3877,7 +4932,7 @@ figcaption {
   font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 400;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 .Plan_features,
@@ -3885,7 +4940,7 @@ figcaption {
   list-style-type: none;
   text-align: left;
   margin-top: 20px;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -3894,12 +4949,12 @@ figcaption {
 .Plan_features li,
 .plan-features li {
   font-size: 0.88rem;
-  color: var(--charcoal-mid);
-  padding-top: 4px;
-  padding-bottom: 4px;
+  color: var(--text-mid);
+  padding-top: 6px;
+  padding-bottom: 6px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--cream-dark);
+  border-bottom-color: var(--border-light);
 }
 
 .Plan_features li:last-child,
@@ -3907,27 +4962,27 @@ figcaption {
   border-bottom-width: 0;
 }
 
-/* FAQ */
 .pricing-faq {
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding-top: 80px;
+  padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
-  max-width: 700px;
+  max-width: 720px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .pricing-faq h2 {
-  margin-bottom: 32px;
+  margin-bottom: 40px;
   text-align: center;
+  font-size: 2.2rem;
 }
 
 .faq-item {
   background-color: var(--white);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--cream-dark);
+  border-color: var(--border-light);
   border-radius: var(--radius);
   padding-top: 24px;
   padding-bottom: 24px;
@@ -3935,58 +4990,104 @@ figcaption {
   padding-right: 28px;
   margin-bottom: 16px;
   cursor: pointer;
-  transition-property: box-shadow;
+  transition-property: box-shadow, border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 
 .faq-item:hover {
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
+  box-shadow: var(--shadow);
+  border-color: var(--sail);
 }
 
 .faq-item h4 {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
-  color: var(--charcoal);
+  font-size: 1.2rem;
+  color: var(--text-dark);
   margin-bottom: 10px;
 }
 
 .faq-item p {
   font-size: 0.9rem;
-  color: var(--charcoal-mid);
+  color: var(--text-mid);
   line-height: 1.7;
 }
 
 
 /* ============================================================
-   ██████████████████████████████████████████████████████████
-   RESPONSIVE — everyone benefits from this
-   ██████████████████████████████████████████████████████████
+   RESPONSIVE
    ============================================================ */
 
 
-/* ─────────────────────────────────────────────────────────
-   30. TABLET SCREENS (768px and smaller)
-───────────────────────────────────────────────────────── */
+/* ── 36. TABLET (≤ 768px) ──────────────────────────────────── */
 @media (max-width: 768px) {
 
-  .navbar {
+  /* Show hamburger, hide desktop nav links */
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar .nav-links {
+    display: none;
+  }
+
+  nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) ul {
+    display: none;
+  }
+
+  nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div {
+    display: none;
+  }
+
+  /* Reduce navbar side padding */
+  .navbar,
+  nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  /* Hide nav links on small screens — JS will add a hamburger later */
-  .nav-links {
-    display: none;
-  }
-
-  /* Footer goes to 1 column */
+  /* Footer collapses to 1 column */
+  footer .footer-top,
   .footer-top {
     grid-template-columns: 1fr;
     gap: 32px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
-  /* Most grids go to 1 column */
+  /* Reduce section side padding */
+  .hero,
+  .find-professionals,
+  .how-it-works,
+  .about,
+  .contact,
+  .gift-hero,
+  .gift-cards-section,
+  .gift-how-it-works,
+  .pricing-faq {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hero {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .gift-hero {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .gift-hero h1 {
+    font-size: 2.4rem;
+  }
+
+  /* Most grids → 1 column */
   .professionals-container  { grid-template-columns: 1fr; }
   .steps-container          { grid-template-columns: 1fr; }
   .professionals-grid       { grid-template-columns: 1fr; }
@@ -3994,53 +5095,98 @@ figcaption {
   .portfolio-grid           { grid-template-columns: 1fr; }
   .gift-cards-grid          { grid-template-columns: 1fr; }
   .gift-steps               { grid-template-columns: 1fr; }
-  .charts-row               { grid-template-columns: 1fr; }
   .data-grid                { grid-template-columns: 1fr; }
+  .charts-row               { flex-direction: column; }
+  .favorites-grid           { grid-template-columns: 1fr; }
+  .safety-and-prep          { grid-template-columns: 1fr; }
 
-  /* Stats grid goes to 2 columns */
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Stats → 2 columns on tablet */
+  .stats-grid,
+  .stats-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-  /* Profile page stacks vertically */
-  .profile-header  { grid-template-columns: 1fr; }
-  .pro-identity    { flex-direction: column; }
-  .safety-and-prep { grid-template-columns: 1fr; }
-  .favorites-grid  { grid-template-columns: 1fr; }
+  /* Profile page */
+  .profile-header { grid-template-columns: 1fr; }
+  .pro-identity   { flex-direction: column; }
 
   /* Pricing plans stack */
-  .plan { width: 100%; max-width: 360px; }
-  .plans-row { flex-direction: column; align-items: center; }
-  .gift-card-featured { transform: none; }
+  .plans-row {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
-  /* Reduce padding on sections */
-  .hero                 { padding-left: 20px; padding-right: 20px; padding-top: 48px; padding-bottom: 48px; }
-  .find-professionals   { padding-left: 20px; padding-right: 20px; }
-  .how-it-works         { padding-left: 20px; padding-right: 20px; }
-  .about                { padding-left: 20px; padding-right: 20px; }
-  .contact              { padding-left: 20px; padding-right: 20px; }
-  .pricing-faq          { padding-left: 20px; padding-right: 20px; }
-  .gift-hero            { padding-left: 20px; padding-right: 20px; }
-  .gift-cards-section   { padding-left: 20px; padding-right: 20px; }
-  .gift-how-it-works    { padding-left: 20px; padding-right: 20px; }
-  .dashboard-container  { padding-left: 20px; padding-right: 20px; }
-  .booking-page-container { padding-left: 20px; padding-right: 20px; }
-  .directory-container  { padding-left: 20px; padding-right: 20px; }
-  .profile-page         { padding-left: 20px; padding-right: 20px; }
-  .dashboard-page       { padding-left: 20px; padding-right: 20px; }
-  .bookings-page        { padding-left: 20px; padding-right: 20px; }
-  .pro-page-main        { padding-left: 20px; padding-right: 20px; }
+  .plan {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .plan:nth-child(2) {
+    transform: none;
+  }
+
+  .gift-card-featured {
+    transform: none;
+  }
+
+  /* Admin pages */
+  .dashboard-page,
+  .bookings-page,
+  .verifications-page {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Client pages */
+  .dashboard-container,
+  .booking-page-container,
+  .directory-container,
+  .profile-page {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Professional pages */
+  .pro-page-main {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Review ticker */
+  .reviews-ticker-header {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .ticker-track {
+    animation-duration: 28s;
+  }
+
+  .ticker-card {
+    width: 260px;
+  }
 }
 
 
-/* ─────────────────────────────────────────────────────────
-   31. MOBILE SCREENS (480px and smaller)
-───────────────────────────────────────────────────────── */
+/* ── 37. MOBILE (≤ 480px) ──────────────────────────────────── */
 @media (max-width: 480px) {
 
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  /* Auth pages — reduce padding on very small screens */
   .login,
   .signup,
   .forgot-password {
-    margin-top: 32px;
-    margin-bottom: 32px;
+    margin-top: 24px;
+    margin-bottom: 24px;
     margin-left: 16px;
     margin-right: 16px;
     padding-top: 32px;
@@ -4049,217 +5195,44 @@ figcaption {
     padding-right: 20px;
   }
 
-  /* Stats in 1 column on mobile */
-  .stats-grid { grid-template-columns: 1fr; }
+  /* Stats → 1 column */
+  .stats-grid,
+  .stats-grid-4 {
+    grid-template-columns: 1fr;
+  }
 
-  .time-grid        { flex-direction: column; }
-  .progress-timeline { flex-direction: column; }
+  .time-grid {
+    flex-direction: column;
+  }
+
+  .progress-timeline {
+    flex-direction: column;
+  }
 
   .status-header {
     flex-direction: column;
     align-items: flex-start;
   }
-}
 
-
-/* ─────────────────────────────────────────────────────────
-   FIX: Footer social icons
-   The HTML has <br> tags around each icon which stacks them.
-   This hides the <br> tags so icons sit side by side.
-───────────────────────────────────────────────────────── */
-.footer-brand br {
-  display: none;
-}
-
-.footer-brand a.social-btn {
-  display: inline-flex;
-  margin-bottom: 0;
-}
-
-
-/* ============================================================
-   FINAL FIXES
-   ============================================================ */
-
-/* Fix: footer-top without a <footer> wrapper still gets dark background */
-.footer-top {
-  background-color: var(--charcoal);
-  padding-top: 64px;
-  padding-right: 40px;
-  padding-bottom: 32px;
-  padding-left: 40px;
-}
-
-/* Fix: footer brand text colors when sitting on dark bg */
-.footer-top .footer-tagline { color: var(--sand); }
-.footer-top .footer-col-title { color: var(--white); }
-.footer-top .footer-links a { color: var(--sand); }
-.footer-top .footer-links a:hover { color: var(--terracotta); }
-.footer-top .footer-newsletter p { color: var(--sand); }
-.footer-top p { color: var(--sand); }
-
-/* Fix: social icons sit side by side */
-.footer-brand br { display: none; }
-.footer-brand a.social-btn { display: inline-flex; }
-
-/* Fix: pricing plans side by side */
-.plans-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 24px;
-  flex-wrap: wrap;
-  padding-top: 40px;
-  padding-bottom: 64px;
-  padding-left: 40px;
-  padding-right: 40px;
-  background-color: var(--cream);
-}
-
-/* Fix: pricing header section doesn't need flex */
-.pricing-header {
-  display: block;
-  padding-top: 64px;
-  padding-bottom: 0;
-  padding-left: 40px;
-  padding-right: 40px;
-  text-align: center;
-  background-color: var(--cream);
-}
-
-/* Fix: plan cards consistent width in the row */
-.plan {
-  width: 280px;
-  min-width: 240px;
-  flex-shrink: 0;
-}
-
-/* Fix: featured plan pops up */
-.plan:has(.popular-label) {
-  border-color: var(--clay);
-  box-shadow: 0 8px 40px rgba(46, 38, 32, 0.16);
-  transform: translateY(-8px);
-}
-
-@media (max-width: 768px) {
-  .plans-row {
-    flex-direction: column;
-    align-items: center;
-  }
-  .plan { width: 100%; max-width: 360px; }
-  .plan:has(.popular-label) { transform: none; }
-  .footer-top { padding-left: 20px; padding-right: 20px; }
-}
-
-
-/* ============================================================
-   CRITICAL FIXES
-   ============================================================ */
-
-/* --- Footer dark background fix ---
-   Applies dark background whether the tag is <footer> or just .footer-top */
-footer,
-.footer-top {
-  background-color: var(--charcoal);
-  color: var(--sand);
-}
-
-.footer-top {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 48px;
-  padding-top: 64px;
-  padding-bottom: 32px;
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
-footer .footer-brand-name,
-.footer-top .footer-brand-name { color: var(--white); }
-footer .footer-tagline,
-.footer-top .footer-tagline     { color: var(--sand); }
-footer p,
-.footer-top p                   { color: var(--sand); }
-footer .footer-col-title,
-.footer-top .footer-col-title   { color: var(--white); }
-footer .footer-links a,
-.footer-top .footer-links a     { color: var(--sand); }
-footer .footer-links a:hover,
-.footer-top .footer-links a:hover { color: var(--terracotta); }
-
-/* Social icons side by side fix */
-.footer-brand br   { display: none; }
-.footer-brand > a  { display: inline-flex; margin-right: 6px; }
-
-/* --- Pricing plans fix ---
-   Force the 3 plans into a horizontal row */
-.plans-row {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 24px;
-  flex-wrap: wrap;
-  padding-top: 40px;
-  padding-bottom: 64px;
-  padding-left: 40px;
-  padding-right: 40px;
-  background-color: var(--cream);
-}
-
-.plans-row .plan {
-  width: 280px;
-  min-width: 240px;
-  flex-shrink: 0;
-  display: block !important;
-}
-
-.pricing-header {
-  display: block;
-}
-
-/* Featured plan (Standard) pops up */
-.plans-row .plan:nth-child(2) {
-  border-color: var(--clay);
-  border-width: 2px;
-  border-style: solid;
-  box-shadow: 0 8px 40px rgba(46, 38, 32, 0.16);
-  transform: translateY(-8px);
-}
-
-/* --- Signup page fix ---
-   Make sure signup form is centered and visible */
-.signup {
-  max-width: 460px;
-  margin-top: 60px;
-  margin-bottom: 60px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: var(--white);
-  padding-top: 48px;
-  padding-bottom: 48px;
-  padding-left: 40px;
-  padding-right: 40px;
-  border-radius: var(--radius);
-  box-shadow: 0 4px 20px rgba(46, 38, 32, 0.10);
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .plans-row {
-    flex-direction: column !important;
-    align-items: center;
-  }
-  .plans-row .plan {
+  .booking-action-card {
+    min-width: unset;
     width: 100%;
-    max-width: 360px;
   }
-  .plans-row .plan:nth-child(2) {
-    transform: none;
+
+  /* Search bar stacks vertically */
+  .search-bar-ui {
+    flex-direction: column;
+    border-radius: var(--radius);
   }
-  .footer-top {
-    grid-template-columns: 1fr;
-    gap: 32px;
+
+  .search-bar-ui input:first-child {
+    border-right-width: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--border);
+  }
+
+  .primary-btn {
+    border-radius: 0 0 var(--radius) var(--radius);
   }
 }

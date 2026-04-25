@@ -1,0 +1,435 @@
+
+/* ============================================================
+   PERSON 3 — professional/dashboard.html · requests.html
+              edit-profile.html
+   ============================================================ */
+
+
+/* ── 25. PRO DASHBOARD ─────────────────────────────────────── */
+/*
+   All 3 professional pages use <main class="pro-page-main">
+   The nav must be OUTSIDE and BEFORE the main tag.
+*/
+.pro-page-main {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 48px;
+  padding-bottom: 80px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.pro-page-main section {
+  margin-bottom: 40px;
+}
+
+.pro-page-main h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.pro-page-main h3 {
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+
+/* Notice / alert highlight */
+.pro-page-main section > p mark {
+  background-color: var(--lime);
+  color: var(--palm);
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+/* Booking requests table */
+.pro-page-main table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-top: 16px;
+}
+
+.pro-page-main table th {
+  background-color: var(--palm);
+  color: var(--lime);
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.pro-page-main table td {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--border-light);
+}
+
+.pro-page-main table tr:hover td {
+  background-color: var(--serenade);
+}
+
+.pro-page-main table td i {
+  color: var(--warning);
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Accept button */
+.pro-page-main table button:first-of-type {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-width: 0;
+  margin-right: 6px;
+  background-color: var(--lime);
+  color: var(--palm);
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.pro-page-main table button:first-of-type:hover {
+  background-color: var(--lime-dark);
+}
+
+/* Decline button */
+.pro-page-main table button:last-of-type {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--error);
+  background-color: #fdecec;
+  color: var(--error);
+  transition-property: background-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.pro-page-main table button:last-of-type:hover {
+  background-color: var(--error);
+  color: var(--white);
+}
+
+/* Pro tip / alert box */
+.pro-page-main aside {
+  background-color: #e8f7ee;
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-left-color: var(--lime);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 24px;
+  padding-right: 24px;
+  border-radius: var(--radius);
+  margin-top: 40px;
+}
+
+.pro-page-main aside h4 {
+  color: var(--palm);
+  margin-bottom: 8px;
+}
+
+.pro-page-main aside p {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+}
+
+
+/* ── 26. REQUESTS PAGE ─────────────────────────────────────── */
+/*
+   Add Work Session form + Planned Agenda table.
+   Inputs use .form-label and .form-input classes (see section 28).
+*/
+.pro-page-main form p label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.pro-page-main form input[type="date"],
+.pro-page-main form input[type="time"],
+.pro-page-main form input[type="text"],
+.pro-page-main form select {
+  padding-top: 11px;
+  padding-bottom: 11px;
+  padding-left: 14px;
+  padding-right: 14px;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  background-color: var(--serenade);
+  outline: none;
+  transition-property: border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.pro-page-main form input:focus,
+.pro-page-main form select:focus {
+  border-color: var(--sail);
+}
+
+.pro-page-main form button[type="submit"] {
+  background-color: var(--palm);
+  color: var(--lime);
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 28px;
+  padding-right: 28px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-width: 0;
+  cursor: pointer;
+  margin-top: 8px;
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.pro-page-main form button[type="submit"]:hover {
+  background-color: var(--palm-mid);
+}
+
+
+/* ── 27. EDIT PROFILE PAGE ─────────────────────────────────── */
+.pro-page-main form article {
+  background-color: var(--white);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-light);
+  border-radius: var(--radius);
+  padding-top: 28px;
+  padding-bottom: 28px;
+  padding-left: 28px;
+  padding-right: 28px;
+  margin-bottom: 24px;
+}
+
+.pro-page-main form article h3 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--border-light);
+}
+
+.pro-page-main form input[type="submit"] {
+  background-color: var(--palm);
+  color: var(--lime);
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-width: 0;
+  cursor: pointer;
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.pro-page-main form input[type="submit"]:hover {
+  background-color: var(--palm-mid);
+}
+
+
+/* ── 28. FORM UTILITY CLASSES ──────────────────────────────── */
+/*
+   Reusable styled input classes for edit-profile and requests.
+   Add these classes to your HTML elements directly:
+     <label class="form-label">Full Name</label>
+     <input class="form-input" type="text">
+     <select class="form-select">...</select>
+     <textarea class="form-textarea"></textarea>
+*/
+.form-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.form-input {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: var(--border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: var(--serenade);
+  outline: none;
+  transition-property: border-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.form-input:focus {
+  border-color: var(--sail);
+  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.15);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-select {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: var(--border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: var(--serenade);
+  outline: none;
+  cursor: pointer;
+  transition-property: border-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.form-select:focus {
+  border-color: var(--sail);
+  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.15);
+}
+
+.form-textarea {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: var(--border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: var(--serenade);
+  outline: none;
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+  transition-property: border-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.form-textarea:focus {
+  border-color: var(--sail);
+  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.15);
+}
+
+.form-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* White card wrapper for form sections */
+.pro-page-main .form-section {
+  background-color: var(--white);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-light);
+  border-radius: var(--radius);
+  padding-top: 28px;
+  padding-bottom: 28px;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.pro-page-main .form-section h3 {
+  font-size: 1.4rem;
+  color: var(--text-dark);
+  margin-bottom: 0;
+}
+
+/* Custom file upload — hides ugly browser default, shows styled button */
+.file-upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-width: 1.5px;
+  border-style: dashed;
+  border-color: var(--border);
+  border-radius: var(--radius);
+  background-color: var(--serenade);
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  font-family: var(--font-body);
+  transition-property: border-color, background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.file-upload-btn:hover {
+  border-color: var(--sail);
+  background-color: var(--white);
+}
+
+.file-upload-btn input[type="file"] {
+  display: none;
+}
+
+.file-upload-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}

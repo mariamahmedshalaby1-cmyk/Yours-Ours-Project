@@ -6,14 +6,15 @@
     <title>Yours & Ours - Admin Dashboard</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-   <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
 
     <body>
     <nav class="navbar navbar-admin">
-    <a class="nav-logo" href="index.html">Yours<span>&amp;</span><em>Ours</em></a>
+    <a class="nav-logo" href="../landing-page/index.html">Yours<span>&amp;</span><em>Ours</em></a>
     <div class="nav-actions">
     <span class="nav-badge admin">Admin</span>
     </div>
@@ -50,7 +51,7 @@
     </div>
     <p class="card-title">Total Bookings</p>
     <div class="card-body">
-    <h2>200</h2>
+    <h3><span class="animate-number" data-target="200">0</span></h3>
     <span class="trend-badge trend-up">↑ 12.5%</span>
     </div>
     </div>
@@ -63,7 +64,7 @@
     </div>
     <p class="card-title">Total Users</p>
     <div class="card-body">
-    <h2>65,400</h2>
+    <h3><span class="animate-number" data-target="65400">0</span></h3>
     <span class="trend-badge trend-up">↑ 79.2%</span>
     </div>
     </div>
@@ -76,7 +77,7 @@
     </div>
     <p class="card-title">Active Providers</p>
     <div class="card-body">
-    <h2>128</h2>
+    <h3><span class="animate-number" data-target="128">0</span></h3>
     <span class="trend-badge trend-down">↓ 15.1%</span>
     </div>
     </div>
@@ -89,7 +90,7 @@
     </div>
     <p class="card-title">Revenue</p>
     <div class="card-body">
-    <h2>8,900.00 EGP</h2>
+    <h3><span class="animate-number" data-target="8900">0</span>.50 EGP</h3>
     <span class="trend-badge trend-up">↑ 37.4%</span>
     </div>
     </div>
@@ -102,7 +103,7 @@
     </div>
     <p class="card-title">Inactive Providers</p>
     <div class="card-body">
-    <h2>248</h2>
+   <h3><span class="animate-number" data-target="248">0</span></h3>
     <span class="trend-badge trend-down">↓ 9.5%</span>
     </div>
     </div>
@@ -112,7 +113,8 @@
     <div class="chart-card full-width">
     <div class="chart-header">
     <h2>Total Bookings Overview</h2>
-    <select class="date-filter">
+    <div class="chart-filter-group">
+    <select class="date-filter" id="bookingsMonth">
     <option value="january">January</option>
     <option value="february">February</option>
     <option value="march">March</option>
@@ -126,19 +128,28 @@
     <option value="november">November</option>
     <option value="december">December</option>
     </select>
+    <select class="date-filter" id="bookingsWeek">
+    <option value="week1">Week 1</option>
+    <option value="week2">Week 2</option>
+    <option value="week3">Week 3</option>
+    <option value="week4">Week 4</option>  
+    </select>
+    </div>
     </div>
     <div class="chart-body">
-    <div class="placeholder-chart line-chart-placeholder">
-    <span class="text-muted">[ Line Chart Placeholder ]</span>
+    <div class="chart-canvas-wrapper">
+    <canvas id="bookingsChart"></canvas>
     </div>
     </div>
     </div>
+    
 
     <div class="charts-row">
     <div class="chart-card half-width">
     <div class="chart-header">
     <h2>Total Revenue</h2>
-    <select class="date-filter">
+    <div class="chart-filter-group">
+    <select class="date-filter" id="revenueMonth">
     <option value="january">January</option>
     <option value="february">February</option>
     <option value="march">March</option>
@@ -152,10 +163,17 @@
     <option value="november">November</option>
     <option value="december">December</option>
     </select>
+    <select class="date-filter" id="revenueWeek">
+    <option value="week1">Week 1</option>
+    <option value="week2">Week 2</option>
+    <option value="week3">Week 3</option>
+    <option value="week4">Week 4</option>
+    </select>
+    </div>
     </div>
     <div class="chart-body">
-    <div class="placeholder-chart area-chart-placeholder">
-    <span class="text-muted">[ Area Chart Placeholder ]</span>
+    <div class="chart-canvas-wrapper">
+    <canvas id="revenueChart"></canvas>
     </div>
     </div>
     </div>
@@ -163,7 +181,7 @@
     <div class="chart-card half-width">
     <div class="chart-header">
     <h2>Top Booking Services</h2>
-    <select class="date-filter">
+    <select class="date-filter" id="servicesMonth">
     <option value="january">January</option>
     <option value="february">February</option>
     <option value="march">March</option>
@@ -178,33 +196,9 @@
     <option value="december">December</option>
     </select>
     </div>
-    <div class="chart-body service-bars">
-    <div class="bar-item">
-    <div class="bar-label-group">
-    <span>Plumber</span>
-    <span>80%</span>
-    </div>
-    <div class="progress-track">
-    <div class="progress-fill green"></div>
-    </div>
-    </div>
-    <div class="bar-item">
-    <div class="bar-label-group">
-    <span>Electrician</span>
-    <span>65%</span>
-    </div>
-    <div class="progress-track">
-    <div class="progress-fill mint"></div>
-    </div>
-    </div>
-    <div class="bar-item">
-    <div class="bar-label-group">
-    <span>Carpenter</span>
-    <span>45%</span>
-    </div>
-    <div class="progress-track">
-    <div class="progress-fill red"></div>
-    </div>
+    <div class="chart-body">
+    <div class="chart-canvas-wrapper">
+    <canvas id="servicesChart"></canvas>
     </div>
     </div>
     </div>
@@ -386,48 +380,69 @@
 
     </main>
     
+<footer>
+  <div class="footer-top">
 
-   <footer>
-    <div class="footer-top">
-
-      <div class="footer-brand">
-        <div class="footer-brand-name">Yours<span>&amp;</span><em>Ours</em></div>
-        <p class="footer-tagline">Connecting communities with trusted, vetted professionals for every service need. Quality work, guaranteed.</p>
-
-  
-<div style="display:flex; gap:8px; margin-top:8px;">
-  <a href="https://www.facebook.com" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
-  <a href="https://www.google.com" target="_blank" class="social-btn"><i class="fa-brands fa-google"></i></a>
-  <a href="https://www.twitter.com" target="_blank" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
-</div>
-
-</div>
-        <div class="footer-newsletter">
-          <p><strong>Stay in the loop.</strong><br>Tips, new pros and platform updates.</p>
-          <input type="email" placeholder="your@email.com" />
-          <a class="btn btn-clay" href="#">Subscribe</a>
-        </div>
+    <div class="footer-brand">
+      <div class="footer-brand-name">Yours<span>&amp;</span><em>Ours</em></div>
+      <p class="footer-tagline">Connecting communities with trusted, vetted professionals for every service need. Quality work, guaranteed.</p>
+      <div style="display:flex; gap:8px; margin-top:8px;">
+        <a href="https://www.facebook.com" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.google.com" target="_blank" class="social-btn"><i class="fa-brands fa-google"></i></a>
+        <a href="https://www.twitter.com" target="_blank" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
       </div>
-
-      <div class="footer-col">
-        <div class="footer-col-title">Services</div>
-        <ul class="footer-links">
-          <li><a href="../client/directory.html">Browse Professionals</a></li>
-          <li><a href="../index.html#how-it-works">How It Works</a></li>
-          <li><a href="../pricing.html">Pricing</a></li>
-          <li><a href="../client/gift-card.html">Gift Cards</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <div class="footer-col-title">Company</div>
-        <ul class="footer-links">
-          <li><a href="../index.html#about">About Us</a></li>
-          <li><a href="../index.html#contact">Contact</a></li>
-        </ul>
-      </div>
-
     </div>
+
+    <div class="footer-newsletter">
+      <p><strong>Stay in the loop.</strong><br>Tips, new pros and platform updates.</p>
+      <input type="email" placeholder="your@email.com" />
+      <a class="btn btn-clay" href="#">Subscribe</a>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="client/directory.html">Browse Professionals</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="client/gift-card.html">Gift Cards</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">For Professionals</div>
+      <ul class="footer-links">
+        <li><a href="signup.html">Join as a Professional</a></li>
+        <li><a href="pricing.html">Pro Pricing</a></li>
+        <li><a href="professional/dashboard.html">Pro Dashboard</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-pro-banner">
+    <div>
+      <strong>Want to be a Professional on Yours & Ours?</strong>
+      <p>Join hundreds of verified pros already earning through our platform.</p>
+    </div>
+    <a href="/signup.html" class="btn btn-lime">Join as a Pro →</a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Yours & Ours. All rights reserved.</p>
+    <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></p>
+  </div>
+
 </footer>
-</html>
+
+<script src="../../js/admin/dashboard.js"> </script>
 </body>
+</html>

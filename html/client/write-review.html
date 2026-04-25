@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write a Review - Yours&amp;Ours</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href='../../css/client.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<nav class="navbar navbar-client">
+    <a class="nav-logo" href="../index.html">Yours<span>&amp;</span><em>Ours</em></a>
+    <div class="nav-actions">
+        <span class="nav-badge client">Client</span>
+    </div>
+    <ul class="nav-links">
+        <li><a class="nav-link" href="directory.html">Browse Pros</a></li>
+        <li><a class="nav-link" href="booking.html">My Bookings</a></li>
+    </ul>
+    <div class="nav-icon-btn">🔔<span class="nav-dot"></span></div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<ul class="mobile-menu" id="mobile-menu">
+    <li><a href="directory.html">Browse Pros</a></li>
+    <li><a href="booking.html">My Bookings</a></li>
+</ul>
+
+<section class="review-page">
+    <div class="review-card">
+        <div class="review-pro-banner">
+            <img src="https://via.placeholder.com/60" alt="Pro" class="review-pro-avatar" id="pro-avatar">
+            <div class="review-pro-info">
+                <h3 id="pro-name">Samy Ahmed</h3>
+                <p id="pro-service">Electrical Repair · Completed today</p>
+            </div>
+        </div>
+        <div class="review-form-body" id="review-form-section">
+            <h2>How was it? ⚡</h2>
+            <p>Your honest feedback helps other neighbors make better decisions.</p>
+            <div class="star-rating" id="star-rating">
+                <input type="radio" name="rating" id="star5" value="5">
+                <label for="star5" title="Amazing">★</label>
+
+                <input type="radio" name="rating" id="star4" value="4">
+                <label for="star4" title="Great">★</label>
+
+                <input type="radio" name="rating" id="star3" value="3">
+                <label for="star3" title="Good">★</label>
+
+                <input type="radio" name="rating" id="star2" value="2">
+                <label for="star2" title="Fair">★</label>
+
+                <input type="radio" name="rating" id="star1" value="1">
+                <label for="star1" title="Poor">★</label>
+            </div>
+            <p class="star-label" id="star-label"></p>
+            <textarea
+                class="review-textarea"
+                id="review-text"
+                rows="5"
+                maxlength="500"
+                placeholder="Tell us about your experience — was the pro on time? Did they do a good job? Would you hire them again?"
+                oninput="updateCounter(this)">
+            </textarea>
+            <p class="char-counter"><span id="char-count">0</span> / 500</p>
+
+            <p id="form-error" style="color:var(--error); font-size:0.85rem; margin-bottom:12px; display:none;">
+                Please select a star rating before submitting.
+            </p>
+            <button class="review-submit-btn" onclick="submitReview()">
+                Submit Review
+            </button>
+        </div>
+        <div class="review-success" id="review-success">
+            <div class="success-icon">✓</div>
+            <h2>Review Submitted!</h2>
+            <div class="success-stars" id="success-stars">★★★★★</div>
+            <p class="success-review-text" id="success-text"></p>
+            <p>Thank you for helping your neighbors find trusted pros.</p>
+            <a href="directory.html" class="btn btn-primary" style="width:100%; margin-bottom:12px;">Browse More Pros</a>
+            <a href="booking.html" class="btn btn-ghost" style="width:100%;">My Bookings</a>
+        </div>
+
+    </div>
+</section>
+
+<script src="../../js/client/write-review.js"> </script>
+
+</body>
+</html>
