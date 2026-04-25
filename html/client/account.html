@@ -11,7 +11,7 @@
 <body>
 
     <nav class="navbar navbar-client">
-        <a class="nav-logo" href="../index.html">Yours<span>&amp;</span><em>Ours</em></a>
+        <a class="nav-logo" href="../landing-page/index.html">Yours<span>&amp;</span><em>Ours</em></a>
         <div class="nav-actions">
             <span class="nav-badge client">Client</span>
         </div>
@@ -205,30 +205,6 @@
 </footer>
 
 
-<script>
-function showPhone() {
-    var btn = document.getElementById('call-btn');
-    btn.textContent = '📞 +20 101 234 5678';
-    btn.onclick = null;
-}
-
-function confirmProCode() {
-    var input = document.getElementById('pro-code-input');
-    var msg = document.getElementById('confirm-msg');
-    if (input.value.length === 4) {
-        msg.style.display = 'block';
-        input.disabled = true;
-    } else {
-        input.style.border = '2px solid red';
-    }
-}
-
-function toggleMenu() {
-    var m = document.getElementById("mobile-menu");
-    var b = document.getElementById("hamburger");
-    if (m) m.classList.toggle("open");
-    if (b) b.classList.toggle("open");
-}
-</script>
+<script src="../../js/client/account.js"> </script>
 </body>
 </html>

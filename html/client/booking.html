@@ -11,7 +11,7 @@
 <body>
 
     <nav class="navbar navbar-client">
-        <a class="nav-logo" href="../index.html">Yours<span>&amp;</span><em>Ours</em></a>
+        <a class="nav-logo" href="../landing-page/index.html">Yours<span>&amp;</span><em>Ours</em></a>
         <div class="nav-actions">
             <span class="nav-badge client">Client</span>
         </div>
@@ -185,17 +185,6 @@
 
 </footer>
 
-<script>
-(function() {
-    var params = new URLSearchParams(window.location.search);
-    var pro     = params.get('pro')     || 'Samy Ahmed';
-    var service = params.get('service') || 'Electrical Repair';
-    var proEl  = document.getElementById('booking-pro-name');
-    var svcEl  = document.getElementById('booking-service');
-    if (proEl)  proEl.textContent  = pro.replace(/\+/g, ' ');
-    if (svcEl)  svcEl.textContent  = service.replace(/\+/g, ' ');
-    document.title = 'Book ' + pro.replace(/\+/g, ' ') + ' | Yours&Ours';
-})();
-</script>
+<script src="../../js/client/booking.js"></script>
 </body>
 </html>

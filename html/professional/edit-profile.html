@@ -11,7 +11,7 @@
 <body>
 
 <nav class="navbar navbar-professional">
-    <a class="nav-logo" href="../index.html">Yours<span>&amp;</span><em>Ours</em></a>
+    <a class="nav-logo" href="../landing-page/index.html">Yours<span>&amp;</span><em>Ours</em></a>
     <div class="nav-actions">
         <span class="nav-badge professional">Professional</span>
     </div>
@@ -191,22 +191,7 @@
   </div>
 
 </footer>
-<script>
-function showFileName(input){
-    var label = document.getElementById("file-label");
-    if(input.files && input.files[0]){
-        label.textContent = input.files[0].name;
-    } else {
-        label.textContent = "Choose a photo";
-    }
-}
-function toggleMenu(){
-    var m=document.getElementById("mobile-menu");
-    var b=document.getElementById("hamburger");
-    if(m) m.classList.toggle("open");
-    if(b) b.classList.toggle("open");
-}
-</script>
+<script src="../../js/professional/edit-profile.js"></script>
 
 </body>
 </html>
