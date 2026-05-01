@@ -1,3 +1,9 @@
+function toggleMenu() {
+    var m = document.getElementById('mobile-menu');
+    var b = document.getElementById('hamburger');
+    if(m){ m.classList.toggle('open'); }
+    if(b){ b.classList.toggle('open'); }
+}
 
   document.addEventListener('DOMContentLoaded', () => {
     // --- 1. Core Elements ---
@@ -195,32 +201,5 @@
     // --- 12. Initial Load ---
     renderCards();
 
-    // --- 13. STAT CARDS: COUNT-UP ANIMATION ONLY ---
-    const statNumbers = document.querySelectorAll('.animate-number');
-    
-    statNumbers.forEach(numberEl => {
-        // Get the target number from the HTML attribute
-        const target = +numberEl.getAttribute('data-target'); 
-        const duration = 1500; // Animation lasts 1.5 seconds
-        
-        // Calculate how much to add per frame
-        const increment = target / (duration / 16); 
-        let current = 0;
-        
-        const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-                // Format with commas and keep animating
-                numberEl.textContent = Math.ceil(current).toLocaleString();
-                requestAnimationFrame(updateCounter);
-            } else {
-                // Ensure it lands exactly on the target number at the end
-                numberEl.textContent = target.toLocaleString(); 
-            }
-        };
-        
-        // Start the animation
-        updateCounter();
-    });
 
   });
