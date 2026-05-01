@@ -1,3 +1,9 @@
+function toggleMenu() {
+    var m = document.getElementById('mobile-menu');
+    var b = document.getElementById('hamburger');
+    if(m){ m.classList.toggle('open'); }
+    if(b){ b.classList.toggle('open'); }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Select all the elements we need
@@ -7,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateInputs = document.querySelectorAll('.date-input');
     const startDateInput = dateInputs[0];
     const endDateInput = dateInputs[1];
-    const sortBtn = document.querySelectorAll('.table-controls .btn-text')[1]; // The "Sort by" button
+    const sortBtn = document.querySelector('.table-controls .btn-text'); // The "Sort by" button
     const exportBtn = document.querySelector('.btn-export');
     const cancelSelectedBtn = document.querySelector('.btn-danger');
     const paginationContainer = document.querySelector('.pagination-buttons');
@@ -212,31 +218,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Run once on load to set up initial state
     renderTable();
 
-    // 11. STAT CARDS: BULLETPROOF COUNT-UP ANIMATION
-    const statNumbers = document.querySelectorAll('.animate-number');
-    
-    statNumbers.forEach(numberEl => {
-        // Grab the target and remove any commas/spaces before doing math
-        const rawTarget = numberEl.getAttribute('data-target') || '0';
-        const target = parseFloat(rawTarget.replace(/,/g, '').trim()); 
-        
-        // Failsafe in case a non-number slips through
-        if (isNaN(target)) return;
-        
-        const duration = 1500; // Animation lasts 1.5 seconds
-        const increment = target / (duration / 16); 
-        let current = 0;
-        
-        const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-                numberEl.textContent = Math.ceil(current).toLocaleString();
-                requestAnimationFrame(updateCounter);
-            } else {
-                numberEl.textContent = target.toLocaleString(); 
-            }
-        };
-        
-        updateCounter();
-    });
 });
