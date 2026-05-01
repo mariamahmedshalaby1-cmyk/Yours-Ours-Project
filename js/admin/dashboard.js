@@ -1,3 +1,9 @@
+function toggleMenu() {
+    var m = document.getElementById('mobile-menu');
+    var b = document.getElementById('hamburger');
+    if(m){ m.classList.toggle('open'); }
+    if(b){ b.classList.toggle('open'); }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -241,75 +247,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-  /* ── 8. RECENT ACTIVITY: LIVE FEED SIMULATOR ── */
-  const activityList = document.querySelector('.activity-list');
-  if (activityList) {
-      const allEvents = [
-          "<p><strong>Youssef</strong> booked a Carpenter service.</p>",
-          "<p><strong>Ahmed</strong> left a 5-star review for a Plumber.</p>",
-          "<p>New provider <strong>Hassan (Electrician)</strong> joined the platform.</p>",
-          "<p>Booking #BK-10114 marked as Completed.</p>",
-          "<p><strong>Omar</strong> cancelled an Electrician booking.</p>",
-          "<p><strong>Mahmoud</strong> booked a Plumber service.</p>",
-          "<p><strong>Tarek</strong> left a 4-star review for a Carpenter.</p>",
-          "<p>New provider <strong>Khaled (Plumber)</strong> joined the platform.</p>",
-          "<p>Booking #BK-10129 marked as Completed.</p>"
-      ];
 
-      let availableEvents = [...allEvents];
-
-      setInterval(() => {
-          if (availableEvents.length === 0) {
-              availableEvents = [...allEvents];
-          }
-
-          const randomIndex = Math.floor(Math.random() * availableEvents.length);
-          const randomEvent = availableEvents.splice(randomIndex, 1)[0];
-
-          const newLi = document.createElement('li');
-          
-          newLi.style.opacity = '0';
-          newLi.style.transform = 'translateY(-10px)';
-          newLi.style.transition = 'all 0.4s ease';
-          
-          newLi.innerHTML = `<span class="time text-muted">Just now</span>${randomEvent}`;
-          activityList.prepend(newLi);
-          
-          setTimeout(() => {
-              newLi.style.opacity = '1';
-              newLi.style.transform = 'translateY(0)';
-          }, 50);
-
-          if (activityList.children.length > 4) {
-              activityList.lastElementChild.remove();
-          }
-
-          const times = activityList.querySelectorAll('.time');
-          let currentMinutes = 0;
-          
-          times.forEach((timeEl, index) => {
-              if (index === 0) {
-                  timeEl.textContent = "Just now";
-              } else {
-                  currentMinutes += Math.floor(Math.random() * 6) + 1;
-                  timeEl.textContent = `${currentMinutes} mins ago`;
-              }
-          });
-      }, 15000); 
-  }
-
-  /* ── 9. TOP WORKERS: CLICKABLE PROFILES ── */
-  const workerItems = document.querySelectorAll('.worker-item');
-  workerItems.forEach(item => {
-      item.style.cursor = 'pointer';
-      item.addEventListener('click', () => {
-          const name = item.querySelector('strong').textContent;
-          const role = item.querySelector('.text-muted').textContent.split('•')[0].trim();
-          alert(`Opening Full Profile for: ${name}\nProfession: ${role}\n\nHere you can see their full job history, reviews, and contact info.`);
-      });
-  });
-
-  /* ── 10. TOP ACTIVE USERS: TABLE SORTING ── */
+  /* ── 8. TOP ACTIVE USERS: TABLE SORTING ── */
   const table = document.querySelector('.table-card .data-table');
   if (table && !table.closest('.urgent-issues')) { 
       const headers = table.querySelectorAll('th');
@@ -340,27 +279,5 @@ document.addEventListener('DOMContentLoaded', () => {
           }
       });
   }
-
-  /* ── 11. STAT CARDS: COUNT-UP ANIMATION ── */
-  const statNumbers = document.querySelectorAll('.animate-number');
-  
-  statNumbers.forEach(numberEl => {
-      const target = +numberEl.getAttribute('data-target'); 
-      const duration = 1500; 
-      const increment = target / (duration / 16); 
-      let current = 0;
-      
-      const updateCounter = () => {
-          current += increment;
-          if (current < target) {
-              numberEl.textContent = Math.ceil(current).toLocaleString();
-              requestAnimationFrame(updateCounter);
-          } else {
-              numberEl.textContent = target.toLocaleString(); 
-          }
-      };
-      
-      updateCounter();
-  });
 
 });
