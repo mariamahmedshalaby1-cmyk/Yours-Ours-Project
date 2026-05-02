@@ -40,8 +40,60 @@
 
 <main class="pro-page-main">
         <section>
-            <h2>Welcome back, Professional!</h2>
-            <p><mark>Notice:</mark> You have 3 new booking requests waiting for your approval.</p>
+           
+     <section class="welcome-section">
+    <h2>Welcome back, Professional!</h2>
+    <p><mark>Notice:</mark> You have 3 new booking requests waiting for your approval.</p>
+    
+    <!-- Emergency Banner Slot -->
+    <div class="emergency-request-box">
+        <p>🚨 <strong>Immediate Action Required:</strong> Samy Ahmed has an emergency request (Main Fuse Box Sparking).</p>
+    </div>
+</section>
+
+<!-- Small spacer for breathing room -->
+<div class="section-divider"></div>
+
+<!-- NEXT SCHEDULED JOB -->
+<section class="next-job-alert">
+    <header>
+        <h3>📅 Next Scheduled Job</h3>
+    </header>
+    <div class="job-card-content">
+        <p><strong>Today at 4:00 PM</strong> — AC Filter Cleaning</p>
+        <p>Location: Maadi, Street 15, Bldg 4</p>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SERVICE INSIGHTS (ORGANIZED) -->
+<section class="service-analysis-hub">
+    <div class="analysis-header">
+        <h3>📊 Service Analysis</h3>
+        <div class="view-toggle">
+            <label>View:</label>
+            <select>
+                <option>Weekly</option>
+                <option>Monthly</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Category Selection -->
+    <div class="analysis-nav">
+        <button type="button">Completed Jobs</button>
+        <button type="button">Average Rating</button>
+        <button type="button">Response Speed</button>
+        <button type="button">Total Earnings</button>
+    </div>
+
+    <!-- Data Result Area -->
+    <div class="analysis-result-display">
+        <p>Select a category above to view performance details.</p>
+    </div>
+
+
         </section>
 
         <section>
@@ -57,6 +109,19 @@
                     </tr>
                 </thead>
                 <tbody>
+
+
+                  <tr class="emergency-row-highlight">
+                <td><strong>Samy Ahmed</strong></td>
+                <td>Electrical Repair</td>
+                <td>March 10, 2026</td>
+                <td><strong style="color: red;"> Immediate</strong></td>
+                <td>
+                    <button type="button">Accept Now</button> 
+                    <button type="button">Decline</button>
+                </td>
+            </tr>
+
                     <tr>
                         <td>Ahmed Ali</td>
                         <td>Electrical Repair</td>
