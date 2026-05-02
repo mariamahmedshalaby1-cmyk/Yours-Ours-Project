@@ -96,6 +96,11 @@
                 </div>
 
                 <div>
+    <label class="form-label">Years of Expertise</label>
+    <input type="number" name="experience_years" min="0" max="50" placeholder="e.g. 5" class="form-input">
+</div>
+
+                <div>
                     <label class="form-label">Services Offered</label>
                     <div class="form-input" style="display:flex; gap:20px; align-items:center;">
                         <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-size:0.9rem;">
@@ -119,6 +124,26 @@
             </div>
 
         </div>
+
+        <div class="verification-card">
+    <div class="upload-container">
+        <i class="fa-solid fa-id-card upload-icon"></i>
+        <h3>National ID Verification</h3>
+        <p class="text-muted">Upload a clear photo of your National ID (Front & Back). This will <strong>not</strong> be shared with clients.</p>
+        
+        <label class="custom-file-upload">
+            <input type="file" name="national_id" accept="image/*,.pdf" style="display:none;">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Choose File
+        </label>
+        <span id="file-name-display" class="text-muted" style="font-size: 0.8rem;">No file chosen</span>
+    </div>
+
+    <div class="id-hint-box">
+        <i class="fa-solid fa-shield-halved" style="color: var(--palm);"></i>
+        <span><strong>Why this?</strong> Verified professionals receive a "Trust Badge" and appear higher in search results.</span>
+    </div>
+</div>
+
 
         <div style="margin-top:28px; display:flex; gap:14px; align-items:center;">
             <input type="submit" value="Save Changes" class="btn btn-primary" style="cursor:pointer;">
