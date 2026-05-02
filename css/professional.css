@@ -433,3 +433,180 @@
   font-size: 1.2rem;
   flex-shrink: 0;
 }
+
+
+.section-divider {
+    height: 1px;
+    margin-top: 8px;
+    margin-bottom: 24px;
+    background-color: transparent; /* Just for spacing as requested */
+}
+
+/* Emergency Alert Box */
+.emergency-request-box {
+    background-color: #fff5f5; /* Light red tint */
+    border-width: 1.5px;
+    border-style: solid;
+    border-color: var(--error);
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: var(--radius);
+    margin-top: 20px;
+}
+
+.emergency-request-box p {
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* Next Job Alert Card */
+.next-job-alert {
+    background-color: var(--white);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--border-light);
+    border-radius: var(--radius);
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 28px;
+    padding-right: 28px;
+    box-shadow: var(--shadow);
+}
+
+.next-job-alert h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: var(--palm);
+}
+
+.job-card-content p {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    margin-bottom: 4px;
+}
+
+.job-card-content p strong {
+    color: var(--palm);
+    font-weight: 700;
+}
+
+/* Service Analysis Hub */
+.service-analysis-hub {
+    background-color: var(--white);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--border-light);
+    border-radius: var(--radius);
+    padding-top: 28px;
+    padding-bottom: 28px;
+    padding-left: 28px;
+    padding-right: 28px;
+}
+
+.analysis-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--border-light);
+}
+
+.analysis-header h3 {
+    margin-bottom: 0;
+    font-size: 1.4rem;
+}
+
+/* Weekly/Monthly Select Toggle */
+.view-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.view-toggle label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-mid);
+}
+
+.view-toggle select {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: var(--radius);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--border);
+    background-color: var(--serenade);
+    font-size: 0.85rem;
+}
+
+/* Analysis Navigation Buttons */
+.analysis-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.analysis-nav button {
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 18px;
+    padding-right: 18px;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-width: 1.5px;
+    border-style: solid;
+    border-color: var(--palm);
+    background-color: var(--white);
+    color: var(--palm);
+    transition: all 0.2s ease;
+}
+
+.analysis-nav button:hover {
+    background-color: var(--serenade);
+}
+
+/* Active state for the buttons */
+.analysis-nav button.active {
+    background-color: var(--palm);
+    color: var(--lime);
+}
+
+/* Data Display Box */
+.analysis-result-display {
+    background-color: var(--serenade);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius: var(--radius);
+    text-align: center;
+    border-width: 1px;
+    border-style: dashed;
+    border-color: var(--border);
+}
+
+.analysis-result-display p {
+    color: var(--text-mid);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* Table Row Highlight for Emergency */
+.emergency-row-highlight td {
+    background-color: #fff9f9 !important;
+}
+
+.emergency-row-highlight td strong {
+    color: var(--error);
+}
+
