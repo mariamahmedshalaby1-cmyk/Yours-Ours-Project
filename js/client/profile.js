@@ -12,15 +12,10 @@ document.querySelectorAll('.favorite-btn').forEach(function(btn) {
     });
 });
 
-document.querySelectorAll('.favorite-heart').forEach(function(btn) {
+document.querySelectorAll('.secondary-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
-        if (this.textContent === '♡') {
-            this.textContent = '♥';
-            this.style.color = 'var(--error)';
-        } else {
-            this.textContent = '♡';
-            this.style.color = '';
-        }
+        var proName = this.textContent.replace('💬 Chat with ', '').trim();
+        alert('💬 Chat with ' + proName + ' is coming soon! For now, call them directly after booking.');
     });
 });
 
