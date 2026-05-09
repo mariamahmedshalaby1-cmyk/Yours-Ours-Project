@@ -4,6 +4,24 @@ document.querySelectorAll('.filter-tag').forEach(function(tag) {
             t.classList.remove('active');
         });
         this.classList.add('active');
+
+        var filter = this.textContent.trim().toLowerCase();
+
+        document.querySelectorAll('.pro-card').forEach(function(card) {
+            var text = card.textContent.toLowerCase();
+
+            if (filter === 'all') {
+                card.style.display = '';
+            } else if (filter.includes('electrician')) {
+                card.style.display = text.includes('electrician') ? '' : 'none';
+            } else if (filter.includes('plumber')) {
+                card.style.display = text.includes('plumber') ? '' : 'none';
+            } else if (filter.includes('emergency')) {
+                card.style.display = text.includes('30 mins') || text.includes('emergency') ? '' : 'none';
+            } else {
+                card.style.display = '';
+            }
+        });
     });
 });
 
