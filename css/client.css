@@ -1151,8 +1151,8 @@
   border-top-width: 1px;
   border-top-style: solid;
   border-top-color: var(--border-light);
-  margin-top: 48px;
-  margin-bottom: 48px;
+  margin-top: 24px;
+  margin-bottom: 32px;
 }
 
 .pro-pledge {
@@ -1953,4 +1953,10 @@ figcaption {
     margin-bottom: 48px;
     background-color: var(--white);
     box-shadow: var(--shadow);
+}
+
+.pro-text-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
