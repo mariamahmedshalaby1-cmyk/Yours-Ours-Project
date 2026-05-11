@@ -21,3 +21,9 @@ function toggleMenu() {
     if (m) m.classList.toggle("open");
     if (b) b.classList.toggle("open");
 }
+var bellBtn = document.querySelector('.nav-icon-btn');
+if (bellBtn) {
+    bellBtn.addEventListener('click', function() {
+        alert('🔔 No new notifications right now.');
+    });
+}
