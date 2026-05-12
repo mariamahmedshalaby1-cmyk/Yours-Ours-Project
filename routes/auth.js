@@ -52,7 +52,7 @@ router.post('/login', async (req, res) => {
         // Check if password matches
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
-            return res.status(400).json({ message: 'Invalid credentials' });
+            return res.status(401).json({ message: 'Invalid credentials' });
         }
 
         // Create a token
