@@ -4,6 +4,35 @@ function toggleMenu() {
     if(m){ m.classList.toggle('open'); }
     if(b){ b.classList.toggle('open'); }
 }
+// Stores real stats so the download button can use them too
+var realStats = {
+    totalBookings: 0,
+    totalUsers: 0,
+    activePros: 0,
+    pendingPros: 0
+};
+
+async function loadDashboardStats() {
+    try {
+        const res  = await fetch('http://localhost:3000/api/admin/stats');
+        const data = await res.json();
+
+        // Save for the download button
+        realStats = data;
+
+        // Update the stat cards
+        const cards = document.querySelectorAll('.stat-card h3');
+        if (cards[0]) cards[0].textContent = data.totalBookings;
+        if (cards[1]) cards[1].textContent = data.totalUsers;
+        if (cards[2]) cards[2].textContent = data.activePros;
+        if (cards[3]) cards[3].textContent = data.pendingPros;
+
+    } catch (err) {
+        console.error('Failed to load dashboard stats:', err);
+    }
+}
+
+loadDashboardStats();
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -193,11 +222,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (downloadBtn) {
       downloadBtn.addEventListener('click', () => {
           let csvContent = "Metric,Value\n";
-          csvContent += "Total Bookings,200\n";
-          csvContent += "Total Users,65400\n";
-          csvContent += "Active Providers,128\n";
-          csvContent += "Revenue,8900.00 EGP\n";
-          csvContent += "Inactive Providers,248\n";
+          csvContent += `Total Bookings,${realStats.totalBookings}\n`;
+          csvContent += `Total Users,${realStats.totalUsers}\n`;
+          csvContent += `Active Providers,${realStats.activePros}\n`;
+          csvContent += `Pending Verification,${realStats.pendingPros}\n`;
 
           const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
           const link = document.createElement('a');
