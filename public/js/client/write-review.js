@@ -23,16 +23,36 @@ function submitReview() {
         setTimeout(function(){ document.getElementById('star-rating').style.animation = ''; }, 300);
         return;
     }
-    var rating  = parseInt(selected.value);
-    var text    = document.getElementById('review-text').value.trim();
-    var stars   = '★'.repeat(rating) + '☆'.repeat(5 - rating);
 
-    document.getElementById('success-stars').textContent = stars;
-    document.getElementById('success-text').textContent  = text || 'No written review — just a star rating.';
+    var rating = parseInt(selected.value);
+    var text   = document.getElementById('review-text').value.trim();
+    var params = new URLSearchParams(window.location.search);
 
-    document.getElementById('review-form-section').style.display = 'none';
-    var successEl = document.getElementById('review-success');
-    successEl.style.display = 'flex';
+    var reviewData = {
+        professionalId: params.get('proId'),
+        clientId:       localStorage.getItem('userId'),
+        clientName:     localStorage.getItem('name'),
+        rating:         rating,
+        text:           text
+    };
+
+    fetch('http://localhost:3000/api/reviews', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(reviewData)
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+        // Show the success UI exactly as before
+        var stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+        document.getElementById('success-stars').textContent = stars;
+        document.getElementById('success-text').textContent  = text || 'No written review — just a star rating.';
+        document.getElementById('review-form-section').style.display = 'none';
+        document.getElementById('review-success').style.display = 'flex';
+    })
+    .catch(function(err) {
+        console.error('Failed to submit review:', err);
+    });
 }
 
 var styleEl = document.createElement('style');
