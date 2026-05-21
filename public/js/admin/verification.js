@@ -8,13 +8,65 @@ function toggleMenu() {
   document.addEventListener('DOMContentLoaded', () => {
     // --- 1. Core Elements ---
     const grid = document.querySelector('.queue-grid');
-    const allCards = Array.from(document.querySelectorAll('.queue-card'));
+    let allCards = [];
     const searchInput = document.querySelector('.search-input-group input');
     const professionFilter = document.querySelector('.filter-select');
     const sortBtn = document.querySelector('.table-controls .btn-text');
     const loadMoreBtn = document.querySelector('.btn-page');
     const loadMoreContainer = document.querySelector('.pagination-container'); 
     const countText = document.querySelector('.table-card > .text-muted');
+
+    async function loadPendingPros() {
+    try {
+        const res  = await fetch('http://localhost:3000/api/admin/pending-pros');
+        const pros = await res.json();
+
+        allCards = pros.map(pro => {
+            const card = document.createElement('div');
+            card.className = 'queue-card';
+            card.dataset.created = pro.createdAt; // used by getAgeInHours
+            card.dataset.deleted = 'false';
+
+            card.innerHTML = `
+                <div class="queue-card-header">
+                    <div class="provider-avatar">
+                        <span class="material-icons-sharp">person</span>
+                    </div>
+                    <div class="provider-title">
+                        <h3>${pro.name}</h3>
+                        <span class="profession-badge">${pro.specialty || 'N/A'}</span>
+                    </div>
+                    <span class="status-badge status-pending">Pending</span>
+                </div>
+                <div class="queue-card-body">
+                    <div class="info-line">
+                        <span class="material-icons-sharp">location_on</span>
+                        <span>${pro.serviceArea || 'N/A'}</span>
+                    </div>
+                    <div class="info-line">
+                        <span class="material-icons-sharp">work</span>
+                        <span>${pro.experience ? pro.experience + ' years experience' : 'N/A'}</span>
+                    </div>
+                </div>
+                <div class="queue-card-actions btns-line">
+                    <button class="btn-approve" data-id="${pro._id}">
+                        <span class="material-icons-sharp">check_circle</span> Approve
+                    </button>
+                    <button class="btn-reject" data-id="${pro._id}">
+                        <span class="material-icons-sharp">cancel</span> Reject
+                    </button>
+                </div>
+            `;
+            return card;
+        });
+
+        renderCards();
+
+    } catch (err) {
+        console.error('Failed to load pending professionals:', err);
+        grid.innerHTML = `<p style="text-align:center; padding:24px; color:var(--text-muted);">Failed to load applications. Please try again.</p>`;
+    }
+}
 
     // --- 2. Dynamic "No More" Message Setup ---
     const noMoreMsg = document.createElement('p');
@@ -41,19 +93,11 @@ function toggleMenu() {
 
     // --- 5. Helper: Age Calculation ---
     function getAgeInHours(card) {
-      const timeText = card.querySelector('.info-line:first-child span:last-child').textContent;
-      const match = timeText.match(/(\d+)\s+(hour|day|week)/);
-      if (!match) return 9999; 
-      
-      const amount = parseInt(match[1]);
-      const unit = match[2];
-      
-      if (unit === 'hour') return amount;
-      if (unit === 'day') return amount * 24;
-      if (unit === 'week') return amount * 24 * 7;
-      
-      return 9999;
-    }
+    const created = card.dataset.created;
+    if (!created) return 9999;
+    const diffMs = Date.now() - new Date(created).getTime();
+    return diffMs / (1000 * 60 * 60);
+}
 
     // --- 6. Main Render Function ---
     function renderCards() {
@@ -170,13 +214,23 @@ function toggleMenu() {
           const providerName = card.querySelector('h3').textContent;
           const btnsLine = card.querySelector('.btns-line');
           
-          if (approveBtn) {
-            badge.textContent = 'Approved';
-            badge.className = 'status-badge status-approved';
-          } else {
-            badge.textContent = 'Rejected';
-            badge.className = 'status-badge status-rejected';
-          }
+          const proId  = approveBtn ? approveBtn.dataset.id : rejectBtn.dataset.id;
+const status = approveBtn ? 'approved' : 'rejected';
+
+// Call the real backend
+fetch(`http://localhost:3000/api/admin/verify/${proId}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status })
+}).catch(err => console.error('Failed to update status:', err));
+
+if (approveBtn) {
+    badge.textContent = 'Approved';
+    badge.className = 'status-badge status-approved';
+} else {
+    badge.textContent = 'Rejected';
+    badge.className = 'status-badge status-rejected';
+}
 
           btnsLine.style.opacity = '0.5';
           card.style.pointerEvents = 'none';
@@ -199,7 +253,7 @@ function toggleMenu() {
     }
 
     // --- 12. Initial Load ---
-    renderCards();
+loadPendingPros();
 
 
   });
