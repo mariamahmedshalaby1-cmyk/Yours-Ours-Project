@@ -20,25 +20,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const showingText = document.querySelector('.table-actions .text-muted');
     const selectAllCheckbox = document.querySelector('thead input[type="checkbox"]');
 
-    // 2. Parse the existing table rows into a manageable Array of Objects
-    let allRows = Array.from(tbody.querySelectorAll('tr')).map(tr => {
-        const cells = tr.querySelectorAll('td');
-        // Convert "March 10, 2026, 10:00 AM" into a real JavaScript Date object
-        const dateStr = cells[5].textContent.trim();
-        const dateObj = new Date(dateStr.replace(',', '')); 
+    // 2. allRows starts empty — gets filled by loadBookings() from the real API
+let allRows = [];
 
-        return {
-            element: tr,
-            checkbox: cells[0].querySelector('input[type="checkbox"]'),
-            id: cells[1].textContent.trim(),
-            customer: cells[2].textContent.trim(),
-            provider: cells[3].textContent.trim(),
-            service: cells[4].textContent.trim(),
-            dateObj: dateObj,
-            location: cells[6].textContent.trim(),
-            statusCell: cells[7]
-        };
-    });
+async function loadBookings() {
+    try {
+        const res      = await fetch('http://localhost:3000/api/admin/bookings');
+        const bookings = await res.json();
+
+        allRows = bookings.map(b => {
+            // Build a real TR element so all existing logic keeps working
+            const tr = document.createElement('tr');
+
+            const dateObj     = new Date(b.scheduledTime);
+            const dateDisplay = isNaN(dateObj)
+                ? 'N/A'
+                : dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+                  + ', ' + dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+            tr.innerHTML = `
+                <td><input type="checkbox"></td>
+                <td><b>${b._id}</b></td>
+                <td>${b.clientId?.name       || 'N/A'}</td>
+                <td>${b.professionalId?.name || 'N/A'}</td>
+                <td>${b.serviceType          || 'N/A'}</td>
+                <td>${dateDisplay}</td>
+                <td>${b.address             || 'N/A'}</td>
+                <td><span class="badge status-${b.status}">${b.status}</span></td>
+            `;
+
+            const cells = tr.querySelectorAll('td');
+            return {
+                element:    tr,
+                checkbox:   cells[0].querySelector('input[type="checkbox"]'),
+                id:         b._id,
+                customer:   b.clientId?.name       || '',
+                provider:   b.professionalId?.name || '',
+                service:    b.serviceType          || '',
+                dateObj:    isNaN(dateObj) ? new Date(0) : dateObj,
+                location:   b.address || '',
+                statusCell: cells[7]
+            };
+        });
+
+        renderTable(); // hand off to your existing render logic
+
+    } catch (err) {
+        console.error('Failed to load bookings:', err);
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding: 24px; color: var(--text-muted);">Failed to load bookings. Please try again.</td></tr>`;
+    }
+}
 
     // 3. State Variables
     let currentPage = 1;
@@ -215,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.removeChild(link);
     });
 
-    // Run once on load to set up initial state
-    renderTable();
+    // Run once on load — fetches real data then renders
+loadBookings();
 
 });
