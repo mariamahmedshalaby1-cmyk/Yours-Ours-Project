@@ -29,8 +29,8 @@ app.use('/api/auth', require('./routes/auth'));
 // app.use('/api/bookings', require('./routes/bookings'));
 
 // Person 4 - Reviews + Admin routes (not done yet)
-// app.use('/api/reviews', require('./routes/reviews'));
-// app.use('/api/admin',   require('./routes/admin'));
+app.use('/api/reviews', require('./routes/reviews'));
+app.use('/api/admin',   require('./routes/admin'));
 
 // Person 5 - Payments (not done yet)
 // app.use('/api/payments', require('./routes/payments'));
