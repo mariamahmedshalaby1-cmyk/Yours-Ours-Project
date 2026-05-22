@@ -23,7 +23,7 @@ app.get('/test', (req, res) => {
 app.use('/api/auth', require('./routes/auth'));
 
 // Person 2 - Professionals routes (not done yet)
-// app.use('/api/professionals', require('./routes/professionals'));
+ app.use('/api/professionals', require('./routes/professionals'));
 
 // Person 3 - Bookings routes (not done yet)
 // app.use('/api/bookings', require('./routes/bookings'));
