@@ -14,7 +14,7 @@ function validateForm() {
 
     // If validation passes send to backend
     if (valid) {
-        fetch('http://localhost:3000/api/auth/forgot-password', {
+        fetch('/api/auth/forgot-password', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email })
