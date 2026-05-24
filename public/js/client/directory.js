@@ -1,3 +1,39 @@
+async function loadProfessionals() {
+    try {
+        var response = await fetch('http://localhost:3000/api/professionals');
+        var professionals = await response.json();
+
+        var container = document.querySelector('.professionals-grid');
+        if (!container) return;
+
+        container.innerHTML = '';
+
+        professionals.forEach(function(pro) {
+            var card = document.createElement('article');
+            card.className = 'pro-card';
+
+            card.innerHTML =
+                '<div class="card-header">' +
+                    '<button class="favorite-heart">♡</button>' +
+                '</div>' +
+                '<div class="pro-info">' +
+                    '<img src="https://via.placeholder.com/80" alt="' + pro.fullName + '" class="pro-avatar">' +
+                    '<h3>' + pro.fullName + (pro.isVerified ? ' <span class="verified-badge">🛡️</span>' : '') + '</h3>' +
+                    '<p class="pro-title">' + (pro.specialty || '') + '</p>' +
+                    '<p class="pro-rating">⭐ ' + (pro.rating || 'New') + ' (' + (pro.reviewCount || 0) + ' reviews)</p>' +
+                '</div>' +
+                '<div class="card-footer">' +
+                    '<a href="profile.html?id=' + pro._id + '" class="book-btn">View Profile & Book</a>' +
+                '</div>';
+
+            container.appendChild(card);
+        });
+
+    } catch (err) {
+        console.error('Could not load professionals:', err);
+    }
+}
+loadProfessionals();
 document.querySelectorAll('.filter-tag').forEach(function(tag) {
     tag.addEventListener('click', function() {
         document.querySelectorAll('.filter-tag').forEach(function(t) {
