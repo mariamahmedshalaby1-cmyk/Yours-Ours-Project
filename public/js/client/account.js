@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     var token  = localStorage.getItem('token');
 
     if (!userId) {
-        window.location.href = 'login.html';
+        window.location.href = '../landing-page/login.html';
         return;
     }
 
@@ -13,13 +13,12 @@ window.addEventListener('DOMContentLoaded', async function() {
         });
         var user = await response.json();
 
-        // ⚠️ Replace these IDs with the real ones from your account.html
         if (document.getElementById('account-name'))
             document.getElementById('account-name').textContent = user.name;
         if (document.getElementById('account-email'))
-            document.getElementById('account-email').textContent = user.email;
+            document.getElementById('account-email').textContent = '✉️ ' + user.email;
         if (document.getElementById('account-phone'))
-            document.getElementById('account-phone').textContent = user.phone;
+            document.getElementById('account-phone').textContent = '📞 ' + user.phone;
 
     } catch (err) {
         console.error('Could not load account data:', err);
