@@ -74,16 +74,16 @@ document.querySelector('.primary-btn').addEventListener('click', function() {
     });
 });
 
-document.querySelectorAll('.favorite-heart').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-        if (this.textContent === '♡') {
-            this.textContent = '♥';
-            this.style.color = 'var(--error)';
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('favorite-heart')) {
+        if (e.target.textContent === '♡') {
+            e.target.textContent = '♥';
+            e.target.style.color = 'var(--error)';
         } else {
-            this.textContent = '♡';
-            this.style.color = '';
+            e.target.textContent = '♡';
+            e.target.style.color = '';
         }
-    });
+    }
 });
 
 function toggleMenu() {
