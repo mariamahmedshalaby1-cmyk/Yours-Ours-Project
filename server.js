@@ -26,8 +26,8 @@ app.use('/api/auth', require('./routes/auth'));
 // Person 2 - Professionals routes (done)
  app.use('/api/professionals', require('./routes/professionals'));
 
-// Person 3 - Bookings routes (not done yet)
-// app.use('/api/bookings', require('./routes/bookings'));
+// Person 3 - Bookings routes (done)
+app.use('/api/bookings', require('./routes/bookings'));
 
 // Person 4 - Reviews + Admin routes (done)
 app.use('/api/reviews', require('./routes/reviews'));
