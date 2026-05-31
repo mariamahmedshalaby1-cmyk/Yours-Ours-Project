@@ -4,13 +4,13 @@ const bookingSchema = new mongoose.Schema({
 
     client: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'User',                            
         required: true
     },
 
     professional: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Professional',                    
         required: true
     },
 

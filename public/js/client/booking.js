@@ -94,7 +94,7 @@ if (bellBtn) {
         alert('🔔 No new notifications right now.');
     });
 }
-
+//read name + service from URL
 (function() {
     var params  = new URLSearchParams(window.location.search);
     var pro     = params.get('pro')     || 'Samy Ahmed';
@@ -105,8 +105,7 @@ if (bellBtn) {
     if (svcEl)  svcEl.textContent = service.replace(/\+/g, ' ');
     document.title = 'Book ' + pro.replace(/\+/g, ' ') + ' | Yours&Ours';
 })();
-
-
+//time slot selection
 document.querySelectorAll('.time-pill').forEach(function(pill) {
     pill.addEventListener('click', function() {
         document.querySelectorAll('.time-pill').forEach(function(p) {
@@ -115,7 +114,7 @@ document.querySelectorAll('.time-pill').forEach(function(pill) {
         this.classList.add('selected');
     });
 });
-
+//validation for booking form
 function validateBookingForm() {
     var valid        = true;
     var textarea     = document.querySelector('.smart-booking-form textarea');
@@ -157,7 +156,7 @@ function validateBookingForm() {
 
     return valid;
 }
-
+//form submission 
 var form = document.querySelector('.smart-booking-form');
 
 if (form) {
@@ -169,7 +168,7 @@ if (form) {
         var params         = new URLSearchParams(window.location.search);
         var professionalId = params.get('professionalId');
         var clientId       = localStorage.getItem('userId');
-        var token          = localStorage.getItem('token'); // ← ADDED
+        var token          = localStorage.getItem('token');
         var service        = params.get('service') || 'General Service';
 
         var description  = document.querySelector('.smart-booking-form textarea').value.trim();
@@ -204,7 +203,7 @@ if (form) {
                 method: 'POST',
                 headers: {
                     'Content-Type':  'application/json',
-                    'Authorization': 'Bearer ' + token  
+                    'Authorization': 'Bearer ' + token
                 },
                 body: JSON.stringify(bookingData)
             });
@@ -232,14 +231,14 @@ if (form) {
         }
     });
 }
-
+// hamburger menu toggle
 function toggleMenu() {
     var m = document.getElementById("mobile-menu");
     var b = document.getElementById("hamburger");
     if (m) m.classList.toggle("open");
     if (b) b.classList.toggle("open");
 }
-
+//bell notification 
 var bellBtn = document.querySelector('.nav-icon-btn');
 if (bellBtn) {
     bellBtn.addEventListener('click', function() {

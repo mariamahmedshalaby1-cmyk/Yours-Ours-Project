@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const Booking = require('../models/Booking');
-const auth    = require('../middleware/auth'); 
+const auth    = require('../middleware/auth');
 
 router.post('/', auth, async (req, res) => {
     try {
@@ -43,7 +43,6 @@ router.post('/', auth, async (req, res) => {
     }
 });
 
-
 router.get('/client/:clientId', auth, async (req, res) => {
     try {
 
@@ -52,7 +51,7 @@ router.get('/client/:clientId', auth, async (req, res) => {
         const skip  = (page - 1) * limit;
 
         const bookings = await Booking.find({ client: req.params.clientId })
-            .populate('professional', 'name email phone')
+            .populate('professional', 'fullName email phone') 
             .sort({ createdAt: -1 })
             .skip(skip)
             .limit(limit);
@@ -75,7 +74,7 @@ router.get('/:id', auth, async (req, res) => {
 
         const booking = await Booking.findById(req.params.id)
             .populate('client',       'name email phone')
-            .populate('professional', 'name email phone');
+            .populate('professional', 'fullName email phone'); 
 
         if (!booking) {
             return res.status(404).json({ message: 'Booking not found' });
@@ -88,7 +87,7 @@ router.get('/:id', auth, async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     try {
 
         const page  = parseInt(req.query.page)  || 1;
@@ -97,7 +96,7 @@ router.get('/', async (req, res) => {
 
         const bookings = await Booking.find()
             .populate('client',       'name email')
-            .populate('professional', 'name email')
+            .populate('professional', 'fullName email')
             .sort({ createdAt: -1 })
             .skip(skip)
             .limit(limit);

@@ -29,7 +29,7 @@ app.use('/api/auth', require('./routes/auth'));
 // Person 3 - Bookings routes (not done yet)
 // app.use('/api/bookings', require('./routes/bookings'));
 
-// Person 4 - Reviews + Admin routes (not done yet)
+// Person 4 - Reviews + Admin routes (done)
 app.use('/api/reviews', require('./routes/reviews'));
 app.use('/api/admin',   require('./routes/admin'));
 

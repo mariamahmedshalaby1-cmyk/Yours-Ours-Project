@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-
+const User = require('../models/User').default;
+const auth = require('../middleware/auth');
 // ─────────────────────────────────────
 // SIGNUP — connects to your signup.html
 // ─────────────────────────────────────
@@ -63,12 +63,12 @@ router.post('/login', async (req, res) => {
         );
 
         // Send token + user info back to frontend
-        res.json({
-            token,
-            role: user.role,
-            name: user.name,
-            userId: user._id
-        });
+       res.status(200).json({
+        token,
+        role:   user.role,
+        name:   user.name,
+        userId: user._id
+   }); 
         
     } catch (err) {
         res.status(500).json({ message: 'Server error' });
@@ -78,7 +78,7 @@ router.post('/login', async (req, res) => {
 // ─────────────────────────────────────
 // GET USER — connects to your account.html
 // ─────────────────────────────────────
-router.get('/user/:id', async (req, res) => {
+router.get('/user/:id', auth, async (req, res) => {
     try {
         // Find user by ID but don't return the password
         const user = await User.findById(req.params.id).select('-password');
