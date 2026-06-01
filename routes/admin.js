@@ -3,9 +3,10 @@ const router = express.Router();
 const User = require('../models/User');
 const Professional = require('../models/Professional');
 const Booking = require('../models/Booking');
+const auth = require('../middleware/auth');
 
 // GET — dashboard stats (connects to admin/dashboard.html)
-router.get('/stats', async (req, res) => {
+router.get('/stats', auth, async (req, res) => {
   try {
     const totalUsers    = await User.countDocuments();
     const totalBookings = await Booking.countDocuments();
@@ -20,10 +21,10 @@ router.get('/stats', async (req, res) => {
 });
 
 // GET — pending verification queue (connects to admin/verification.html)
-router.get('/pending-pros', async (req, res) => {
+router.get('/pending-pros', auth, async (req, res) => {
   try {
     const pros = await Professional.find({ verificationStatus: 'pending' })
-      .sort({ createdAt: 1 }); // oldest requests first (fairest order)
+      .sort({ createdAt: 1 });
 
     res.json(pros);
 
@@ -32,10 +33,10 @@ router.get('/pending-pros', async (req, res) => {
   }
 });
 
-// PATCH — approve or reject a professional (connects to Approve/Reject buttons)
-router.patch('/verify/:id', async (req, res) => {
+// PATCH — approve or reject a professional
+router.patch('/verify/:id', auth, async (req, res) => {
   try {
-    const { status } = req.body; // expects 'approved' or 'rejected'
+    const { status } = req.body;
 
     if (!['approved', 'rejected'].includes(status)) {
       return res.status(400).json({ message: 'Invalid status value' });
@@ -54,12 +55,12 @@ router.patch('/verify/:id', async (req, res) => {
 });
 
 // GET — all bookings (connects to admin/bookingshistory.html)
-router.get('/bookings', async (req, res) => {
+router.get('/bookings', auth, async (req, res) => {
   try {
     const bookings = await Booking.find()
-      .populate('clientId', 'name')
-      .populate('professionalId', 'name specialty')
-      .sort({ createdAt: -1 }); // newest first
+      .populate('client', 'name')
+      .populate('professional', 'fullName specialty')
+      .sort({ createdAt: -1 });
 
     res.json(bookings);
 
