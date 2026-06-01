@@ -128,64 +128,6 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:last-child:hover {
   margin-bottom: 40px;
 }
 
-.search-bar {
-  display: flex;
-  max-width: 560px;
-  margin-left: auto;
-  margin-right: auto;
-  border-width: 2px;
-  border-style: solid;
-  border-color: var(--border);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-  background-color: var(--white);
-  transition-property: border-color, box-shadow;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
-}
-
-.search-bar:focus-within {
-  border-color: var(--sail);
-  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.20);
-}
-
-.search-bar input {
-  flex-grow: 1;
-  border-width: 0;
-  outline: none;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 22px;
-  padding-right: 22px;
-  font-size: 0.95rem;
-  background-color: transparent;
-  color: var(--text-dark);
-}
-
-.search-bar input::placeholder {
-  color: var(--text-muted);
-}
-
-.search-bar button {
-  background-color: var(--palm);
-  color: var(--lime);
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 30px;
-  padding-right: 30px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  border-width: 0;
-  cursor: pointer;
-  transition-property: background-color;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
-}
-
-.search-bar button:hover {
-  background-color: var(--palm-mid);
-}
-
 
 /* ── 11. FIND PROFESSIONALS SECTION ───────────────────────── */
 .find-professionals {
@@ -336,83 +278,10 @@ nav:not(.navbar):not(.booking-nav):not(.breadcrumb-nav) div a:last-child:hover {
   line-height: 1.8;
 }
 
-
-/* ── 14. CONTACT SECTION ───────────────────────────────────── */
-.contact {
-  padding-top: 80px;
-  padding-bottom: 80px;
-  padding-left: 40px;
-  padding-right: 40px;
-  background-color: var(--white);
-  text-align: center;
+.footer-spacer{
+    height: 120px;
+    background-color: var(--white);
 }
-
-.contact h2 {
-  margin-bottom: 12px;
-}
-
-.contact > p {
-  margin-bottom: 40px;
-}
-
-.contact form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.contact input,
-.contact textarea {
-  padding-top: 13px;
-  padding-bottom: 13px;
-  padding-left: 18px;
-  padding-right: 18px;
-  border-width: 1.5px;
-  border-style: solid;
-  border-color: var(--border);
-  border-radius: var(--radius);
-  font-size: 0.95rem;
-  color: var(--text-dark);
-  background-color: var(--serenade);
-  outline: none;
-  transition-property: border-color, box-shadow;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
-}
-
-.contact input:focus,
-.contact textarea:focus {
-  border-color: var(--sail);
-  box-shadow: 0 0 0 3px rgba(137, 201, 201, 0.15);
-}
-
-.contact input::placeholder,
-.contact textarea::placeholder {
-  color: var(--text-muted);
-}
-
-.contact button[type="submit"] {
-  background-color: var(--palm);
-  color: var(--lime);
-  padding-top: 14px;
-  padding-bottom: 14px;
-  border-radius: var(--radius-full);
-  font-size: 0.95rem;
-  font-weight: 700;
-  border-width: 0;
-  cursor: pointer;
-  transition-property: background-color;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
-}
-
-.contact button[type="submit"]:hover {
-  background-color: var(--palm-mid);
-}
-
 
 /* ── 15. SCROLLING REVIEWS TICKER ──────────────────────────── */
 /*
