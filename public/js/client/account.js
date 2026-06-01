@@ -2,10 +2,10 @@ window.addEventListener('DOMContentLoaded', async function() {
     var userId = localStorage.getItem('userId');
     var token  = localStorage.getItem('token');
 
-    //if (!userId) {
-       // window.location.href = '../landing-page/login.html';
-        //return;
-   // }
+    if (!userId) {
+       window.location.href = '../landing-page/login.html';
+        return;
+   }
 
     try {
         var response = await fetch('http://localhost:3000/api/auth/user/' + userId, {
