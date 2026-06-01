@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Review = require('../models/Review');
 const Professional = require('../models/Professional');
+const auth = require('../middleware/auth');
 
 // POST — save a new review (connects to write-review.html)
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   try {
     const { professionalId, clientId, clientName, rating, text } = req.body;
 
@@ -15,8 +16,7 @@ router.post('/', async (req, res) => {
     const avg = allReviews.reduce((sum, r) => sum + r.rating, 0) / allReviews.length;
 
     await Professional.findByIdAndUpdate(professionalId, {
-      rating: parseFloat(avg.toFixed(1)),
-      reviewCount: allReviews.length
+      averageRating: parseFloat(avg.toFixed(1))
     });
 
     res.status(201).json(review);
@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
 router.get('/:professionalId', async (req, res) => {
   try {
     const reviews = await Review.find({ professionalId: req.params.professionalId })
-      .sort({ createdAt: -1 }); // newest first
+      .sort({ createdAt: -1 });
 
     res.json(reviews);
 
