@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const professionalSchema = new mongoose.Schema(
     {
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
         fullName: {
             type: String,
             required: [true, 'Full name is required'],
@@ -50,6 +55,11 @@ const professionalSchema = new mongoose.Schema(
         isVerified: {
             type: Boolean,
             default: false
+        },
+        verificationStatus: {
+            type: String,
+            enum: ['pending', 'approved', 'rejected'],
+            default: 'pending'
         },
         workSessions: [
             {
