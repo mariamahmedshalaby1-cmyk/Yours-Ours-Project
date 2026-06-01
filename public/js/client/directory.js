@@ -1,6 +1,9 @@
 async function loadProfessionals() {
     try {
-        var response = await fetch('http://localhost:3000/api/professionals');
+        var token = localStorage.getItem('token');
+        var response = await fetch('http://localhost:3000/api/professionals', {
+    headers: { 'Authorization': 'Bearer ' + token }
+});
         var professionals = await response.json();
 
         var container = document.querySelector('.professionals-grid');
