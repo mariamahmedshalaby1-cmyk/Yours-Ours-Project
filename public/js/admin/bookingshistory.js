@@ -25,7 +25,10 @@ let allRows = [];
 
 async function loadBookings() {
     try {
-        const res      = await fetch('http://localhost:3000/api/admin/bookings');
+        const token = localStorage.getItem('token');
+        const res = await fetch('http://localhost:3000/api/admin/bookings', {
+        headers: { 'Authorization': 'Bearer ' + token }
+});
         const bookings = await res.json();
 
         allRows = bookings.map(b => {
@@ -41,8 +44,8 @@ async function loadBookings() {
             tr.innerHTML = `
                 <td><input type="checkbox"></td>
                 <td><b>${b._id}</b></td>
-                <td>${b.clientId?.name       || 'N/A'}</td>
-                <td>${b.professionalId?.name || 'N/A'}</td>
+                <td>${b.client?.name         || 'N/A'}</td>
+                <td>${b.professional?.fullName || 'N/A'}</td>
                 <td>${b.serviceType          || 'N/A'}</td>
                 <td>${dateDisplay}</td>
                 <td>${b.address             || 'N/A'}</td>
@@ -54,8 +57,8 @@ async function loadBookings() {
                 element:    tr,
                 checkbox:   cells[0].querySelector('input[type="checkbox"]'),
                 id:         b._id,
-                customer:   b.clientId?.name       || '',
-                provider:   b.professionalId?.name || '',
+                customer:   b.client?.name           || '',
+                provider:   b.professional?.fullName || '',
                 service:    b.serviceType          || '',
                 dateObj:    isNaN(dateObj) ? new Date(0) : dateObj,
                 location:   b.address || '',
@@ -79,6 +82,7 @@ async function loadBookings() {
 
     // 4. Main Render Function
     function renderTable() {
+        if (allRows.length === 0) return;
         // A. Apply Filters
         const searchTerm = searchInput.value.toLowerCase();
         const statusTerm = statusSelect.value.toLowerCase();
