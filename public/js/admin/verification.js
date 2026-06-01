@@ -18,7 +18,10 @@ function toggleMenu() {
 
     async function loadPendingPros() {
     try {
-        const res  = await fetch('http://localhost:3000/api/admin/pending-pros');
+        const token = localStorage.getItem('token');
+const res  = await fetch('http://localhost:3000/api/admin/pending-pros', {
+    headers: { 'Authorization': 'Bearer ' + token }
+});
         const pros = await res.json();
 
         allCards = pros.map(pro => {
@@ -218,9 +221,12 @@ function toggleMenu() {
 const status = approveBtn ? 'approved' : 'rejected';
 
 // Call the real backend
+const token = localStorage.getItem('token');
 fetch(`http://localhost:3000/api/admin/verify/${proId}`, {
     method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json' ,
+                'Authorization': 'Bearer ' + token 
+     },
     body: JSON.stringify({ status })
 }).catch(err => console.error('Failed to update status:', err));
 
