@@ -15,8 +15,7 @@ var realStats = {
 async function loadDashboardStats() {
     try {
         const token = localStorage.getItem('token');
-        const token = localStorage.getItem('token');
-   const res  = await fetch('http://localhost:3000/api/admin/stats', {
+        const res  = await fetch('http://localhost:3000/api/admin/stats', {
        headers: { 'Authorization': 'Bearer ' + token }
    });
         const data = await res.json();
