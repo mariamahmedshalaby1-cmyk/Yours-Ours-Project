@@ -36,7 +36,7 @@ const res  = await fetch('http://localhost:3000/api/admin/pending-pros', {
                         <span class="material-icons-sharp">person</span>
                     </div>
                     <div class="provider-title">
-                        <h3>${pro.name}</h3>
+                        <h3>${pro.fullName}</h3>
                         <span class="profession-badge">${pro.specialty || 'N/A'}</span>
                     </div>
                     <span class="status-badge status-pending">Pending</span>
@@ -48,7 +48,7 @@ const res  = await fetch('http://localhost:3000/api/admin/pending-pros', {
                     </div>
                     <div class="info-line">
                         <span class="material-icons-sharp">work</span>
-                        <span>${pro.experience ? pro.experience + ' years experience' : 'N/A'}</span>
+                        <span>${pro.experienceYears ? pro.experienceYears + ' years experience' : 'N/A'}</span>
                     </div>
                 </div>
                 <div class="queue-card-actions btns-line">
@@ -68,6 +68,25 @@ const res  = await fetch('http://localhost:3000/api/admin/pending-pros', {
     } catch (err) {
         console.error('Failed to load pending professionals:', err);
         grid.innerHTML = `<p style="text-align:center; padding:24px; color:var(--text-muted);">Failed to load applications. Please try again.</p>`;
+    }
+}
+
+    async function loadVerificationStats() {
+    try {
+        const token = localStorage.getItem('token');
+        const res   = await fetch('http://localhost:3000/api/admin/stats', {
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+        const data  = await res.json();
+
+        const cards = document.querySelectorAll('.stat-card h3');
+        if (cards[0]) cards[0].textContent = data.totalPros;
+        if (cards[1]) cards[1].textContent = data.activePros;
+        if (cards[2]) cards[2].textContent = data.rejectedPros;
+        if (cards[3]) cards[3].textContent = data.pendingPros;
+
+    } catch (err) {
+        console.error('Failed to load verification stats:', err);
     }
 }
 
@@ -260,6 +279,7 @@ if (approveBtn) {
 
     // --- 12. Initial Load ---
 loadPendingPros();
+loadVerificationStats();
 
 
   });
