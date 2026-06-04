@@ -15,20 +15,19 @@ var realStats = {
 async function loadDashboardStats() {
     try {
         const token = localStorage.getItem('token');
-        const res  = await fetch('http://localhost:3000/api/admin/stats', {
-       headers: { 'Authorization': 'Bearer ' + token }
-   });
-        const data = await res.json();
+        const res   = await fetch('http://localhost:3000/api/admin/stats', {
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+        const data  = await res.json();
 
-        // Save for the download button
         realStats = data;
 
-        // Update the stat cards
         const cards = document.querySelectorAll('.stat-card h3');
         if (cards[0]) cards[0].textContent = data.totalBookings;
         if (cards[1]) cards[1].textContent = data.totalUsers;
         if (cards[2]) cards[2].textContent = data.activePros;
         if (cards[3]) cards[3].textContent = data.pendingPros;
+        if (cards[4]) cards[4].textContent = data.totalPros - data.activePros;
 
     } catch (err) {
         console.error('Failed to load dashboard stats:', err);
