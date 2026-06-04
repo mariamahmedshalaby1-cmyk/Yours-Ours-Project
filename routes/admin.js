@@ -5,15 +5,32 @@ const Professional = require('../models/Professional');
 const Booking = require('../models/Booking');
 const auth = require('../middleware/auth');
 
-// GET — dashboard stats (connects to admin/dashboard.html)
+// GET — dashboard stats, verification stats, bookingshistory stats (connects to admin/dashboard.html, admin/verification.html, admin/bookingshistory.html)
 router.get('/stats', auth, async (req, res) => {
   try {
-    const totalUsers    = await User.countDocuments();
-    const totalBookings = await Booking.countDocuments();
-    const activePros    = await Professional.countDocuments({ verificationStatus: 'approved' });
-    const pendingPros   = await Professional.countDocuments({ verificationStatus: 'pending' });
+    const totalUsers        = await User.countDocuments();
+    const totalBookings     = await Booking.countDocuments();
+    const activePros        = await Professional.countDocuments({ verificationStatus: 'approved' });
+    const pendingPros       = await Professional.countDocuments({ verificationStatus: 'pending' });
+    const rejectedPros      = await Professional.countDocuments({ verificationStatus: 'rejected' });
+    const totalPros         = await Professional.countDocuments();
+    const bookingActive = await Booking.countDocuments({ status: 'active' });
+    const bookingPending    = await Booking.countDocuments({ status: 'pending' });
+    const bookingCompleted  = await Booking.countDocuments({ status: 'completed' });
+    const bookingCancelled  = await Booking.countDocuments({ status: 'cancelled' });
 
-    res.json({ totalUsers, totalBookings, activePros, pendingPros });
+    res.json({
+      totalUsers,
+      totalBookings,
+      activePros,
+      pendingPros,
+      rejectedPros,
+      totalPros,
+      bookingActive,
+      bookingPending,
+      bookingCompleted,
+      bookingCancelled
+    });
 
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
