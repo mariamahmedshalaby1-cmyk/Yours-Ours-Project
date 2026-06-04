@@ -36,11 +36,15 @@ function submitReview() {
         text:           text
     };
 
-    fetch('http://localhost:3000/api/reviews', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(reviewData)
-    })
+    const token = localStorage.getItem('token');
+fetch('http://localhost:3000/api/reviews', {
+    method: 'POST',
+    headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify(reviewData)
+})
     .then(function(res) { return res.json(); })
     .then(function(data) {
         // Show the success UI exactly as before
