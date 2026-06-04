@@ -42,13 +42,13 @@
         <section>
            
      <section class="welcome-section">
-    <h2>Welcome back, Professional!</h2>
-    <p><mark>Notice:</mark> You have 3 new booking requests waiting for your approval.</p>
+    <h2 id="welcome-heading">Welcome back, Professional!</h2>
+   <p><mark>Notice:</mark> You have <span id="request-count">0</span> new booking requests waiting for your approval.</p>
     
     <!-- Emergency Banner Slot -->
-    <div class="emergency-request-box">
-        <p>🚨 <strong>Immediate Action Required:</strong> Samy Ahmed has an emergency request (Main Fuse Box Sparking).</p>
-    </div>
+    <div class="emergency-request-box" id="emergency-banner" style="display:none;">
+    <p>🚨 <strong>Immediate Action Required:</strong> <span id="emergency-text"></span></p>
+</div>
 </section>
 
 <!-- Small spacer for breathing room -->
@@ -59,10 +59,9 @@
     <header>
         <h3>📅 Next Scheduled Job</h3>
     </header>
-    <div class="job-card-content">
-        <p><strong>Today at 4:00 PM</strong> — AC Filter Cleaning</p>
-        <p>Location: Maadi, Street 15, Bldg 4</p>
-    </div>
+   <div class="job-card-content" id="next-job-content">
+    <p>No upcoming jobs scheduled.</p>
+</div>
 </section>
 
 
@@ -78,41 +77,10 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
-
-
-                  <tr class="emergency-row-highlight">
-                <td><strong>Samy Ahmed</strong></td>
-                <td>Electrical Repair</td>
-                <td>March 10, 2026</td>
-                <td><strong style="color: red;"> Immediate</strong></td>
-                <td>
-                    <button type="button">Accept Now</button> 
-                    <button type="button">Decline</button>
-                </td>
-            </tr>
-
-                    <tr>
-                        <td>Ahmed Ali</td>
-                        <td>Electrical Repair</td>
-                        <td>March 10, 2026</td>
-                        <td><i>Pending</i></td>
-                        <td>
-                            <button type="button">Accept</button>
-                            <button type="button">Decline</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mona Zaki</td>
-                        <td>Pipe Leakage</td>
-                        <td>March 12, 2026</td>
-                        <td><i>Pending</i></td>
-                        <td>
-                            <button type="button">Accept</button>
-                            <button type="button">Decline</button>
-                        </td>
-                    </tr>
-                </tbody>
+                <tbody id="bookings-tbody">
+                
+                <script src="../../js/professional/dashboard.js"></script>
+            </body>
             </table>
         </section>
 
