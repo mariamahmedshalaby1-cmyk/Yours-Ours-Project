@@ -46,9 +46,9 @@ async function loadBookings() {
                 <td><b>${b._id}</b></td>
                 <td>${b.client?.name         || 'N/A'}</td>
                 <td>${b.professional?.fullName || 'N/A'}</td>
-                <td>${b.serviceType          || 'N/A'}</td>
+                <td>${b.service          || 'N/A'}</td>
                 <td>${dateDisplay}</td>
-                <td>${b.address             || 'N/A'}</td>
+                <td>${b.address?.neighborhood || 'N/A'}</td>
                 <td><span class="badge status-${b.status}">${b.status}</span></td>
             `;
 
@@ -59,9 +59,9 @@ async function loadBookings() {
                 id:         b._id,
                 customer:   b.client?.name           || '',
                 provider:   b.professional?.fullName || '',
-                service:    b.serviceType          || '',
+                service:    b.service          || '',
                 dateObj:    isNaN(dateObj) ? new Date(0) : dateObj,
-                location:   b.address || '',
+                location: b.address?.neighborhood || '',
                 statusCell: cells[7]
             };
         });
@@ -71,6 +71,25 @@ async function loadBookings() {
     } catch (err) {
         console.error('Failed to load bookings:', err);
         tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding: 24px; color: var(--text-muted);">Failed to load bookings. Please try again.</td></tr>`;
+    }
+}
+
+    async function loadBookingStats() {
+    try {
+        const token = localStorage.getItem('token');
+        const res   = await fetch('http://localhost:3000/api/admin/stats', {
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+        const data  = await res.json();
+
+        const cards = document.querySelectorAll('.stat-card h3');
+        if (cards[0]) cards[0].textContent = data.bookingActive;
+        if (cards[1]) cards[1].textContent = data.bookingPending;
+        if (cards[2]) cards[2].textContent = data.bookingCompleted;
+        if (cards[3]) cards[3].textContent = data.bookingCancelled;
+
+    } catch (err) {
+        console.error('Failed to load booking stats:', err);
     }
 }
 
@@ -252,5 +271,6 @@ async function loadBookings() {
 
     // Run once on load — fetches real data then renders
 loadBookings();
+loadBookingStats();
 
 });
