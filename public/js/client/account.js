@@ -112,3 +112,43 @@ function showReceipt(service, pro, date, status, pin) {
 function closeReceipt() {
     document.getElementById('receipt-modal').style.display = 'none';
 }
+
+// toggle the inline edit profile form
+function toggleEditForm() {
+    var form    = document.getElementById('edit-profile-form');
+    var nameEl  = document.getElementById('account-name');
+    var phoneEl = document.getElementById('account-phone');
+    var emailEl = document.getElementById('account-email');
+
+    if (form.style.display === 'none' || form.style.display === '') {
+        // pre-fill inputs with currently displayed values
+        document.getElementById('edit-name').value  = nameEl  ? nameEl.textContent.trim() : '';
+        document.getElementById('edit-phone').value = phoneEl ? phoneEl.textContent.replace('📞 ', '').trim() : '';
+        document.getElementById('edit-email').value = emailEl ? emailEl.textContent.replace('✉️ ', '').trim() : '';
+        form.style.display = 'block';
+    } else {
+        form.style.display = 'none';
+    }
+}
+
+// save edited values back to the display
+function saveProfile() {
+    var newName  = document.getElementById('edit-name').value.trim();
+    var newPhone = document.getElementById('edit-phone').value.trim();
+    var newEmail = document.getElementById('edit-email').value.trim();
+
+    if (!newName || !newPhone || !newEmail) {
+        alert('Please fill in all fields before saving.');
+        return;
+    }
+
+    if (document.getElementById('account-name'))
+        document.getElementById('account-name').textContent = newName;
+    if (document.getElementById('account-phone'))
+        document.getElementById('account-phone').textContent = '📞 ' + newPhone;
+    if (document.getElementById('account-email'))
+        document.getElementById('account-email').textContent = '✉️ ' + newEmail;
+
+    document.getElementById('edit-profile-form').style.display = 'none';
+    alert('✅ Profile updated!');
+}
