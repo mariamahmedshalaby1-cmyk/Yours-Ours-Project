@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     var userId = localStorage.getItem('userId');
     var token  = localStorage.getItem('token');
 
-    if (!userId) {
+    if (!userId || !token) {
        window.location.href = '../landing-page/login.html';
         return;
    }
@@ -11,6 +11,10 @@ window.addEventListener('DOMContentLoaded', async function() {
         var response = await fetch('http://localhost:3000/api/auth/user/' + userId, {
             headers: { 'Authorization': 'Bearer ' + token }
         });
+        if (!response.ok) {
+            window.location.href = '../landing-page/login.html';
+            return;
+        }
         var user = await response.json();
 
         if (document.getElementById('account-name'))
@@ -22,21 +26,30 @@ window.addEventListener('DOMContentLoaded', async function() {
         var bookingRes = await fetch('http://localhost:3000/api/bookings/client/' + userId, {
             headers: { 'Authorization': 'Bearer ' + token }
         });
-        var bookingData = await bookingRes.json();
-        var bookings = bookingData.bookings;
-
         var tbody = document.getElementById('history-body');
+        if (!bookingRes.ok) {
+            if (tbody) {
+                var errRow = document.createElement('tr');
+                errRow.innerHTML = '<td colspan="5" style="text-align:center; color:var(--error);">Could not load booking history. Please try again later.</td>';
+                tbody.appendChild(errRow);
+            }
+            return;
+        }
+        var bookingData = await bookingRes.json();
+        var bookings    = bookingData.bookings;
+
         if (bookings && bookings.length > 0) {
             bookings.forEach(function(b) {
                 var proName = b.professional ? b.professional.fullName : 'Unknown';
                 var date = new Date(b.scheduledTime).toLocaleDateString();
-                var tr = document.createElement('tr');
+                var pin  = b.pin || '----';
+                var tr   = document.createElement('tr');
                 tr.innerHTML =
                     '<td>' + (b.service || 'Service') + '</td>' +
                     '<td>' + proName + '</td>' +
                     '<td>' + date + '</td>' +
                     '<td>' + b.status + '</td>' +
-                    '<td><button class="call-btn" onclick="showReceipt(\'' + (b.service || 'Service') + '\',\'' + proName + '\',\'' + date + '\',\'' + b.status + '\')">View Receipt</button></td>';
+                    '<td><button class="call-btn" onclick="showReceipt(\'' + (b.service || 'Service') + '\',\'' + proName + '\',\'' + date + '\',\'' + b.status + '\',\'' + pin + '\')">View Receipt</button></td>';
                 tbody.appendChild(tr);
             });
         } else {
@@ -48,6 +61,12 @@ window.addEventListener('DOMContentLoaded', async function() {
 
     } catch (err) {
         console.error('Could not load account data:', err);
+        var tbody = document.getElementById('history-body');
+        if (tbody) {
+            var errRow = document.createElement('tr');
+            errRow.innerHTML = '<td colspan="5" style="text-align:center; color:var(--error);">Server error. Please try again later.</td>';
+            tbody.appendChild(errRow);
+        }
     }
 });
 function showPhone() {
@@ -80,11 +99,13 @@ if (bellBtn) {
     });
 }
 
-function showReceipt(service, pro, date, status) {
+function showReceipt(service, pro, date, status, pin) {
     document.getElementById('receipt-service').textContent = service;
-    document.getElementById('receipt-pro').textContent = pro;
-    document.getElementById('receipt-date').textContent = date;
-    document.getElementById('receipt-status').textContent = status;
+    document.getElementById('receipt-pro').textContent     = pro;
+    document.getElementById('receipt-date').textContent    = date;
+    document.getElementById('receipt-status').textContent  = status;
+    if (document.getElementById('receipt-pin'))
+        document.getElementById('receipt-pin').textContent = '🔐 Safety PIN: ' + pin;
     document.getElementById('receipt-modal').style.display = 'flex';
 }
 
