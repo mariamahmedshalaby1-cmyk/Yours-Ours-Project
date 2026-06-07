@@ -21,15 +21,26 @@ router.post('/signup', async (req, res) => {
         const hashed = await bcrypt.hash(password, 10);
 
         // Save new user to database
-        await User.create({ 
-            name, 
-            email, 
-            phone, 
-            password: hashed, 
-            role 
-        });
+       const newUser = await User.create({ 
+    name, 
+    email, 
+    phone, 
+    password: hashed, 
+    role 
+});
 
-        res.status(201).json({ message: 'Account created successfully' });
+if (role === 'professional') {
+    const Professional = require('../models/Professional');
+    await Professional.create({
+        userId: newUser._id,
+        fullName: name,
+        email: email,
+        phone: phone,
+        specialty: 'electrician'
+    });
+}
+
+res.status(201).json({ message: 'Account created successfully' });
 
     } catch (err) {
         res.status(500).json({ message: 'Server error' });
