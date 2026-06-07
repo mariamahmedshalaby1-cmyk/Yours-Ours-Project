@@ -1,21 +1,19 @@
 const multer = require('multer');
-const path = require('path');
+const path   = require('path');
 
-// Where to save files and what to name them
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/');
+    destination: function(req, file, cb) {
+        cb(null, 'public/uploads/');  // ← FIXED
     },
-    filename: function (req, file, cb) {
+    filename: function(req, file, cb) {
         const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1E9);
         cb(null, uniqueName + path.extname(file.originalname));
     }
 });
 
-// Only allow image files
-const fileFilter = function (req, file, cb) {
+const fileFilter = function(req, file, cb) {
     const allowedTypes = /jpeg|jpg|png|gif/;
-    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const extname  = allowedTypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = allowedTypes.test(file.mimetype);
 
     if (extname && mimetype) {
@@ -26,8 +24,8 @@ const fileFilter = function (req, file, cb) {
 };
 
 const upload = multer({
-    storage: storage,
-    limits: { fileSize: 5 * 1024 * 1024 }, // 5MB max
+    storage:    storage,
+    limits:     { fileSize: 5 * 1024 * 1024 },
     fileFilter: fileFilter
 });
 

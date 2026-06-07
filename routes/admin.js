@@ -62,15 +62,29 @@ router.patch('/verify/:id', auth, adminOnly, async (req, res) => {
 });
 
 router.get('/bookings', auth, adminOnly, async (req, res) => {
-  try {
-    const bookings = await Booking.find()
-      .populate('client', 'name')
-      .populate('professional', 'fullName specialty')
-      .sort({ createdAt: -1 });
-    res.json(bookings);
-  } catch (err) {
-    res.status(500).json({ message: 'Server error', error: err.message });
-  }
+    try {
+        const page  = parseInt(req.query.page)  || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const skip  = (page - 1) * limit;
+
+        const bookings = await Booking.find()
+            .populate('client',       'name')
+            .populate('professional', 'fullName specialty')
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit);
+
+        const total = await Booking.countDocuments();
+
+        res.status(200).json({
+            bookings,
+            currentPage: page,
+            totalPages:  Math.ceil(total / limit)
+        });
+
+    } catch (err) {
+        res.status(500).json({ message: 'Server error', error: err.message });
+    }
 });
 
 module.exports = router;

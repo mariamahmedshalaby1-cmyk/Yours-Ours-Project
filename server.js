@@ -1,17 +1,22 @@
-const express = require('express');
+const express  = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
+const cors     = require('cors');
+const path     = require('path');
 require('dotenv').config();
 
 const app = express();
-const path = require('path');
+
+// ─────────────────────────────────────
+// STATIC FILES
+// ─────────────────────────────────────
 app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, 'public')));
 // ─────────────────────────────────────
 // MIDDLEWARE
 // ─────────────────────────────────────
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true })); // ← ADDED
 
 app.get('/test', (req, res) => {
     res.json({ message: 'Server is working!' });
@@ -20,36 +25,21 @@ app.get('/test', (req, res) => {
 // ─────────────────────────────────────
 // ROUTES
 // ─────────────────────────────────────
-
-// Person 1 - Auth routes (done)
-app.use('/api/auth', require('./routes/auth'));
-
-// Person 2 - Professionals routes (done)
- app.use('/api/professionals', require('./routes/professionals'));
-
-// Person 3 - Bookings routes (done)
-app.use('/api/bookings', require('./routes/bookings'));
-
-// Person 4 - Reviews + Admin routes (done)
-app.use('/api/reviews', require('./routes/reviews'));
-app.use('/api/admin',   require('./routes/admin'));
-
-// Person 5 - Payments (not done yet)
-// app.use('/api/payments', require('./routes/payments'));
+app.use('/api/auth',          require('./routes/auth'));
+app.use('/api/professionals', require('./routes/professionals'));
+app.use('/api/bookings',      require('./routes/bookings'));
+app.use('/api/reviews',       require('./routes/reviews'));
+app.use('/api/admin',         require('./routes/admin'));
 
 // ─────────────────────────────────────
-// CONNECT TO MONGODB ATLAS
+// CONNECT TO MONGODB
 // ─────────────────────────────────────
 mongoose.connect(process.env.MY_DATABASE, {
     serverSelectionTimeoutMS: 5000,
     family: 4
 })
-    .then(() => {
-        console.log('✅ MongoDB connected successfully');
-    })
-    .catch((err) => {
-        console.log('❌ MongoDB connection failed:', err.message);
-    });
+.then(() => console.log('✅ MongoDB connected successfully'))
+.catch((err) => console.log('❌ MongoDB connection failed:', err.message));
 
 // ─────────────────────────────────────
 // START SERVER

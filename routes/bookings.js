@@ -2,8 +2,9 @@ const express = require('express');
 const router  = express.Router();
 const Booking = require('../models/Booking');
 const auth    = require('../middleware/auth');
+const upload = require('../middleware/upload');
 
-router.post('/', auth, async (req, res) => {
+router.post('/', auth, upload.single('photo'), async (req, res) => {
     try {
 
         if (!req.body.clientId || !req.body.professionalId) {
