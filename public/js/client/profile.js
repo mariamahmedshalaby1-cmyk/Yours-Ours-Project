@@ -1,3 +1,16 @@
+// inject professionalId from URL into booking link
+(function() {
+    var params = new URLSearchParams(window.location.search);
+    var proId  = params.get('id');
+    if (proId) {
+        document.querySelectorAll('a.btn-primary').forEach(function(link) {
+            if (link.href.indexOf('booking.html') !== -1) {
+                link.href = link.href + '&professionalId=' + proId;
+            }
+        });
+    }
+})();
+
 document.querySelectorAll('.favorite-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
         if (this.textContent.includes('❤️')) {
