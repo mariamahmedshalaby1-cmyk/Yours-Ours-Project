@@ -1,14 +1,17 @@
 async function loadProfessionals() {
+    var container = document.querySelector('.professionals-grid');
+    if (!container) return;
+
     try {
-        var token = localStorage.getItem('token');
+        var token    = localStorage.getItem('token');
         var response = await fetch('http://localhost:3000/api/professionals', {
-    headers: { 'Authorization': 'Bearer ' + token }
-});
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if (!response.ok) {
+            container.innerHTML = '<p style="text-align:center; color:var(--error); padding:2rem;">Could not load professionals. Please try again later.</p>';
+            return;
+        }
         var professionals = await response.json();
-
-        var container = document.querySelector('.professionals-grid');
-        if (!container) return;
-
         container.innerHTML = '';
 
         professionals.forEach(function(pro) {
@@ -34,6 +37,7 @@ async function loadProfessionals() {
 
     } catch (err) {
         console.error('Could not load professionals:', err);
+        container.innerHTML = '<p style="text-align:center; color:var(--error); padding:2rem;">Server error. Please check your connection and try again.</p>';
     }
 }
 loadProfessionals();
