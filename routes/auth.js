@@ -36,7 +36,6 @@ if (role === 'professional') {
         fullName: name,
         email: email,
         phone: phone,
-        specialty: 'electrician'
     });
 }
 
