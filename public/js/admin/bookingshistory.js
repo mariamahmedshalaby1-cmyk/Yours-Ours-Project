@@ -6,20 +6,24 @@ function toggleMenu() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const tbody              = document.querySelector('.data-table tbody');
-    const searchInput        = document.querySelector('.search-input-group input');
-    const statusSelect       = document.querySelector('.filter-select');
-    const dateInputs         = document.querySelectorAll('.date-input');
-    const startDateInput     = dateInputs ? dateInputs[0] : null;
-    const endDateInput       = dateInputs ? dateInputs[1] : null;
-    const sortBtn            = document.querySelector('.table-controls .btn-text');
-    const exportBtn          = document.querySelector('.btn-export');
-    const cancelSelectedBtn  = document.querySelector('.btn-danger');
-    const paginationContainer= document.querySelector('.pagination-buttons');
-    const showingText        = document.querySelector('.table-actions .text-muted');
-    const selectAllCheckbox  = document.querySelector('thead input[type="checkbox"]');
+    const tbody               = document.querySelector('.data-table tbody');
+    const searchInput         = document.querySelector('.search-input-group input');
+    const statusSelect        = document.querySelector('.filter-select');
+    const dateInputs          = document.querySelectorAll('.date-input');
+    const startDateInput      = dateInputs[0] || null;
+    const endDateInput        = dateInputs[1] || null;
+    const sortBtn             = document.querySelector('.table-controls .btn-text');
+    const exportBtn           = document.querySelector('.btn-export');
+    const cancelSelectedBtn   = document.querySelector('.btn-danger');
+    const paginationContainer = document.querySelector('.pagination-buttons');
+    const showingText         = document.querySelector('.table-actions .text-muted');
+    const selectAllCheckbox   = document.querySelector('thead input[type="checkbox"]');
 
-    let allRows = [];
+    let allRows       = [];
+    let filteredRows  = [];
+    let currentPage   = 1;
+    let sortAscending = true;
+    const rowsPerPage = 10;
 
     async function loadBookings() {
         try {
@@ -29,14 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             const bookings = await res.json();
 
-            if (!Array.isArray(bookings)) {
-                throw new Error('Invalid data received from server');
-            }
+            if (!Array.isArray(bookings)) throw new Error('Invalid data received');
 
             allRows = bookings.map(b => {
                 const tr      = document.createElement('tr');
                 const dateObj = new Date(b.scheduledTime);
-                const dateDisplay = isNaN(dateObj)
+                const dateDisplay = isNaN(dateObj.getTime())
                     ? 'N/A'
                     : dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
                       + ', ' + dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
@@ -44,11 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 tr.innerHTML = `
                     <td><input type="checkbox"></td>
                     <td><b>${b._id}</b></td>
-                    <td>${b.client?.name            || 'N/A'}</td>
-                    <td>${b.professional?.fullName  || 'N/A'}</td>
-                    <td>${b.service                 || 'N/A'}</td>
+                    <td>${b.client?.name           || 'N/A'}</td>
+                    <td>${b.professional?.fullName || 'N/A'}</td>
+                    <td>${b.service                || 'N/A'}</td>
                     <td>${dateDisplay}</td>
-                    <td>${b.address?.neighborhood   || 'N/A'}</td>
+                    <td>${b.address?.neighborhood  || 'N/A'}</td>
                     <td><span class="badge status-${b.status}">${b.status}</span></td>
                 `;
 
@@ -60,18 +62,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     customer:   b.client?.name           || '',
                     provider:   b.professional?.fullName || '',
                     service:    b.service                || '',
-                    dateObj:    isNaN(dateObj) ? new Date(0) : dateObj,
+                    dateObj:    isNaN(dateObj.getTime()) ? new Date(0) : dateObj,
                     location:   b.address?.neighborhood  || '',
                     statusCell: cells[7]
                 };
             });
 
+            currentPage = 1;
             renderTable();
 
         } catch (err) {
             console.error('Failed to load bookings:', err);
             if (tbody) {
-                tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding: 24px; color: var(--text-muted);">Failed to load bookings. Please try again.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:24px; color:var(--text-muted);">Failed to load bookings. Please try again.</td></tr>`;
             }
         }
     }
@@ -82,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const res   = await fetch('http://localhost:3000/api/admin/stats', {
                 headers: { 'Authorization': 'Bearer ' + token }
             });
-            const data  = await res.json();
+            const data = await res.json();
 
             const cards = document.querySelectorAll('.stat-card h3');
             if (cards[0]) cards[0].textContent = data.bookingActive    || 0;
@@ -95,20 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    let currentPage  = 1;
-    const rowsPerPage = 10;
-    let sortAscending = true;
-    let filteredRows  = [];
-
     function renderTable() {
-        if (!tbody) return;
-        if (allRows.length === 0) return;
+        if (!tbody || allRows.length === 0) return;
 
-        const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+        const searchTerm = searchInput  ? searchInput.value.toLowerCase()  : '';
         const statusTerm = statusSelect ? statusSelect.value.toLowerCase() : '';
         const start = startDateInput && startDateInput.value ? new Date(startDateInput.value) : null;
         let   end   = endDateInput   && endDateInput.value   ? new Date(endDateInput.value)   : null;
-
         if (end) end.setHours(23, 59, 59, 999);
 
         filteredRows = allRows.filter(row => {
@@ -118,8 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 row.provider.toLowerCase().includes(searchTerm) ||
                 row.service.toLowerCase().includes(searchTerm);
 
-            const currentStatus = row.statusCell.textContent.trim().toLowerCase().replace(' ', '');
-            const statusMatch   = (statusTerm === '') || (currentStatus === statusTerm);
+            const currentStatus = row.statusCell.textContent.trim().toLowerCase();
+            const statusMatch   = !statusTerm || currentStatus === statusTerm;
             const afterStart    = !start || row.dateObj >= start;
             const beforeEnd     = !end   || row.dateObj <= end;
 
@@ -133,10 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const startIndex = (currentPage - 1) * rowsPerPage;
         const endIndex   = startIndex + rowsPerPage;
-        const rowsToShow = filteredRows.slice(startIndex, endIndex);
 
         tbody.innerHTML = '';
-        rowsToShow.forEach(row => tbody.appendChild(row.element));
+        filteredRows.slice(startIndex, endIndex).forEach(row => tbody.appendChild(row.element));
 
         if (showingText) {
             const displayStart = filteredRows.length === 0 ? 0 : startIndex + 1;
@@ -152,46 +147,47 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!paginationContainer) return;
         paginationContainer.innerHTML = '';
 
-        const prevBtn = document.createElement('button');
+        const prevBtn       = document.createElement('button');
         prevBtn.className   = 'btn-page';
         prevBtn.textContent = 'Previous';
-        if (currentPage === 1) prevBtn.disabled = true;
-        prevBtn.addEventListener('click', () => { if (currentPage > 1) { currentPage--; renderTable(); } });
+        prevBtn.disabled    = currentPage === 1;
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) { currentPage--; renderTable(); }
+        });
         paginationContainer.appendChild(prevBtn);
 
         for (let i = 1; i <= totalPages; i++) {
-            const pageBtn = document.createElement('button');
-            pageBtn.className   = `btn-page ${i === currentPage ? 'active' : ''}`;
+            const pageBtn       = document.createElement('button');
+            pageBtn.className   = `btn-page${i === currentPage ? ' active' : ''}`;
             pageBtn.textContent = i;
             pageBtn.addEventListener('click', () => { currentPage = i; renderTable(); });
             paginationContainer.appendChild(pageBtn);
         }
 
-        const nextBtn = document.createElement('button');
+        const nextBtn       = document.createElement('button');
         nextBtn.className   = 'btn-page';
         nextBtn.textContent = 'Next';
-        if (currentPage === totalPages) nextBtn.disabled = true;
-        nextBtn.addEventListener('click', () => { if (currentPage < totalPages) { currentPage++; renderTable(); } });
+        nextBtn.disabled    = currentPage === totalPages;
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < totalPages) { currentPage++; renderTable(); }
+        });
         paginationContainer.appendChild(nextBtn);
     }
 
-    if (searchInput)    searchInput.addEventListener('input',   () => { currentPage = 1; renderTable(); });
-    if (statusSelect)   statusSelect.addEventListener('change', () => { currentPage = 1; renderTable(); });
+    if (searchInput)    searchInput.addEventListener('input',    () => { currentPage = 1; renderTable(); });
+    if (statusSelect)   statusSelect.addEventListener('change',  () => { currentPage = 1; renderTable(); });
     if (startDateInput) startDateInput.addEventListener('change',() => { currentPage = 1; renderTable(); });
     if (endDateInput)   endDateInput.addEventListener('change',  () => { currentPage = 1; renderTable(); });
 
-    if (sortBtn) {
-        sortBtn.addEventListener('click', () => {
-            sortAscending = !sortAscending;
-            renderTable();
-        });
-    }
+    if (sortBtn) sortBtn.addEventListener('click', () => {
+        sortAscending = !sortAscending;
+        renderTable();
+    });
 
     if (selectAllCheckbox) {
         selectAllCheckbox.addEventListener('change', (e) => {
             if (!tbody) return;
-            const isChecked = e.target.checked;
-            tbody.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = isChecked);
+            tbody.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = e.target.checked);
         });
     }
 
@@ -199,39 +195,44 @@ document.addEventListener('DOMContentLoaded', () => {
         cancelSelectedBtn.addEventListener('click', () => {
             if (!tbody) return;
             let itemsCancelled = false;
-
             Array.from(tbody.querySelectorAll('tr')).forEach(tr => {
                 const cb = tr.querySelector('input[type="checkbox"]');
                 if (cb && cb.checked) {
                     const rowData = allRows.find(r => r.element === tr);
-                    if (rowData && rowData.statusCell.textContent.trim() !== 'Cancelled') {
-                        rowData.statusCell.innerHTML = `<span class="badge status-cancelled">Cancelled</span>`;
+                    if (rowData && rowData.statusCell.textContent.trim().toLowerCase() !== 'cancelled') {
+                        rowData.statusCell.innerHTML = `<span class="badge status-cancelled">cancelled</span>`;
                         itemsCancelled = true;
+
+                        const token = localStorage.getItem('token');
+                        fetch(`http://localhost:3000/api/bookings/${rowData.id}/status`, {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + token
+                            },
+                            body: JSON.stringify({ status: 'cancelled' })
+                        }).catch(err => console.error('Failed to cancel booking:', err));
                     }
                     cb.checked = false;
                 }
             });
-
-            if (itemsCancelled) { renderTable(); }
-            else { alert('Please select at least one active booking to cancel.'); }
+            if (itemsCancelled) renderTable();
+            else alert('Please select at least one active booking to cancel.');
         });
     }
 
     if (exportBtn) {
         exportBtn.addEventListener('click', () => {
             let csvContent = "Booking ID,Customer,Service Provider,Service Type,Date & Time,Location,Status\n";
-
             filteredRows.forEach(row => {
                 const cleanStatus = row.statusCell.textContent.trim();
                 const targetTd    = row.element.querySelectorAll('td')[5];
                 const dateStr     = targetTd ? targetTd.textContent.trim() : 'N/A';
                 csvContent += `"${row.id}","${row.customer}","${row.provider}","${row.service}","${dateStr}","${row.location}","${cleanStatus}"\n`;
             });
-
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
-            const url  = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
+            link.setAttribute('href', URL.createObjectURL(blob));
             link.setAttribute('download', 'Bookings_Export.csv');
             link.style.visibility = 'hidden';
             document.body.appendChild(link);
