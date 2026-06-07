@@ -23,6 +23,11 @@ const professionalSchema = new mongoose.Schema(
             type: String,
             trim: true
         },
+        serviceArea: {
+            type: String,
+            trim: true,
+            default: ''
+        },
         profilePicture: {
             type: String,
             default: null
