@@ -69,12 +69,11 @@
                 
                 <div class="multimedia-upload-group">
                     <div class="upload-btn photo-upload">
-                        <label>📸 Upload a Photo</label>
-                        <input type="file" accept="image/*" name="photo">
+                        <label for="photo-upload-input" style="cursor:pointer;">📸 Upload a Photo</label>
+                        <input type="file" accept="image/*" name="photo" id="photo-upload-input" style="display:none;">
+                        <span id="photo-upload-name" style="font-size:0.82rem; color:var(--muted); margin-top:4px; display:block;"></span>
                     </div>
-                    <div class="upload-btn voice-upload">
-                        <button type="button">🎙️ Record a Voice Note (Max 1 min)</button>
-                    </div>
+            
                 </div>
             </div>
 
