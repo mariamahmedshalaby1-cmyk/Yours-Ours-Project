@@ -73,9 +73,18 @@
              el = document.getElementById('dyn-price');
              if (el) el.textContent = pro.startingFee > 0 ? pro.startingFee + ' EGP' : '—';
 
-            // Bio
-            el = document.getElementById('dyn-bio');
-            if (el) el.textContent = pro.bio || 'No bio provided yet.';
+            
+            // Service Promise, show section only if at least one promise exists
+            var p1 = document.getElementById('dyn-promise-1');
+            var p2 = document.getElementById('dyn-promise-2');
+            var p3 = document.getElementById('dyn-promise-3');
+            var pledgeSection = document.getElementById('dyn-pledge-section');
+            if (pro.promise1 || pro.promise2 || pro.promise3) {
+                if (p1) p1.textContent = pro.promise1 || '';
+                if (p2) p2.textContent = pro.promise2 || '';
+                if (p3) p3.textContent = pro.promise3 || '';
+                if (pledgeSection) pledgeSection.style.display = '';
+            }
 
             // Services tags
             el = document.getElementById('dyn-services');
