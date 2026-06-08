@@ -39,6 +39,9 @@ async function loadProfile() {
         document.querySelector('[name="specialty"]').value       = pro.specialty || '';
         document.querySelector('[name="experience_years"]').value = pro.experienceYears || '';
         document.querySelector('[name="bio"]').value             = pro.bio || '';
+        document.querySelector('[name="city"]').value            = pro.city || '';
+        document.querySelector('[name="profile_picture_url"]').value = pro.profilePicture || '';
+        document.querySelector('[name="starting_fee"]').value    = pro.startingFee || '';
 
         // Check the right service checkboxes
         document.querySelectorAll('[name="service"]').forEach(function(checkbox) {
@@ -62,11 +65,13 @@ document.querySelector('form').addEventListener('submit', async function(e) {
     const specialty      = document.querySelector('[name="specialty"]').value;
     const experienceYears = document.querySelector('[name="experience_years"]').value;
     const bio            = document.querySelector('[name="bio"]').value.trim();
-    const services       = Array.from(document.querySelectorAll('[name="service"]:checked')).map(cb => cb.value);
+const services       = Array.from(document.querySelectorAll('[name="service"]:checked')).map(cb => cb.value);
+const city           = document.querySelector('[name="city"]').value.trim();
+const profilePicture = document.querySelector('[name="profile_picture_url"]').value.trim();
+const startingFee    = parseInt(document.querySelector('[name="starting_fee"]').value) || 0;
 
-   const nationalIdFile = document.querySelector('[name="national_id"]').files[0];
-if (!fullName || !email || !specialty || !nationalIdFile) {
-    alert('Please fill in all required fields including your National ID.');
+if (!fullName || !email || !specialty) {
+    alert('Please fill in your name, email, and specialty.');
     return;
 }
 
@@ -87,7 +92,7 @@ if (!fullName || !email || !specialty || !nationalIdFile) {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ fullName, email, phone, specialty, experienceYears, services, bio })
+               body: JSON.stringify({ fullName, email, phone, profilePicture, specialty, experienceYears, services, bio, city, startingFee })
             });
         } else {
             // No professional record yet — create it
@@ -97,7 +102,7 @@ if (!fullName || !email || !specialty || !nationalIdFile) {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ fullName, email, phone, specialty, experienceYears, services, bio, userId })
+                body: JSON.stringify({ fullName, email, phone, profilePicture, specialty, experienceYears, services, bio, userId, city, startingFee })
             });
         }
 

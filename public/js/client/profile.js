@@ -66,8 +66,12 @@
             // Experience
             el = document.getElementById('dyn-experience');
             if (el && pro.experienceYears > 0) {
-                el.textContent = '| ' + pro.experienceYears + ' Years Experience';
-            }
+            el.textContent = '| ' + pro.experienceYears + ' Years Experience';
+             }
+
+            // Price
+             el = document.getElementById('dyn-price');
+             if (el) el.textContent = pro.startingFee > 0 ? pro.startingFee + ' EGP' : '—';
 
             // Bio
             el = document.getElementById('dyn-bio');
