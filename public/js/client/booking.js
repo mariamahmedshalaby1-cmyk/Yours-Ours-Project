@@ -1,14 +1,22 @@
-//read name + service from URL
 (function() {
-    var params  = new URLSearchParams(window.location.search);
-    var pro     = params.get('pro')     || 'Samy Ahmed';
-    var service = params.get('service') || 'Electrical Repair';
-    var proEl   = document.getElementById('booking-pro-name');
-    var svcEl   = document.getElementById('booking-service');
-    if (proEl)  proEl.textContent = pro.replace(/\+/g, ' ');
-    if (svcEl)  svcEl.textContent = service.replace(/\+/g, ' ');
+    var params         = new URLSearchParams(window.location.search);
+    var pro            = params.get('pro')            || 'Professional';
+    var service        = params.get('service')        || 'General Service';
+    var professionalId = params.get('professionalId') || '';
+
+    var proEl = document.getElementById('booking-pro-name');
+    var svcEl = document.getElementById('booking-service');
+    if (proEl) proEl.textContent = pro.replace(/\+/g, ' ');
+    if (svcEl) svcEl.textContent = service.replace(/\+/g, ' ');
     document.title = 'Book ' + pro.replace(/\+/g, ' ') + ' | Yours&Ours';
+
+    // make "← Cancel" return to this specific professional's profile page
+    var backLink = document.getElementById('back-to-profile');
+    if (backLink && professionalId) {
+        backLink.href = '/html/client/profile.html?id=' + professionalId;
+    }
 })();
+
 //time slot selection
 document.querySelectorAll('.time-pill').forEach(function(pill) {
     pill.addEventListener('click', function() {
