@@ -17,14 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Helper: Time Ago ---
     function timeAgo(dateStr) {
-        const diffMs    = Date.now() - new Date(dateStr).getTime();
-        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-        const diffDays  = Math.floor(diffHours / 24);
-        const diffWeeks = Math.floor(diffDays / 7);
+    const diffMs    = Date.now() - new Date(dateStr).getTime();
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffDays  = Math.floor(diffHours / 24);
+    const diffWeeks = Math.floor(diffDays / 7);
 
-        if (diffWeeks > 0) return `Applied ${diffWeeks} week${diffWeeks > 1 ? 's' : ''} ago`;
-        if (diffDays  > 0) return `Applied ${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
-        return `Applied ${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+    if (diffWeeks > 0) return `Applied ${diffWeeks} week${diffWeeks > 1 ? 's' : ''} ago`;
+    if (diffDays  > 0) return `Applied ${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+    return `Applied ${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
     }
 
     async function loadPendingPros() {

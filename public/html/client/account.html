@@ -38,7 +38,16 @@
         <section class="my-profile-section">
     <h3>👤 My Account</h3>
     <div class="live-status-card" style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-        <img src="https://via.placeholder.com/60" alt="My Avatar" class="pro-avatar">
+       <label for="avatar-upload" style="cursor:pointer; position:relative; display:inline-block;" title="Click to change photo">
+            <img id="avatar-img" src="" alt="My Avatar" class="pro-avatar" style="width:60px; height:60px; border-radius:50%; object-fit:cover; background:#e0e0e0;">
+            <svg id="avatar-default" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="60" height="60" style="border-radius:50%; background:#d0d0d0; display:block;">
+                <circle cx="30" cy="22" r="12" fill="#888"/>
+                <ellipse cx="30" cy="52" rx="18" ry="12" fill="#888"/>
+            </svg>
+            <span style="position:absolute; bottom:0; right:0; background:#4CAF50; color:white; border-radius:50%; width:18px; height:18px; font-size:11px; display:flex; align-items:center; justify-content:center;">✎</span>
+        </label>
+        <input type="file" id="avatar-upload" accept="image/*" style="display:none;">
+
        <div>
     <p><strong id="account-name">Sara Khaled</strong></p>
     <p id="account-phone">📞 +20 100 123 4567</p>
@@ -59,9 +68,9 @@
                 <button class="call-btn" onclick="toggleEditForm()" style="background:#999;">Cancel</button>
             </div>
         </div>
-</section>
 
-        <section class="active-booking-section"
+
+        <section class="active-booking-section">
             <h3>🚨 Happening Now</h3>
             
             <div class="live-status-card">
@@ -166,6 +175,7 @@
         <p><strong>Professional:</strong> <span id="receipt-pro"></span></p>
         <p><strong>Date:</strong> <span id="receipt-date"></span></p>
         <p><strong>Status:</strong> <span id="receipt-status"></span></p>
+        <p id="receipt-price"></p>
         <p id="receipt-pin" style="font-weight: bold; margin-top: 8px;"></p>
         <hr>
         <button class="call-btn" onclick="closeReceipt()">Close</button>

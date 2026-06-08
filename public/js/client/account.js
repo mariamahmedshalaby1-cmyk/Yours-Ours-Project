@@ -49,7 +49,7 @@ window.addEventListener('DOMContentLoaded', async function() {
                     '<td>' + proName + '</td>' +
                     '<td>' + date + '</td>' +
                     '<td>' + b.status + '</td>' +
-                    '<td><button class="call-btn" onclick="showReceipt(\'' + (b.service || 'Service') + '\',\'' + proName + '\',\'' + date + '\',\'' + b.status + '\',\'' + pin + '\')">View Receipt</button></td>';
+                    '<td><button class="call-btn" onclick="showReceipt(\'' + (b.service || 'Service') + '\',\'' + proName + '\',\'' + date + '\',\'' + b.status + '\',\'' + pin + '\',\'' + (b.price || '') + '\')">View Receipt</button></td>';
                 tbody.appendChild(tr);
             });
         } else {
@@ -99,11 +99,13 @@ if (bellBtn) {
     });
 }
 
-function showReceipt(service, pro, date, status, pin) {
+function showReceipt(service, pro, date, status, pin, price) {
     document.getElementById('receipt-service').textContent = service;
     document.getElementById('receipt-pro').textContent     = pro;
     document.getElementById('receipt-date').textContent    = date;
     document.getElementById('receipt-status').textContent  = status;
+    if (document.getElementById('receipt-price'))
+        document.getElementById('receipt-price').textContent = price ? '💰 Price: ' + price + ' EGP' : '';
     if (document.getElementById('receipt-pin'))
         document.getElementById('receipt-pin').textContent = '🔐 Safety PIN: ' + pin;
     document.getElementById('receipt-modal').style.display = 'flex';
@@ -151,4 +153,24 @@ function saveProfile() {
 
     document.getElementById('edit-profile-form').style.display = 'none';
     alert('✅ Profile updated!');
+}
+
+// avatar photo upload, preview selected image and hide the SVG default
+var avatarUpload = document.getElementById('avatar-upload');
+if (avatarUpload) {
+    avatarUpload.addEventListener('change', function() {
+        var file = this.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var img = document.getElementById('avatar-img');
+            var svg = document.getElementById('avatar-default');
+            if (img) {
+                img.src = e.target.result;
+                img.style.display = 'block';
+            }
+            if (svg) svg.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    });
 }
