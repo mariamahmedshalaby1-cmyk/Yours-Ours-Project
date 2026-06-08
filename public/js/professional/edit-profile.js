@@ -115,11 +115,22 @@ if (!fullName || !email || !specialty) {
             });
         }
 
+       const btn = document.querySelector('[type="submit"]');
         if (res.ok) {
-            alert('Profile saved successfully!');
+            btn.value = '✅ Saved!';
+            btn.style.backgroundColor = 'green';
+            setTimeout(() => {
+                btn.value = 'Save Changes';
+                btn.style.backgroundColor = '';
+            }, 3000);
         } else {
             const data = await res.json();
-            alert('Error: ' + data.error);
+            btn.value = '❌ Error saving';
+            btn.style.backgroundColor = 'red';
+            setTimeout(() => {
+                btn.value = 'Save Changes';
+                btn.style.backgroundColor = '';
+            }, 3000);
         }
 
     } catch (err) {
