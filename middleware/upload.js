@@ -3,7 +3,7 @@ const path   = require('path');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, 'public/uploads/');  // ← FIXED
+        cb(null, 'public/uploads/');  
     },
     filename: function(req, file, cb) {
         const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1E9);

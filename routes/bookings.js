@@ -22,18 +22,19 @@ router.post('/', auth, upload.single('photo'), async (req, res) => {
 
         const pin = Math.floor(1000 + Math.random() * 9000).toString();
 
-        const newBooking = new Booking({
-            client:        req.body.clientId,
-            professional:  req.body.professionalId,
-            service:       req.body.service,
-            description:   req.body.description,
-            isEmergency:   req.body.isEmergency,
-            scheduledTime: req.body.scheduledTime,
-            address:       req.body.address,
-            photo:         req.file ? req.file.filename : '',
-            pin:           pin,
-            status:        'pending'
-        });
+    const newBooking = new Booking({
+        client:        req.body.clientId,
+        professional:  req.body.professionalId,
+        service:       req.body.service,
+        description:   req.body.description,
+        isEmergency:   req.body.isEmergency,
+        scheduledTime: req.body.scheduledTime,
+        address:       req.body.address,
+        photo:         req.file ? req.file.filename : '',
+        price:         req.body.price || 0,   // ← ADD THIS
+        pin:           pin,
+        status:        'pending'
+    });
 
         await newBooking.save();
 

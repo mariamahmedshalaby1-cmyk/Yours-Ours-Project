@@ -83,21 +83,21 @@ if (form) {
         var apartment    = document.querySelector('.address-inputs input:nth-child(3)').value.trim();
         var landmark     = document.querySelector('.address-inputs input:nth-child(4)').value.trim();
 
-        var bookingData = {
-            clientId:       clientId,
-            professionalId: professionalId,
-            service:        service,
-            description:    description,
-            isEmergency:    isEmergency,
-            scheduledTime:  selectedTime,
-            address: {
-                neighborhood: neighborhood,
-                street:       street,
-                apartment:    apartment,
-                landmark:     landmark
-            }
-        };
-
+    var bookingData = {
+        clientId:       clientId,
+        professionalId: professionalId,
+        service:        service,
+        description:    description,
+        isEmergency:    isEmergency,
+        scheduledTime:  selectedTime,
+        price:          150,   
+        address: {
+            neighborhood: neighborhood,
+            street:       street,
+            apartment:    apartment,
+            landmark:     landmark
+        }
+    }
         var btn         = document.querySelector('.primary-confirm-btn');
         btn.textContent = 'Sending...';
         btn.disabled    = true;
