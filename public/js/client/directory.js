@@ -42,6 +42,7 @@ async function loadProfessionals() {
                 '<p class="pro-rating">⭐ ' + (pro.averageRating > 0 ? pro.averageRating.toFixed(1) : 'New') + ' (' + (pro.completedJobs || 0) + ' jobs done)</p>' +
                 '</div>' +
                 '<div class="card-footer">' +
+                '<p class="price-estimate">Est. ' + (pro.startingFee > 0 ? pro.startingFee + ' EGP' : 'TBD') + ' / visit</p>' +
                 '<a href="profile.html?id=' + pro._id + '" class="book-btn">View Profile & Book</a>' +
                 '</div>';
 
