@@ -29,15 +29,6 @@ router.post('/signup', async (req, res) => {
     role 
 });
 
-if (role === 'professional') {
-    const Professional = require('../models/Professional');
-    await Professional.create({
-        userId: newUser._id,
-        fullName: name,
-        email: email,
-        phone: phone,
-    });
-}
 
 res.status(201).json({ message: 'Account created successfully' });
 
