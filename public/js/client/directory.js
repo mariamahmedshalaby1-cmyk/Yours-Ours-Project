@@ -1,3 +1,15 @@
+function formatSpecialty(value) {
+    var map = {
+        'electrician': 'Electrician',
+        'plumber':     'Plumber',
+        'carpenter':   'Carpenter',
+        'cleaner':     'Cleaner',
+        'ac_repair':   'AC Repair',
+        'painter':     'Painter'
+    };
+    return map[value] || value;
+}
+
 async function loadProfessionals() {
     var container = document.querySelector('.professionals-grid');
     if (!container) return;
@@ -21,16 +33,16 @@ async function loadProfessionals() {
 
             card.innerHTML =
                 '<div class="card-header">' +
-                    '<button class="favorite-heart">♡</button>' +
+                '<button class="favorite-heart">♡</button>' +
                 '</div>' +
                 '<div class="pro-info">' +
-                    '<img src="https://via.placeholder.com/80" alt="' + pro.fullName + '" class="pro-avatar">' +
-                    '<h3>' + pro.fullName + (pro.isVerified ? ' <span class="verified-badge">🛡️</span>' : '') + '</h3>' +
-                    '<p class="pro-title">' + (pro.specialty || '') + '</p>' +
-                    '<p class="pro-rating">⭐ ' + (pro.rating || 'New') + ' (' + (pro.reviewCount || 0) + ' reviews)</p>' +
+                '<img src="' + (pro.profilePicture || 'https://via.placeholder.com/80') + '" alt="' + pro.fullName + '" class="pro-avatar">' +
+                '<h3>' + pro.fullName + (pro.isVerified ? ' <span class="verified-badge">🛡️</span>' : '') + '</h3>' +
+                '<p class="pro-title">' + formatSpecialty(pro.specialty || '') + '</p>' +
+                '<p class="pro-rating">⭐ ' + (pro.averageRating > 0 ? pro.averageRating.toFixed(1) : 'New') + ' (' + (pro.completedJobs || 0) + ' jobs done)</p>' +
                 '</div>' +
                 '<div class="card-footer">' +
-                    '<a href="profile.html?id=' + pro._id + '" class="book-btn">View Profile & Book</a>' +
+                '<a href="profile.html?id=' + pro._id + '" class="book-btn">View Profile & Book</a>' +
                 '</div>';
 
             container.appendChild(card);
@@ -41,6 +53,7 @@ async function loadProfessionals() {
         container.innerHTML = '<p style="text-align:center; color:var(--error); padding:2rem;">Server error. Please check your connection and try again.</p>';
     }
 }
+
 loadProfessionals();
 document.querySelectorAll('.filter-tag').forEach(function(tag) {
     tag.addEventListener('click', function() {
