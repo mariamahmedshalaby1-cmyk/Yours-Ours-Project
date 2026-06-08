@@ -21,6 +21,16 @@ router.get('/', async (req, res) => {
     }
 });
 
+// GET all pending professionals — for admin
+router.get('/pending', auth, async (req, res) => {
+    try {
+        const professionals = await Professional.find({ verificationStatus: 'pending' }).select('-nationalId');
+        res.status(200).json(professionals);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // GET professional by userId
 router.get('/user/:userId', auth, async (req, res) => {
     try {
