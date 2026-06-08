@@ -72,7 +72,7 @@ router.post('/', auth, async (req, res) => {  // ← auth ADDED
 // UPDATE profile
 router.put('/:id', auth, async (req, res) => {
     try {
-        const allowedFields = ['fullName', 'email', 'phone', 'profilePicture', 'specialty', 'experienceYears', 'services', 'bio', 'city', 'startingFee'];
+        const allowedFields = ['fullName', 'email', 'phone', 'profilePicture', 'specialty', 'experienceYears', 'services', 'bio', 'city', 'startingFee', 'promise1', 'promise2', 'promise3'];
         const updates = {};
         allowedFields.forEach(field => {
             if (req.body[field] !== undefined) updates[field] = req.body[field];
