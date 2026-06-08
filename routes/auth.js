@@ -1,3 +1,4 @@
+const nodemailer = require('nodemailer');
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -118,14 +119,89 @@ router.get('/user/:id', auth, async (req, res) => {
 // ─────────────────────────────────────
 router.post('/forgot-password', async (req, res) => {
     try {
-        await User.findOne({ email: req.body.email });
-        // We don't tell them if email exists or not for security
-        res.json({ message: 'If this email exists, a reset link has been sent.' });
-    } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ message: 'Email is required' });
+        }
+
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.json({ message: 'If this email exists, a reset link has been sent.' });
+        }
+
+        // Create a reset token
+        const resetToken = jwt.sign(
+            { id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        // Set up email transporter
+       const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    },
+    tls: {
+        rejectUnauthorized: false
     }
 });
 
+        // Build the reset link
+        const resetLink = `http://localhost:3000/html/landing-page/reset-password.html?token=${resetToken}`;
+
+        // Send the email
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Yours & Ours — Password Reset',
+            html: `
+                <h2>Password Reset Request</h2>
+                <p>Click the link below to reset your password. This link expires in 1 hour.</p>
+                <a href="${resetLink}">Reset My Password</a>
+            `
+        });
+
+        res.json({ message: 'If this email exists, a reset link has been sent.' });
+
+    } catch (err) {
+    console.error('Forgot password error:', err.message);
+    res.status(500).json({ message: 'Server error' });
+}
+});
+// ─────────────────────────────────────
+// RESET PASSWORD — connects to reset-password.html
+// ─────────────────────────────────────
+router.post('/reset-password', async (req, res) => {
+    try {
+        const { token, password } = req.body;
+
+        if (!token || !password) {
+            return res.status(400).json({ message: 'Token and password are required' });
+        }
+
+        if (password.length < 6) {
+            return res.status(400).json({ message: 'Password must be at least 6 characters' });
+        }
+
+        // Verify the token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        // Hash the new password
+        const hashed = await bcrypt.hash(password, 10);
+
+        // Update the user's password
+        await User.findByIdAndUpdate(decoded.id, { password: hashed });
+
+        res.json({ message: 'Password reset successful' });
+
+    } catch (err) {
+        console.error('Reset password error:', err.message);
+        res.status(400).json({ message: 'Invalid or expired reset link' });
+    }
+});
 module.exports = router;
 /*Someone fills signup form
 → POST /signup runs
