@@ -63,16 +63,17 @@
                 <div>
                     <label class="form-label">Phone Number</label>
                     <input type="tel" name="phone" placeholder="+20 100 000 0000" class="form-input">
+               </div>
+
+                <div>
+                    <label class="form-label">Service Area / City</label>
+                    <input type="text" name="city" placeholder="e.g. Maadi, Degla & Heliopolis" class="form-input">
                 </div>
 
                 <div>
-                    <label class="form-label">Profile Picture</label>
-                    <label class="file-upload-btn">
-                        <input type="file" name="profile_pic" accept="image/*" id="profile_pic_input" onchange="showFileName(this)">
-                        <span class="file-upload-icon">📷</span>
-                        <span id="file-label">Choose a photo</span>
-                    </label>
-                </div>
+                    <label class="form-label">Profile Picture URL</label>
+                    <input type="url" name="profile_picture_url" placeholder="Paste a direct image link (e.g. from Drive or Imgur)" class="form-input">
+               </div>
 
             </div>
         </div>
@@ -96,9 +97,14 @@
                 </div>
 
                 <div>
-    <label class="form-label">Years of Expertise</label>
-    <input type="number" name="experience_years" min="0" max="50" placeholder="e.g. 5" class="form-input">
-</div>
+                    <label class="form-label">Years of Expertise</label>
+                    <input type="number" name="experience_years" min="0" max="50" placeholder="e.g. 5" class="form-input">
+               </div>
+
+                <div>
+                    <label class="form-label">Starting Visit Fee (EGP)</label>
+                    <input type="number" name="starting_fee" min="0" placeholder="e.g. 150" class="form-input">
+               </div>
 
                 <div>
                     <label class="form-label">Services Offered</label>
