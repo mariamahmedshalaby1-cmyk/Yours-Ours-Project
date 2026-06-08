@@ -10,6 +10,23 @@ const auth = require('../middleware/auth');
 router.post('/signup', async (req, res) => {
     try {
         const { name, email, phone, password, role } = req.body;
+        if (!name || !email || !phone || !password) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({ message: 'Invalid email format' });
+        }
+
+        if (password.length < 6) {
+            return res.status(400).json({ message: 'Password must be at least 6 characters' });
+        }
+
+        const allowedRoles = ['client', 'professional'];
+        if (!role || !allowedRoles.includes(role)) {
+            return res.status(400).json({ message: 'Invalid role' });
+        }
 
         // Check if email already exists
         const existing = await User.findOne({ email });
@@ -43,6 +60,10 @@ res.status(201).json({ message: 'Account created successfully' });
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
+
+        if (!email || !password) {
+           return res.status(400).json({ message: 'Email and password are required' });
+        }
 
         // Find user by email
         const user = await User.findOne({ email });
