@@ -98,7 +98,7 @@ if (form) {
         description:    description,
         isEmergency:    isEmergency,
         scheduledTime:  selectedTime,
-        price:          150,   
+        price:          Number(params.get('price')) || 0, 
         address: {
             neighborhood: neighborhood,
             street:       street,
