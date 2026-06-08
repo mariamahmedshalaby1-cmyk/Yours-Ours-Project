@@ -23,7 +23,7 @@ const professionalSchema = new mongoose.Schema(
             type: String,
             trim: true
         },
-        serviceArea: {
+        city: {
             type: String,
             trim: true,
             default: ''

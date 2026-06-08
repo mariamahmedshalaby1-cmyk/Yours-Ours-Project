@@ -6,14 +6,26 @@ function toggleMenu() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const grid            = document.querySelector('.queue-grid');
-    let allCards          = [];
-    const searchInput     = document.querySelector('.search-input-group input');
-    const professionFilter= document.querySelector('.filter-select');
-    const sortBtn         = document.querySelector('.table-controls .btn-text');
-    const loadMoreBtn     = document.querySelector('.btn-page');
-    const loadMoreContainer = document.querySelector('.pagination-container');
-    const countText       = document.querySelector('.table-card > .text-muted');
+    const grid             = document.querySelector('.queue-grid');
+    let allCards           = [];
+    const searchInput      = document.querySelector('.search-input-group input');
+    const professionFilter = document.querySelector('.filter-select');
+    const sortBtn          = document.querySelector('.table-controls .btn-text');
+    const loadMoreBtn      = document.querySelector('.btn-page');
+    const loadMoreContainer= document.querySelector('.pagination-container');
+    const countText        = document.querySelector('.table-card > .text-muted');
+
+    // --- Helper: Time Ago ---
+    function timeAgo(dateStr) {
+        const diffMs    = Date.now() - new Date(dateStr).getTime();
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+        const diffDays  = Math.floor(diffHours / 24);
+        const diffWeeks = Math.floor(diffDays / 7);
+
+        if (diffWeeks > 0) return `Applied ${diffWeeks} week${diffWeeks > 1 ? 's' : ''} ago`;
+        if (diffDays  > 0) return `Applied ${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+        return `Applied ${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+    }
 
     async function loadPendingPros() {
         try {
@@ -27,10 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             allCards = pros.map(pro => {
                 const card = document.createElement('div');
-                card.className      = 'queue-card';
-                card.dataset.created= pro.createdAt;
-                card.dataset.deleted= 'false';
-                card.dataset.id     = pro._id;
+                card.className       = 'queue-card';
+                card.dataset.created = pro.createdAt;
+                card.dataset.deleted = 'false';
+                card.dataset.id      = pro._id;
 
                 card.innerHTML = `
                     <div class="queue-card-header">
@@ -45,12 +57,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="queue-card-body">
                         <div class="info-line">
-                            <span class="material-icons-sharp">location_on</span>
-                            <span>${pro.serviceArea || 'N/A'}</span>
+                            <span class="material-icons-sharp">schedule</span>
+                            <span>${timeAgo(pro.createdAt)}</span>
                         </div>
                         <div class="info-line">
                             <span class="material-icons-sharp">work</span>
                             <span>${pro.experienceYears ? pro.experienceYears + ' years experience' : 'N/A'}</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="material-icons-sharp">location_on</span>
+                            <span>${pro.city || 'N/A'}</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="material-icons-sharp">phone</span>
+                            <a href="tel:${pro.phone || ''}">${pro.phone || 'N/A'}</a>
+                        </div>
+                        <div class="info-line">
+                            <span class="material-icons-sharp">email</span>
+                            <a href="mailto:${pro.email || ''}">${pro.email || 'N/A'}</a>
                         </div>
                     </div>
                     <div class="queue-card-actions btns-line">
@@ -94,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 2. Dynamic "No More" Message ---
+    // --- Dynamic "No More" Message ---
     const noMoreMsg = document.createElement('p');
     noMoreMsg.className        = 'text-muted';
     noMoreMsg.textContent      = 'No more pending applications to load at this time.';
@@ -104,18 +128,18 @@ document.addEventListener('DOMContentLoaded', () => {
     noMoreMsg.style.fontWeight = '500';
     if (loadMoreContainer) loadMoreContainer.appendChild(noMoreMsg);
 
-    // --- 3. Undo System ---
+    // --- Undo System ---
     const undoToast     = document.getElementById('undo-toast');
     const undoToastText = undoToast ? undoToast.querySelector('span') : null;
     const undoBtn       = document.getElementById('undo-btn');
     let lastDeletedCard = null;
     let toastTimeout;
 
-    // --- 4. State Variables ---
+    // --- State Variables ---
     let sortAscending = true;
     let visibleLimit  = 6;
 
-    // --- 5. Age Calculation ---
+    // --- Age Calculation ---
     function getAgeInHours(card) {
         const created = card.dataset.created;
         if (!created) return 9999;
@@ -123,12 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return diffMs / (1000 * 60 * 60);
     }
 
-    // --- 6. Render Cards ---
+    // --- Render Cards ---
     function renderCards() {
         if (!grid) return;
 
-        const searchTerm = searchInput    ? searchInput.value.toLowerCase()     : '';
-        const profTerm   = professionFilter? professionFilter.value.toLowerCase(): '';
+        const searchTerm = searchInput     ? searchInput.value.toLowerCase()      : '';
+        const rawProf    = professionFilter? professionFilter.value.toLowerCase() : '';
+        const profTerm   = (rawProf === 'all' || rawProf === '') ? '' : rawProf;
 
         let filtered = allCards.filter(card => {
             if (card.dataset.deleted === 'true') return false;
@@ -137,11 +162,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const name       = nameEl  ? nameEl.textContent.toLowerCase()  : '';
             const profession = badgeEl ? badgeEl.textContent.toLowerCase() : '';
             return (name.includes(searchTerm) || profession.includes(searchTerm)) &&
-                   (profTerm === '' || profession.includes(profTerm));
+                   (!profTerm || profession.includes(profTerm));
         });
 
         filtered.sort((a, b) => {
-            return sortAscending ? getAgeInHours(a) - getAgeInHours(b) : getAgeInHours(b) - getAgeInHours(a);
+            return sortAscending
+                ? getAgeInHours(a) - getAgeInHours(b)
+                : getAgeInHours(b) - getAgeInHours(a);
         });
 
         grid.innerHTML = '';
@@ -158,9 +185,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 7. Filter & Sort Listeners ---
-    if (searchInput)     searchInput.addEventListener('input',   () => { visibleLimit = 6; renderCards(); });
-    if (professionFilter)professionFilter.addEventListener('change',() => { visibleLimit = 6; renderCards(); });
+    // --- Filter & Sort Listeners ---
+    if (searchInput)      searchInput.addEventListener('input',    () => { visibleLimit = 6; renderCards(); });
+    if (professionFilter) professionFilter.addEventListener('change', () => { visibleLimit = 6; renderCards(); });
     if (sortBtn) {
         sortBtn.addEventListener('click', () => {
             sortAscending = !sortAscending;
@@ -169,24 +196,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 8. Load More ---
+    // --- Load More ---
     if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', () => {
-            const originalText = loadMoreBtn.textContent;
-            loadMoreBtn.textContent      = 'Loading...';
-            loadMoreBtn.style.opacity    = '0.7';
+            const originalText          = loadMoreBtn.textContent;
+            loadMoreBtn.textContent     = 'Loading...';
+            loadMoreBtn.style.opacity   = '0.7';
             loadMoreBtn.style.pointerEvents = 'none';
             setTimeout(() => {
                 visibleLimit += 3;
                 renderCards();
-                loadMoreBtn.textContent      = originalText;
-                loadMoreBtn.style.opacity    = '1';
+                loadMoreBtn.textContent     = originalText;
+                loadMoreBtn.style.opacity   = '1';
                 loadMoreBtn.style.pointerEvents = 'auto';
             }, 800);
         });
     }
 
-    // --- 9. Undo Message ---
+    // --- Undo Message ---
     function showUndoMessage(providerName) {
         if (!undoToast || !undoToastText) return;
         undoToastText.textContent = `${providerName}'s application was resolved.`;
@@ -198,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 6000);
     }
 
-    // --- 10. Undo Button (syncs back to database) ---
+    // --- Undo Button ---
     if (undoBtn) {
         undoBtn.addEventListener('click', async () => {
             if (lastDeletedCard) {
@@ -238,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 11. Approve & Reject ---
+    // --- Approve & Reject ---
     if (grid) {
         grid.addEventListener('click', (e) => {
             const approveBtn = e.target.closest('.btn-approve');
@@ -287,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 12. Initial Load ---
+    // --- Initial Load ---
     loadPendingPros();
     loadVerificationStats();
 });
