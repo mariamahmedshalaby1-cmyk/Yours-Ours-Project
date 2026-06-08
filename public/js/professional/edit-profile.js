@@ -64,10 +64,11 @@ document.querySelector('form').addEventListener('submit', async function(e) {
     const bio            = document.querySelector('[name="bio"]').value.trim();
     const services       = Array.from(document.querySelectorAll('[name="service"]:checked')).map(cb => cb.value);
 
-    if (!fullName || !email || !specialty) {
-        alert('Please fill in at least your name, email, and specialty.');
-        return;
-    }
+   const nationalIdFile = document.querySelector('[name="national_id"]').files[0];
+if (!fullName || !email || !specialty || !nationalIdFile) {
+    alert('Please fill in all required fields including your National ID.');
+    return;
+}
 
     try {
         // First check if professional record exists
