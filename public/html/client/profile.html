@@ -467,7 +467,49 @@
                 <div class="review-rating">⭐⭐⭐⭐⭐</div>
             </div>
         </section>
-        </section><!-- end #sayed -->
+       </section><!-- end #sayed -->
+
+             //DYNAMIC PROFILE — loaded from database
+             //Shown only when URL has ?id=MONGO_ID
+             //(clicking a card in the directory)
+        <section id="dynamic-profile" class="profile-section" style="display:none;">
+            <header class="profile-header">
+                <div class="pro-identity">
+                    <div class="image-container">
+                        <img id="dyn-photo" src="https://via.placeholder.com/180" alt="Professional" class="pro-photo">
+                        <span class="online-indicator"></span>
+                    </div>
+                    <div class="pro-text-details">
+                        <div class="name-row">
+                            <h1 id="dyn-name">Loading...</h1>
+                            <span id="dyn-verified" class="verified-badge" style="display:none;" title="Identity &amp; Background Checked">🛡️ Verified Pro</span>
+                        </div>
+                        <p class="specialty" id="dyn-specialty"></p>
+                        <p class="neighborhood">📍 City: <strong id="dyn-city"></strong></p>
+                        <div class="rating-summary">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="review-count"><strong id="dyn-rating">New</strong> (<span id="dyn-jobs">0</span> jobs done)</span>
+                            <span class="experience-tag" id="dyn-experience"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="booking-action-card">
+                    <div class="button-group">
+                        <a id="dyn-book-btn" href="booking.html" class="btn btn-primary">Check My Schedule</a>
+                        <button class="secondary-btn" id="dyn-chat-btn">💬 Chat</button>
+                        <button class="favorite-btn">❤️ Save to My Favorites</button>
+                        <a id="dyn-review-btn" href="write-review.html" class="btn btn-outline" style="text-align:center;">⭐ Write a Review</a>
+                    </div>
+                    <p class="guarantee-text">🔒 Secure booking through Yours&amp;Ours</p>
+                </div>
+            </header>
+            <hr class="section-divider">
+            <section class="about-section">
+                <h2>About</h2>
+                <p id="dyn-bio">Loading...</p>
+                <div class="skills-tags" id="dyn-services"></div>
+            </section>
+        </section><!-- end #dynamic-profile -->
 
     </main>
    <footer>
