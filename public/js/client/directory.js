@@ -12,6 +12,7 @@ async function loadProfessionals() {
             return;
         }
         var professionals = await response.json();
+        if (professionals.length === 0) return;
         container.innerHTML = '';
 
         professionals.forEach(function(pro) {

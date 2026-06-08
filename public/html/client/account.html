@@ -44,11 +44,24 @@
     <p id="account-phone">📞 +20 100 123 4567</p>
     <p id="account-email">✉️ sara.khaled@email.com</p>
 </div>
-        <a href="account.html" class="text-btn" style="margin-left:auto;">Edit Profile</a>
+        <button onclick="toggleEditForm()" class="text-btn" style="margin-left:auto;">Edit Profile</button>
     </div>
 </section>
 
-        <section class="active-booking-section" style="margin-top: 40px;">
+        <div id="edit-profile-form" style="display:none; margin-top:16px; background:#f9f9f9; border-radius:10px; padding:16px;">
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <input type="text"  id="edit-name"  placeholder="Full Name"     style="padding:8px; border:1px solid #ccc; border-radius:6px; font-size:0.95rem;">
+                <input type="tel"   id="edit-phone" placeholder="Phone Number"  style="padding:8px; border:1px solid #ccc; border-radius:6px; font-size:0.95rem;">
+                <input type="email" id="edit-email" placeholder="Email Address" style="padding:8px; border:1px solid #ccc; border-radius:6px; font-size:0.95rem;">
+            </div>
+            <div style="display:flex; gap:8px; margin-top:12px;">
+                <button class="call-btn" onclick="saveProfile()">Save Changes</button>
+                <button class="call-btn" onclick="toggleEditForm()" style="background:#999;">Cancel</button>
+            </div>
+        </div>
+</section>
+
+        <section class="active-booking-section"
             <h3>🚨 Happening Now</h3>
             
             <div class="live-status-card">
