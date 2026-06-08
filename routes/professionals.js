@@ -20,6 +20,16 @@ router.get('/', async (req, res) => {
     }
 });
 
+// GET professional by userId
+router.get('/user/:userId', auth, async (req, res) => {
+    try {
+        const professional = await Professional.findOne({ userId: req.params.userId }).select('-nationalId');
+        if (!professional) return res.status(404).json({ error: 'Professional not found' });
+        res.status(200).json(professional);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
 
 // GET one professional by ID — public, no auth needed
 router.get('/:id', async (req, res) => {
