@@ -36,7 +36,7 @@
 
     <main class="booking-page-container">
         <nav class="booking-nav">
-            <a href="/html/client/profile.html" class="back-link">← Cancel and return to profile</a>
+           <a id="back-to-profile" href="/html/client/profile.html" class="back-link">← Cancel and return to profile</a>
         </nav>
 
         <header class="booking-header">
@@ -60,12 +60,12 @@
                 
                 <div class="emergency-toggle">
                     <label>
-                        <input type="checkbox" name="is_emergency">
+                        <input type="checkbox" id="is-emergency" name="is_emergency">
                         🚨 <strong>This is an emergency</strong> (e.g., sparking wires, power out)
                     </label>
                 </div>
 
-                <textarea placeholder="Please describe the issue in detail..."></textarea>
+               <textarea id="issue-description" name="description" placeholder="Please describe the issue in detail..."></textarea>
                 
                 <div class="multimedia-upload-group">
                     <div class="upload-btn photo-upload">
@@ -90,10 +90,10 @@
                 </div>
 
                 <div class="address-inputs">
-                    <input type="text" placeholder="Neighborhood (e.g., Maadi, Degla)" required>
-                    <input type="text" placeholder="Street Name & Building Number" required>
-                    <input type="text" placeholder="Apartment / Floor">
-                    <input type="text" placeholder="Landmark or Special Instructions (e.g., 'Ring the doorbell twice')">
+                    <input type="text" id="address-neighborhood" placeholder="Neighborhood (e.g., Maadi, Degla)" required>
+                    <input type="text" id="address-street" placeholder="Street Name &amp; Building Number" required>
+                    <input type="text" id="address-apartment" placeholder="Apartment / Floor">
+                    <input type="text" id="address-landmark" placeholder="Landmark or Special Instructions (e.g., 'Ring the doorbell twice')">
                 </div>
            </div>
 
@@ -113,7 +113,7 @@
 
                 <div class="safety-agreement">
                     <label>
-                        <input type="checkbox" required>
+                        <input type="checkbox" id="safety-agreement" required>
                         I confirm that an adult (18+) will be present during the service visit.
                     </label>
                 </div>
