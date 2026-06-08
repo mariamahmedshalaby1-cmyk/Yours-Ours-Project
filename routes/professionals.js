@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
     try {
         const { specialty, minRating, search } = req.query;
         const filter = {};
+        filter.verificationStatus = 'approved';
         if (specialty)  filter.specialty      = specialty;
         if (minRating)  filter.averageRating  = { $gte: parseFloat(minRating) };
         if (search)     filter.fullName       = { $regex: search, $options: 'i' };
