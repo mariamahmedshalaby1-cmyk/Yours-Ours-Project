@@ -45,26 +45,16 @@ router.post('/', auth, upload.single('photo'), async (req, res) => {
     }
 });
 
-router.get('/client/:clientId', auth, async (req, res) => {
+router.get('/professional/:professionalId', auth, async (req, res) => {
     try {
+        const bookings = await Booking.find({ 
+            professional: req.params.professionalId,
+            status: { $in: ['pending', 'confirmed'] }
+        })
+        .populate('client', 'name email phone')
+        .sort({ isEmergency: -1, createdAt: -1 });
 
-        const page  = parseInt(req.query.page)  || 1;
-        const limit = parseInt(req.query.limit) || 10;
-        const skip  = (page - 1) * limit;
-
-        const bookings = await Booking.find({ client: req.params.clientId })
-            .populate('professional', 'fullName email phone') 
-            .sort({ createdAt: -1 })
-            .skip(skip)
-            .limit(limit);
-
-        const total = await Booking.countDocuments({ client: req.params.clientId });
-
-       res.status(200).json({
-            bookings,
-            currentPage: page,
-            totalPages:  Math.ceil(total / limit)
-        });
+        res.status(200).json({ bookings });
 
     } catch (error) {
         res.status(500).json({ message: error.message });

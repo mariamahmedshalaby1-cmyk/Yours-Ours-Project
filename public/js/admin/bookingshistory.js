@@ -31,10 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const res   = await fetch('http://localhost:3000/api/admin/bookings', {
                 headers: { 'Authorization': 'Bearer ' + token }
             });
-            const bookings = await res.json();
-
-            if (!Array.isArray(bookings)) throw new Error('Invalid data received');
-
+            
+        const data     = await res.json();
+        const bookings = data.bookings || data;
+       if (!Array.isArray(bookings)) throw new Error('Invalid data received');
             allRows = bookings.map(b => {
                 const tr      = document.createElement('tr');
                 const dateObj = new Date(b.scheduledTime);
