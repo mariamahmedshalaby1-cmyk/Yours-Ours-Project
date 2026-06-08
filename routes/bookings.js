@@ -59,12 +59,28 @@ router.get('/client/:clientId', auth, async (req, res) => {
 
         const total = await Booking.countDocuments({ client: req.params.clientId });
 
-        res.status(200).json({
+       res.status(200).json({
             bookings,
             currentPage: page,
             totalPages:  Math.ceil(total / limit)
         });
 
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Get all bookings for a specific professional
+router.get('/professional/:professionalId', auth, async (req, res) => {
+    try {
+        const bookings = await Booking.find({ 
+            professional: req.params.professionalId,
+            status: 'pending'
+        })
+        .populate('client', 'name email phone')
+        .sort({ createdAt: -1 });
+
+        res.status(200).json({ bookings });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
