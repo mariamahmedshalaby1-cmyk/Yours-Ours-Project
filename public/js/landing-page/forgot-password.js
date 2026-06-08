@@ -22,7 +22,7 @@ function validateForm() {
         .then(res => res.json())
         .then(data => {
             // Show success message no matter what
-            document.getElementById('emailError').innerText = 'If this email exists, a reset link has been sent.';
+            document.getElementById('emailError').innerText = 'Check your inbox — if this email is registered, a reset link is on its way.';
             document.getElementById('emailError').style.color = 'green';
         })
         .catch(err => {
