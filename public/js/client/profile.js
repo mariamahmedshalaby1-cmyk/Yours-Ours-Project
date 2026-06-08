@@ -88,11 +88,12 @@
                 });
             }
 
-           // Book button — passes professionalId, name, and service to booking page
+           // Book button — passes professionalId, name, service, and price to booking page
             el = document.getElementById('dyn-book-btn');
             if (el) el.href = '/html/client/booking.html?professionalId=' + pro._id +
                                '&pro='     + encodeURIComponent(pro.fullName || '') +
-                               '&service=' + encodeURIComponent(specialtyLabels[pro.specialty] || pro.specialty || 'General Service');
+                               '&service=' + encodeURIComponent(specialtyLabels[pro.specialty] || pro.specialty || 'General Service') +
+                               '&price='   + (pro.startingFee || 0);
 
             // Review button
             el = document.getElementById('dyn-review-btn');
