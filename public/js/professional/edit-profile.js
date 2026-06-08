@@ -8,6 +8,15 @@ function showFileName(input) {
     }
 }
 
+function showNationalIdName(input) {
+    var label = document.getElementById("file-name-display");
+    if (input.files && input.files[0]) {
+        label.textContent = input.files[0].name;
+    } else {
+        label.textContent = "No file chosen";
+    }
+}
+
 function toggleMenu() {
     var m = document.getElementById("mobile-menu");
     var b = document.getElementById("hamburger");
