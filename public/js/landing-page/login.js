@@ -45,7 +45,6 @@ function validateForm() {
                     window.location.href = '../client/account.html';
                 }
             } else {
-                // Show error from backend
                 document.getElementById('emailError').innerText = data.message;
             }
         })
