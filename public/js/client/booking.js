@@ -10,14 +10,12 @@
     if (svcEl) svcEl.textContent = service.replace(/\+/g, ' ');
     document.title = 'Book ' + pro.replace(/\+/g, ' ') + ' | Yours&Ours';
 
-    // make "← Cancel" return to this specific professional's profile page
     var backLink = document.getElementById('back-to-profile');
     if (backLink && professionalId) {
         backLink.href = '/html/client/profile.html?id=' + professionalId;
     }
 })();
-
-//time slot selection
+//time selection
 document.querySelectorAll('.time-pill').forEach(function(pill) {
     pill.addEventListener('click', function() {
         document.querySelectorAll('.time-pill').forEach(function(p) {
@@ -26,7 +24,7 @@ document.querySelectorAll('.time-pill').forEach(function(pill) {
         this.classList.add('selected');
     });
 });
-//validation for booking form
+//validation
 function validateBookingForm() {
     var valid        = true;
     var textarea     = document.querySelector('.smart-booking-form textarea');
@@ -38,7 +36,6 @@ function validateBookingForm() {
     document.querySelectorAll('.booking-field-error').forEach(function(el) {
         el.remove();
     });
-
     function showError(element, message) {
         var err             = document.createElement('p');
         err.className       = 'booking-field-error';
@@ -49,7 +46,6 @@ function validateBookingForm() {
         element.parentNode.insertBefore(err, element.nextSibling);
         valid = false;
     }
-
     if (!textarea.value.trim()) {
         showError(textarea, 'Please describe the issue before continuing.');
     }
@@ -68,21 +64,18 @@ function validateBookingForm() {
 
     return valid;
 }
-//form submission 
+//form submission
 var form = document.querySelector('.smart-booking-form');
 
 if (form) {
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-
         if (!validateBookingForm()) return;
-
         var params         = new URLSearchParams(window.location.search);
         var professionalId = params.get('professionalId');
         var clientId       = localStorage.getItem('userId');
         var token          = localStorage.getItem('token');
         var service        = params.get('service') || 'General Service';
-
         var description  = document.querySelector('.smart-booking-form textarea').value.trim();
         var isEmergency  = document.querySelector('input[name="is_emergency"]').checked;
         var selectedTime = document.querySelector('.time-pill.selected').textContent.trim();
@@ -90,22 +83,23 @@ if (form) {
         var street       = document.querySelector('.address-inputs input:nth-child(2)').value.trim();
         var apartment    = document.querySelector('.address-inputs input:nth-child(3)').value.trim();
         var landmark     = document.querySelector('.address-inputs input:nth-child(4)').value.trim();
+        var photoFile    = document.getElementById('photo-upload-input');
+        var formData = new FormData();
 
-    var bookingData = {
-        clientId:       clientId,
-        professionalId: professionalId,
-        service:        service,
-        description:    description,
-        isEmergency:    isEmergency,
-        scheduledTime:  selectedTime,
-        price:          Number(params.get('price')) || 0, 
-        address: {
-            neighborhood: neighborhood,
-            street:       street,
-            apartment:    apartment,
-            landmark:     landmark
+        formData.append('clientId',              clientId);
+        formData.append('professionalId',        professionalId);
+        formData.append('service',               service);
+        formData.append('description',           description);
+        formData.append('isEmergency',           isEmergency);
+        formData.append('scheduledTime',         selectedTime);
+        formData.append('price',                 Number(params.get('price')) || 0);
+        formData.append('address[neighborhood]', neighborhood);
+        formData.append('address[street]',       street);
+        formData.append('address[apartment]',    apartment);
+        formData.append('address[landmark]',     landmark);
+        if (photoFile && photoFile.files[0]) {
+            formData.append('photo', photoFile.files[0]);
         }
-    }
         var btn         = document.querySelector('.primary-confirm-btn');
         btn.textContent = 'Sending...';
         btn.disabled    = true;
@@ -114,10 +108,9 @@ if (form) {
             var response = await fetch('http://localhost:3000/api/bookings', {
                 method: 'POST',
                 headers: {
-                    'Content-Type':  'application/json',
                     'Authorization': 'Bearer ' + token
                 },
-                body: JSON.stringify(bookingData)
+                body: formData
             });
 
             var result = await response.json();
@@ -134,7 +127,6 @@ if (form) {
                 btn.disabled    = false;
                 alert('Something went wrong: ' + result.message);
             }
-
         } catch (error) {
             btn.textContent = 'Confirm & Send Request';
             btn.disabled    = false;
@@ -143,22 +135,21 @@ if (form) {
         }
     });
 }
-// hamburger menu toggle
+//menu
 function toggleMenu() {
     var m = document.getElementById("mobile-menu");
     var b = document.getElementById("hamburger");
     if (m) m.classList.toggle("open");
     if (b) b.classList.toggle("open");
 }
-//bell notification 
+//bell notif
 var bellBtn = document.querySelector('.nav-icon-btn');
 if (bellBtn) {
     bellBtn.addEventListener('click', function() {
         alert('🔔 No new notifications right now.');
     });
 }
-
-// photo upload
+//photo upload
 var photoInput = document.getElementById('photo-upload-input');
 if (photoInput) {
     photoInput.addEventListener('change', function() {
@@ -166,14 +157,5 @@ if (photoInput) {
         if (nameEl && this.files[0]) {
             nameEl.textContent = '📎 ' + this.files[0].name;
         }
-    });
-}
-
-var photoLabel = document.querySelector('label[for="photo-upload-input"]');
-if (photoLabel) {
-    photoLabel.addEventListener('click', function(e) {
-        e.preventDefault();
-        var input = document.getElementById('photo-upload-input');
-        if (input) input.click();
     });
 }

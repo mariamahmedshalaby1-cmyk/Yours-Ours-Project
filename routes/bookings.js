@@ -6,7 +6,14 @@ const upload = require('../middleware/upload');
 
 router.post('/', auth, upload.single('photo'), async (req, res) => {
     try {
-
+        // FormData sends address[neighborhood] not address.neighborhood
+        const address = {
+            neighborhood: req.body['address[neighborhood]'] || req.body.address?.neighborhood || '',
+            street:       req.body['address[street]']       || req.body.address?.street       || '',
+            apartment:    req.body['address[apartment]']    || req.body.address?.apartment    || '',
+            landmark:     req.body['address[landmark]']     || req.body.address?.landmark     || ''
+        };
+        // validation
         if (!req.body.clientId || !req.body.professionalId) {
             return res.status(400).json({ message: 'Client and professional are required' });
         }
@@ -16,37 +23,31 @@ router.post('/', auth, upload.single('photo'), async (req, res) => {
         if (!req.body.scheduledTime) {
             return res.status(400).json({ message: 'Please select a time slot' });
         }
-        if (!req.body.address || !req.body.address.neighborhood || !req.body.address.street) {
+        if (!address.neighborhood || !address.street) {
             return res.status(400).json({ message: 'Please enter your full address' });
         }
-
         const pin = Math.floor(1000 + Math.random() * 9000).toString();
-
-    const newBooking = new Booking({
-        client:        req.body.clientId,
-        professional:  req.body.professionalId,
-        service:       req.body.service,
-        description:   req.body.description,
-        isEmergency:   req.body.isEmergency,
-        scheduledTime: req.body.scheduledTime,
-        address:       req.body.address,
-        photo:         req.file ? req.file.filename : '',
-        price:         req.body.price || 0,   // ← ADD THIS
-        pin:           pin,
-        status:        'pending'
-    });
-
+        const newBooking = new Booking({
+            client:        req.body.clientId,
+            professional:  req.body.professionalId,
+            service:       req.body.service,
+            description:   req.body.description,
+            isEmergency:   req.body.isEmergency === 'true',
+            scheduledTime: req.body.scheduledTime,
+            address:       address,
+            photo:         req.file ? req.file.filename : '',
+            price:         Number(req.body.price) || 0,
+            pin:           pin,
+            status:        'pending'
+        });
         await newBooking.save();
-
         res.status(201).json({ message: 'Booking created successfully', booking: newBooking });
 
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
-
-// GET bookings for one professional
-// GET /api/bookings/professional/:professionalId
+// GET/api/bookings/professional/:professionalId
 router.get('/professional/:professionalId', auth, async (req, res) => {
     try {
         const bookings = await Booking.find({
@@ -62,30 +63,37 @@ router.get('/professional/:professionalId', auth, async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
-
-// Get all bookings for a specific professional
-router.get('/professional/:professionalId', auth, async (req, res) => {
+// GET /api/bookings/client/:clientId
+router.get('/client/:clientId', auth, async (req, res) => {
     try {
-        const status = req.query.status || 'pending';
-        const bookings = await Booking.find({ 
-    professional: req.params.professionalId,
-    status: status
-    })
-        .populate('client', 'name email phone')
-        .sort({ createdAt: -1 });
+        const page  = parseInt(req.query.page)  || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const skip  = (page - 1) * limit;
 
-        res.status(200).json({ bookings });
+        const bookings = await Booking.find({ client: req.params.clientId })
+            .populate('professional', 'fullName email phone')
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit);
+
+        const total = await Booking.countDocuments({ client: req.params.clientId });
+
+        res.status(200).json({
+            bookings,
+            currentPage: page,
+            totalPages:  Math.ceil(total / limit)
+        });
+
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
-
 router.get('/:id', auth, async (req, res) => {
     try {
 
         const booking = await Booking.findById(req.params.id)
-            .populate('client',       'name email phone')
-            .populate('professional', 'fullName email phone'); 
+            .populate('client','name email phone')
+            .populate('professional','fullName email phone'); 
 
         if (!booking) {
             return res.status(404).json({ message: 'Booking not found' });
@@ -97,17 +105,16 @@ router.get('/:id', auth, async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
-
+//for admin panel-->get all bookings with pagination
 router.get('/', auth, async (req, res) => {
     try {
-
         const page  = parseInt(req.query.page)  || 1;
         const limit = parseInt(req.query.limit) || 10;
         const skip  = (page - 1) * limit;
 
         const bookings = await Booking.find()
-            .populate('client',       'name email')
-            .populate('professional', 'fullName email')
+            .populate('client','name email')
+            .populate('professional','fullName email')
             .sort({ createdAt: -1 })
             .skip(skip)
             .limit(limit);
@@ -127,18 +134,15 @@ router.get('/', auth, async (req, res) => {
 
 router.patch('/:id/status', auth, async (req, res) => {
     try {
-
         const allowed = ['pending', 'confirmed', 'active', 'completed', 'cancelled'];
         if (!allowed.includes(req.body.status)) {
             return res.status(400).json({ message: 'Invalid status value' });
         }
-
         const booking = await Booking.findByIdAndUpdate(
             req.params.id,
             { status: req.body.status },
             { new: true }
         );
-
         if (!booking) {
             return res.status(404).json({ message: 'Booking not found' });
         }
@@ -152,15 +156,11 @@ router.patch('/:id/status', auth, async (req, res) => {
 
 router.delete('/:id', auth, async (req, res) => {
     try {
-
         const booking = await Booking.findByIdAndDelete(req.params.id);
-
         if (!booking) {
             return res.status(404).json({ message: 'Booking not found' });
         }
-
         res.status(200).json({ message: 'Booking deleted successfully' });
-
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
