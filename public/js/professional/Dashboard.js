@@ -60,7 +60,7 @@ function createBookingRow(booking) {
 
     const clientName = booking.client?.name || 'Unknown Client';
     const service = booking.service || 'N/A';
-    const date = booking.scheduledTime ? formatDate(booking.scheduledTime) : 'N/A';
+    const date = booking.scheduledTime || 'N/A';
     const isEmergency = booking.isEmergency;
 
     if (isEmergency) {
