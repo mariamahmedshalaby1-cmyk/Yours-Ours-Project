@@ -38,16 +38,15 @@
         <section class="my-profile-section">
     <h3>👤 My Account</h3>
     <div class="live-status-card" style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-       <label for="avatar-upload" style="cursor:pointer; position:relative; display:inline-block;" title="Click to change photo">
+       <label for="avatar-upload" style="cursor:pointer; position:relative; display:inline-block; width:60px; height:60px;" title="Click to change photo">
             <svg id="avatar-default" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="60" height="60" style="border-radius:50%; background:#d0d0d0; display:block;">
                 <circle cx="30" cy="22" r="12" fill="#888"/>
                 <ellipse cx="30" cy="52" rx="18" ry="12" fill="#888"/>
             </svg>
-            <img id="avatar-img" alt="My Avatar" class="pro-avatar" style="display:none; width:60px; height:60px; border-radius:50%; object-fit:cover; position:absolute; top:0; left:0;">
+            <img id="avatar-img" alt="My Avatar" style="display:none; width:60px; height:60px; border-radius:50%; object-fit:cover; position:absolute; top:0; left:0; border:none;">
             <span style="position:absolute; bottom:0; right:0; background:#4CAF50; color:white; border-radius:50%; width:18px; height:18px; font-size:11px; display:flex; align-items:center; justify-content:center;">✎</span>
         </label>
         <input type="file" id="avatar-upload" accept="image/*" style="display:none;">
-
        <div>
     <p><strong id="account-name">Sara Khaled</strong></p>
     <p id="account-phone">📞 +20 100 123 4567</p>
