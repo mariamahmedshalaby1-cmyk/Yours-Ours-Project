@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
        if (!Array.isArray(bookings)) throw new Error('Invalid data received');
             allRows = bookings.map(b => {
                 const tr      = document.createElement('tr');
+                const dateObj    = new Date(b.scheduledTime);
                 const dateDisplay = b.scheduledTime || 'N/A';
                 tr.innerHTML = `
                     <td><input type="checkbox"></td>
