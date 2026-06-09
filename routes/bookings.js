@@ -45,9 +45,11 @@ router.post('/', auth, upload.single('photo'), async (req, res) => {
     }
 });
 
+// GET bookings for one professional
+// GET /api/bookings/professional/:professionalId
 router.get('/professional/:professionalId', auth, async (req, res) => {
     try {
-        const bookings = await Booking.find({ 
+        const bookings = await Booking.find({
             professional: req.params.professionalId,
             status: { $in: ['pending', 'confirmed'] }
         })
