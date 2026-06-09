@@ -87,12 +87,26 @@ function createBookingRow(booking) {
     return row;
 }
 
-// Fetch and render all pending bookings for this professional
 async function loadBookings() {
     const tbody = document.getElementById('bookings-tbody');
 
     try {
-        const res = await fetch(`/api/bookings/professional/${professionalId}`, {
+        // Step 1 — get the Professional profile using the User ID
+        // userId from localStorage is the User _id
+        // we need the Professional model _id which is different
+        const proRes = await fetch(`/api/professionals/user/${professionalId}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!proRes.ok) {
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Please complete your profile first.</td></tr>';
+            return;
+        }
+
+        const pro = await proRes.json();
+
+        // Step 2 — now use the Professional _id to find bookings
+        const res = await fetch(`/api/bookings/professional/${pro._id}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 
@@ -106,21 +120,24 @@ async function loadBookings() {
         const bookings = data.bookings;
 
         if (!bookings || bookings.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No pending requests.</td></tr>';
-            document.getElementById('request-count').textContent = '0';
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No pending requests yet.</td></tr>';
+            if (document.getElementById('request-count'))
+                document.getElementById('request-count').textContent = '0';
             return;
         }
 
-        // Update the notice count
-        document.getElementById('request-count').textContent = bookings.length;
+        // Show count
+        if (document.getElementById('request-count'))
+            document.getElementById('request-count').textContent = bookings.length;
 
-        // Check for emergency bookings and show banner
+        // Show emergency banner if needed
         const emergency = bookings.find(b => b.isEmergency);
         if (emergency) {
-            const banner = document.getElementById('emergency-banner');
+            const banner      = document.getElementById('emergency-banner');
             const emergencyText = document.getElementById('emergency-text');
-            banner.style.display = 'block';
-            emergencyText.textContent = `${emergency.client?.name || 'A client'} has an emergency request (${emergency.description || 'urgent issue'}).`;
+            if (banner) banner.style.display = 'block';
+            if (emergencyText) emergencyText.textContent =
+                `${emergency.client?.name || 'A client'} has an emergency request.`;
         }
 
         // Render rows — emergencies first
@@ -128,17 +145,21 @@ async function loadBookings() {
         const sorted = [...bookings].sort((a, b) => b.isEmergency - a.isEmergency);
         sorted.forEach(booking => tbody.appendChild(createBookingRow(booking)));
 
-        // Update next job section with the earliest booking
+        // Show next job
         const next = sorted[0];
         if (next) {
-            document.getElementById('next-job-content').innerHTML = `
-                <p><strong>${next.scheduledTime ? formatDate(next.scheduledTime) : 'TBD'}</strong> — ${next.service || 'Service'}</p>
-                <p>Location: ${next.address?.neighborhood || ''}, ${next.address?.street || 'Address not provided'}</p>
-            `;
+            const nextJobEl = document.getElementById('next-job-content');
+            if (nextJobEl) {
+                nextJobEl.innerHTML = `
+                    <p><strong>${next.scheduledTime || 'TBD'}</strong> — ${next.service || 'Service'}</p>
+                    <p>Location: ${next.address?.neighborhood || ''}, ${next.address?.street || 'Not provided'}</p>
+                `;
+            }
         }
 
     } catch (err) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Error loading requests.</td></tr>';
+        console.error(err);
+        if (tbody) tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Error loading requests.</td></tr>';
     }
 }
 
