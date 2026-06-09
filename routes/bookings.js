@@ -66,10 +66,11 @@ router.get('/professional/:professionalId', auth, async (req, res) => {
 // Get all bookings for a specific professional
 router.get('/professional/:professionalId', auth, async (req, res) => {
     try {
+        const status = req.query.status || 'pending';
         const bookings = await Booking.find({ 
-            professional: req.params.professionalId,
-            status: 'pending'
-        })
+    professional: req.params.professionalId,
+    status: status
+    })
         .populate('client', 'name email phone')
         .sort({ createdAt: -1 });
 
