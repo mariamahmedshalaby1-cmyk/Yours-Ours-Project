@@ -6,9 +6,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Professional = require('../models/Professional');
 const auth = require('../middleware/auth');
-// ─────────────────────────────────────
-// SIGNUP — connects to your signup.html
-// ─────────────────────────────────────
+const upload = require('../middleware/upload');
+
 router.post('/signup', async (req, res) => {
     try {
         const { name, email, phone, password, role } = req.body;
@@ -60,14 +59,11 @@ router.post('/signup', async (req, res) => {
         res.status(201).json({ message: 'Account created successfully' });
 
     } catch (err) {
-        console.error('Signup error:', err.message); // ← ADDED THIS
+        console.error('Signup error:', err.message);
         res.status(500).json({ message: 'Server error' });
     }
 });
 
-// ─────────────────────────────────────
-// LOGIN — connects to your login.html
-// ─────────────────────────────────────
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -104,9 +100,6 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// ─────────────────────────────────────
-// GET USER — connects to your account.html
-// ─────────────────────────────────────
 router.get('/user/:id', auth, async (req, res) => {
     try {
         const user = await User.findById(req.params.id).select('-password');
@@ -119,9 +112,35 @@ router.get('/user/:id', auth, async (req, res) => {
     }
 });
 
-// ─────────────────────────────────────
-// FORGOT PASSWORD — connects to forgot-password.html
-// ─────────────────────────────────────
+router.put('/user/:id', auth, upload.single('profilePhoto'), async (req, res) => {
+    try {
+        const updates = {};
+
+        if (req.file) {
+            updates.profilePhoto = '/uploads/' + req.file.filename;
+        }
+
+        if (req.body.name)  updates.name  = req.body.name;
+        if (req.body.phone) updates.phone = req.body.phone;
+
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            updates,
+            { new: true }
+        ).select('-password');
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.json({ message: 'Profile updated', user });
+
+    } catch (err) {
+        console.error('Update user error:', err.message);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 router.post('/forgot-password', async (req, res) => {
     try {
         const { email } = req.body;
@@ -173,9 +192,6 @@ router.post('/forgot-password', async (req, res) => {
     }
 });
 
-// ─────────────────────────────────────
-// RESET PASSWORD — connects to reset-password.html
-// ─────────────────────────────────────
 router.post('/reset-password', async (req, res) => {
     try {
         const { token, password } = req.body;
