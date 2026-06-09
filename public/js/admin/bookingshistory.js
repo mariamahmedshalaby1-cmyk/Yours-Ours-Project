@@ -37,12 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
        if (!Array.isArray(bookings)) throw new Error('Invalid data received');
             allRows = bookings.map(b => {
                 const tr      = document.createElement('tr');
-                const dateObj = new Date(b.scheduledTime);
-                const dateDisplay = isNaN(dateObj.getTime())
-                    ? 'N/A'
-                    : dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-                      + ', ' + dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-
+                const dateDisplay = b.scheduledTime || 'N/A';
                 tr.innerHTML = `
                     <td><input type="checkbox"></td>
                     <td><b>${b._id}</b></td>
