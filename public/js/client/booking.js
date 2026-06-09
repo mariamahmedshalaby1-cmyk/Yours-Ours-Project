@@ -157,3 +157,23 @@ if (bellBtn) {
         alert('🔔 No new notifications right now.');
     });
 }
+
+// photo upload
+var photoInput = document.getElementById('photo-upload-input');
+if (photoInput) {
+    photoInput.addEventListener('change', function() {
+        var nameEl = document.getElementById('photo-upload-name');
+        if (nameEl && this.files[0]) {
+            nameEl.textContent = '📎 ' + this.files[0].name;
+        }
+    });
+}
+
+var photoLabel = document.querySelector('label[for="photo-upload-input"]');
+if (photoLabel) {
+    photoLabel.addEventListener('click', function(e) {
+        e.preventDefault();
+        var input = document.getElementById('photo-upload-input');
+        if (input) input.click();
+    });
+}
