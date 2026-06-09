@@ -71,38 +71,39 @@ if (form) {
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         if (!validateBookingForm()) return;
-        var params         = new URLSearchParams(window.location.search);
-        var professionalId = params.get('professionalId');
-        var clientId       = localStorage.getItem('userId');
-        var token          = localStorage.getItem('token');
-        var service        = params.get('service') || 'General Service';
-        var description  = document.querySelector('.smart-booking-form textarea').value.trim();
-        var isEmergency  = document.querySelector('input[name="is_emergency"]').checked;
-        var selectedTime = document.querySelector('.time-pill.selected').textContent.trim();
+        var params= new URLSearchParams(window.location.search);
+        var professionalId= params.get('professionalId');
+        var clientId= localStorage.getItem('userId');
+        var token= localStorage.getItem('token');
+        var service= params.get('service') || 'General Service';
+
+        var description= document.querySelector('.smart-booking-form textarea').value.trim();
+        var isEmergency = document.querySelector('input[name="is_emergency"]').checked;
+        var selectedTime= document.querySelector('.time-pill.selected').textContent.trim();
         var neighborhood = document.querySelector('.address-inputs input:first-child').value.trim();
-        var street       = document.querySelector('.address-inputs input:nth-child(2)').value.trim();
-        var apartment    = document.querySelector('.address-inputs input:nth-child(3)').value.trim();
-        var landmark     = document.querySelector('.address-inputs input:nth-child(4)').value.trim();
-        var photoFile    = document.getElementById('photo-upload-input');
+        var street = document.querySelector('.address-inputs input:nth-child(2)').value.trim();
+        var apartment = document.querySelector('.address-inputs input:nth-child(3)').value.trim();
+        var landmark = document.querySelector('.address-inputs input:nth-child(4)').value.trim();
+        var photoFile = document.getElementById('photo-upload-input');
         var formData = new FormData();
 
-        formData.append('clientId',              clientId);
-        formData.append('professionalId',        professionalId);
-        formData.append('service',               service);
-        formData.append('description',           description);
-        formData.append('isEmergency',           isEmergency);
-        formData.append('scheduledTime',         selectedTime);
-        formData.append('price',                 Number(params.get('price')) || 0);
+        formData.append('clientId', clientId);
+        formData.append('professionalId',professionalId);
+        formData.append('service',service);
+        formData.append('description',description);
+        formData.append('isEmergency', isEmergency);
+        formData.append('scheduledTime',selectedTime);
+        formData.append('price', Number(params.get('price')) || 0);
         formData.append('address[neighborhood]', neighborhood);
-        formData.append('address[street]',       street);
-        formData.append('address[apartment]',    apartment);
-        formData.append('address[landmark]',     landmark);
+        formData.append('address[street]', street);
+        formData.append('address[apartment]',apartment);
+        formData.append('address[landmark]',  landmark);
         if (photoFile && photoFile.files[0]) {
             formData.append('photo', photoFile.files[0]);
         }
-        var btn         = document.querySelector('.primary-confirm-btn');
+        var btn = document.querySelector('.primary-confirm-btn');
         btn.textContent = 'Sending...';
-        btn.disabled    = true;
+        btn.disabled= true;
 
         try {
             var response = await fetch('http://localhost:3000/api/bookings', {
@@ -112,9 +113,7 @@ if (form) {
                 },
                 body: formData
             });
-
             var result = await response.json();
-
             if (response.ok) {
                 btn.textContent           = '✅ Request Sent!';
                 btn.style.backgroundColor = '#22c55e';

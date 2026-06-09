@@ -6,7 +6,6 @@ const upload = require('../middleware/upload');
 
 router.post('/', auth, upload.single('photo'), async (req, res) => {
     try {
-        // FormData sends address[neighborhood] not address.neighborhood
         const address = {
             neighborhood: req.body['address[neighborhood]'] || req.body.address?.neighborhood || '',
             street:       req.body['address[street]']       || req.body.address?.street       || '',
